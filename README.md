@@ -30,4 +30,3 @@ To add a new module:
 ## Contributing
 
 Open issues or pull requests to improve notes, fix errors, or add new modules.
-# study-pl400
