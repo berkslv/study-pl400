@@ -1,7 +1,0 @@
-# Environments in Microsoft Dataverse
-
-An environment is a way to create and manage an instance of a Dataverse database. It also lets you manage user access, security settings, and the storage that is associated with the Dataverse database within that environment. An environment also allows you to install applications that you build with Power Apps or flows that you create with Power Automate into that environment. You can create one or many environments, depending on your needs.
-
-Each environment is created under a Microsoft Entra ID tenant, and only users within that tenant can access its resources. An environment is also bound to a geographic location, like the United States. When you create a Dataverse database in an environment, that database is created within data centers in that geographic location. Any items that you create in that environment (including connections, gateways, flows that are using Power Automate, and more) are also bound to their environment's location.
-
-You can create more than one environment to manage solution development and data storage by setting up one environment for development, another for testing, and another for production use. Also, you can set up an environment based on a geographical location. For example, you might set up an environment for Europe and another for Asia. Each of these environments has zero or only one instance of Microsoft Dataverse.
