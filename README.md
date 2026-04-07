@@ -8,17 +8,27 @@ Each module contains numbered notes from Microsoft Learn, exercises, knowledge c
 
 ## Adding New Modules with Copilot CLI Skills
 
-This repo uses two agent skills to streamline adding content:
+This repo uses four agent skills to streamline adding and studying content:
 
-| Skill | Description |
-|-------|-------------|
-| `retrieve-microsoft-learn-as-markdown` | Fetches a Microsoft Learn module and saves all units as markdown files |
-| `generate-quiz-from-docs` | Reads markdown files in a folder and generates a `QUIZ.md` with practice questions |
+- **`retrieve-microsoft-learn-as-markdown`** — Fetches a Microsoft Learn module and saves all units as markdown files in a dedicated folder.
+  - *Example:* "`retrieve-microsoft-learn-as-markdown` `https://learn.microsoft.com/en-us/training/modules/intro-to-power-apps/` under .\3-use-advance-techniques-canvas-apps-custom-updates-optimization"
+  - *Note:* You should update the order number like 1- or 2- in beginnig of the newly created module.
 
-To add a new module:
+- **`generate-quiz-from-docs`** — Reads all markdown files in a folder and generates a `QUIZ.md` with Microsoft-style multiple choice and fill-in-the-blank exam questions.
+  - *Example:* "Use the `generate-quiz-from-docs` skill on the `1-create-powerapps` folder"
+
+- **`summarize-microsoft-learn`** — Reads all markdown files in a folder and generates a concise `SUMMARY.md` retaining only definitions, concepts, procedures, best practices, and code samples.
+  - *Example:* "Use the `summarize-microsoft-learn` skill on the `2-create-app-models-business-processes` folder"
+
+- **`create-recall-content-from-docs`** — Reads all markdown files in a folder and generates a compact `RECALL.md` with a keyword table, main ideas, and a mini quiz for quick content recall and self-testing.
+  - *Example:* "Use the `create-recall-content-from-docs` skill on the `3-use-advance-techniques-canvas-apps-custom-updates-optimization` folder"
+
+To add and study a new module:
 
 1. Ask Copilot to use the `retrieve-microsoft-learn-as-markdown` skill with the URL of the target Microsoft Learn module.
-2. Ask Copilot to use the `generate-quiz-from-docs` skill on the new module folder to create a `QUIZ.md`.
+2. Optionally, ask Copilot to use the `generate-quiz-from-docs` skill on the new module folder to create a `QUIZ.md`.
+3. Optionally, ask Copilot to use the `summarize-microsoft-learn` skill to get a dense `SUMMARY.md`.
+4. Optionally, ask Copilot to use the `create-recall-content-from-docs` skill to get a `RECALL.md` for quick review.
 
 ## Contributing
 
