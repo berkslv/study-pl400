@@ -84,17 +84,16 @@ function Invoke-AIProvider {
 }
 
 # -- Auto-discover module directories -----------------------------------------
-# Scans all non-hidden top-level dirs for subdirectories containing source .md files.
+# Recursively finds all directories (at any depth) that contain source .md files.
 
-$excludedDirs = @('.git', '.agents', '.vscode', 'node_modules')
+$excludedPattern = [regex]::Escape('.git') + '|' + [regex]::Escape('.agents') + '|' + [regex]::Escape('node_modules')
 
 $moduleDirs = @()
-foreach ($topDir in (Get-ChildItem -Path $RepoRoot -Directory | Where-Object { $_.Name -notin $excludedDirs -and $_.Name -notlike '.*' })) {
-    foreach ($sub in (Get-ChildItem -Path $topDir.FullName -Directory -ErrorAction SilentlyContinue)) {
-        $sourceCount = (Get-ChildItem -Path $sub.FullName -Filter '*.md' -ErrorAction SilentlyContinue |
-            Where-Object { $_.Name -notin @('SUMMARY.md', 'QUIZ.md', 'RECALL.md', 'README.md') }).Count
-        if ($sourceCount -gt 0) { $moduleDirs += $sub }
-    }
+foreach ($dir in (Get-ChildItem -Path $RepoRoot -Directory -Recurse -ErrorAction SilentlyContinue |
+        Where-Object { $_.FullName -notmatch $excludedPattern -and $_.Name -notlike '.*' })) {
+    $sourceCount = (Get-ChildItem -Path $dir.FullName -Filter '*.md' -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -notin @('SUMMARY.md', 'QUIZ.md', 'RECALL.md', 'README.md') }).Count
+    if ($sourceCount -gt 0) { $moduleDirs += $dir }
 }
 
 # -- Scan for gaps ------------------------------------------------------------
