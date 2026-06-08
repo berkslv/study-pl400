@@ -1,21 +1,34 @@
 # Check your knowledge
 
+Completed
+
+- 6 minutes
+
 ## Answer the following questions to see what you've learned.
 
-1. What is Microsoft's cloud-based messaging solution called?
+1.
+What is Microsoft's cloud-based messaging solution called?
 
-   - Event Grid
-   - Logic Apps
-   - **Service Bus**
+Event Grid
 
-2. Dataverse can be configured to publish events directly to which Azure service?
+Logic Apps
 
-   - Event Grid
-   - **Service Bus**
-   - Logic Apps
+Service Bus
 
-3. What mechanism might you use to publish Microsoft Dataverse data directly to an Azure Function?
+2.
+Dataverse can be configured to publish events directly to which Azure service?
 
-   - **Webhooks**
-   - Power Automate
-   - Logic Apps
+Event Grid
+
+Service Bus
+
+Logic Apps
+
+3.
+What mechanism might you use to publish Microsoft Dataverse data directly to an Azure Function?
+
+Webhooks
+
+Power Automate
+
+Logic Apps

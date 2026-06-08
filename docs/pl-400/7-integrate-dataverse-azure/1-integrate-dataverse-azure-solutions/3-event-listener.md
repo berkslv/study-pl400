@@ -1,5 +1,9 @@
 # Write a Service Bus Event Listener that consumes Microsoft Dataverse messages
 
+Completed
+
+- 10 minutes
+
 ## Types of supported Service Bus contracts
 
 Microsoft Dataverse supports various methods to consume Azure Messaging Service Bus queue messages: queue, one-way, two-way, or REST. If using two-way and REST, you're able to return a string of information back to Dataverse.
@@ -30,57 +34,54 @@ In the previous exercise, you registered a Service Endpoint that publishes messa
 
 1. Create a C# Console Application in Visual Studio that targets .NET 4.6.2 or higher.
 2. Add the following NuGet packages:
-   - WindowsAzure.ServiceBus
-   - Microsoft.CrmSdk.CoreAssemblies
 
+    - WindowsAzure.ServiceBus
+    - Microsoft.CrmSdk.CoreAssemblies
 3. In the application's Main method, paste the following code. Replace the Endpoint URL with your Azure Service Bus Namespace's Endpoint URL and the queue name if it differs:
 
-   ```csharp
-   string connectionString =@"[ENDPOINT URL]";
-   string queueName = "mslearnsamplequeue";
-   QueueClient queueClient = QueueClient.CreateFromConnectionString(connectionString, queueName, ReceiveMode.PeekLock);
-   ```
-
+    ```csharp
+    string connectionString =@"[ENDPOINT URL]";
+    string queueName = "mslearnsamplequeue";
+    QueueClient queueClient = QueueClient.CreateFromConnectionString(connectionString, queueName, ReceiveMode.PeekLock);
+    ```
 4. To consume your message, use the **OnMessage** method, which lets you process a Service Bus queue message in an event-driven message pump.
 
-   ```csharp
-   queueClient.OnMessage(message =>
-   {
-     //get RemoteExecutionContext based on Message Format
-     RemoteExecutionContext context = null;
+    ```csharp
+    queueClient.OnMessage(message =>
+    {
+      //get RemoteExecutionContext based on Message Format
+      RemoteExecutionContext context = null;
+    
+      if (message.ContentType == "application/msbin1") //.NETBinary Message Format
+      {
+        context = message.GetBody<RemoteExecutionContext>();
+      }
+      else if (message.ContentType == "application/json") //JSON Message Format
+      {
+        context = message.GetBody<RemoteExecutionContext>(new DataContractJsonSerializer(typeof(RemoteExecutionContext)));
+      }
+      else if (message.ContentType == "application/xml") //XML Message Format
+      {
+        context = message.GetBody<RemoteExecutionContext>(new DataContractSerializer(typeof(RemoteExecutionContext)));
+      }
+      try
+      {
+        var target = context.InputParameters["Target"] as Entity;
+    
+        foreach (var field in target.Attributes)
+        {
+          Console.WriteLine($"Name: {field.Key} Value: { field.Value}");
+        }
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine(ex.ToString());
+      }
+    });
+    ```
+5. Lastly we're going to add a `Console.ReadLine()` to our main method to allow for multiple messages to be processed. Note this isn't a scalable method for handling event-processing. However is sufficient enough for our exerciseÔÇÖs purposes. YouÔÇÖd want to have a more scalable solution that you host in an Azure Durable function or other service of your preference.
 
-     if (message.ContentType == "application/msbin1") //.NETBinary Message Format
-     {
-       context = message.GetBody<RemoteExecutionContext>();
-     }
-     else if (message.ContentType == "application/json") //JSON Message Format
-     {
-       context = message.GetBody<RemoteExecutionContext>(new DataContractJsonSerializer(typeof(RemoteExecutionContext)));
-     }
-     else if (message.ContentType == "application/xml") //XML Message Format
-     {
-       context = message.GetBody<RemoteExecutionContext>(new DataContractSerializer(typeof(RemoteExecutionContext)));
-     }
-     try
-     {
-       var target = context.InputParameters["Target"] as Entity;
-
-       foreach (var field in target.Attributes)
-       {
-         Console.WriteLine($"Name: {field.Key} Value: { field.Value}");
-       }
-     }
-     catch (Exception ex)
-     {
-       Console.WriteLine(ex.ToString());
-     }
-   });
-   ```
-
-5. Lastly add a `Console.ReadLine()` to the main method to allow for multiple messages to be processed. Note this isn't a scalable method for handling event-processing, but is sufficient for exercise purposes. You'd want to have a more scalable solution that you host in an Azure Durable function or other service of your preference.
-
-   ```csharp
-   Console.ReadLine();
-   ```
-
+    ```csharp
+    Console.ReadLine();
+    ```
 6. Hit **F5** to run your application. If there are already messages in your queue from your previous exercise, they should get processed and their message contents should be displayed on the console screen. If not, you can invoke an update by making an update to an Account in your Dataverse environment.

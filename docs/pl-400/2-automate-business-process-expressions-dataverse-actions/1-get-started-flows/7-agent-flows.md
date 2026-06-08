@@ -1,8 +1,10 @@
 # Convert a flow to an agent flow
 
+Completed
+
 - 5 minutes
 
-Once you've built and tested a cloud flow in Power Automate, you can convert it to an **agent flow** — an automation that's managed in Microsoft Copilot Studio and optimized for use within AI agents.
+Once you've built and tested a cloud flow in Power Automate, you can convert it to an **agent flow** ÔÇö an automation that's managed in Microsoft Copilot Studio and optimized for use within AI agents.
 
 ## What is an agent flow?
 
@@ -13,16 +15,16 @@ An agent flow consists of a trigger and one or more actions, just like a cloud f
 - Supports AI-driven actions, such as generating text, processing documents, and calling other agents.
 - Is managed and monitored from the **Workflows** page in Copilot Studio.
 
-> **Note**
->
-> Converting a flow to an agent flow is a one-way operation. It can't be reversed because the flow's billing changes from Power Automate to Copilot Studio.
+Note
+
+Converting a flow to an agent flow is a one-way operation. It can't be reversed because the flow's billing changes from Power Automate to Copilot Studio.
 
 ## Before you convert
 
 Before you start, make sure these conditions are met:
 
 - The flow is a **cloud flow** (not a desktop flow).
-- The flow is **in a solution**. On the flow's detail page in Power Automate, look for the **Solutions** tile on the right side. If the tile isn't there, [add the flow to a solution](https://learn.microsoft.com/en-us/power-automate/create-flow-solution#add-an-existing-cloud-flow-into-a-solution) first.
+- The flow is **in a solution**. On the flow's detail page in Power Automate, look for the **Solutions** tile on the right side. If the tile isn't there, [add the flow to a solution](/en-us/power-automate/create-flow-solution#add-an-existing-cloud-flow-into-a-solution) first.
 - The Power Platform environment has Copilot Studio capacity available (either prepaid or pay-as-you-go). If it doesn't, contact your Power Platform administrator.
 
 ## Convert a cloud flow to an agent flow
@@ -41,8 +43,8 @@ Your flow is now an agent flow. You can access it from both Power Automate and t
 
 Every action your agent flow executes consumes Copilot Studio capacity. Testing the flow in the designer or from an agent's test chat doesn't consume capacity.
 
-> **Important**
->
-> Once your environment's prepaid Copilot Studio capacity is fully consumed, new agent flow runs are blocked until capacity becomes available. Monitor your usage in the [Power Platform admin center](https://admin.powerplatform.microsoft.com/) under **Licensing** > **Copilot Studio**.
+Important
 
-For more information, see [Agent flows and workflows overview](https://learn.microsoft.com/en-us/microsoft-copilot-studio/flows-overview).
+Once your environment's prepaid Copilot Studio capacity is fully consumed, new agent flow runs are blocked until capacity becomes available. Monitor your usage in the [Power Platform admin center](https://admin.powerplatform.microsoft.com/) under **Licensing** &gt; **Copilot Studio**.
+
+For more information, see [Agent flows and workflows overview](/en-us/microsoft-copilot-studio/flows-overview).

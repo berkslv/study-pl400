@@ -1,16 +1,20 @@
 # Event framework
 
+Completed
+
 - 10 minutes
 
 Microsoft Dataverse exposes events to indicate where the process is currently executing in the pipeline. You can handle these events to do things like validate data, prevent transactions from completing, or automate any business logic you can't accomplish by declarative means.
 
-You can subscribe to these events by registering .NET assemblies (called plug-ins) to execute custom logic whenever the given event occurs. You perform the registration by using a tool called the Plugin Registration Tool. For more information on the Plugin Registration tool, see the [Register a plug-in](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/register-plug-in) tutorial.
+You can subscribe to these events by registering .NET assemblies (called plug-ins) to execute custom logic whenever the given event occurs. You perform the registration by using a tool called the Plugin Registration Tool. For more information on the Plugin Registration tool, see the [Register a plug-in](/en-us/power-apps/developer/data-platform/register-plug-in?azure-portal=true) tutorial.
 
 At a high level, handling events involves three things. First, you must subscribe to a specific message representing the type of operation (or event) currently occurring (or about to occur), such as Create, Retrieve, Update, etc. You must also indicate where in that event pipeline you would like your logic to execute (that is before or after the operation). You can also handle events before validation occurs, a convenient method that you can use to perform advanced validation logic that you can't accomplish via business rules or workflows. Lastly, you must indicate the execution mode you want the logic to run (synchronously or asynchronously).
 
+Let's now go into these three areas in more detail.
+
 ## Event messages
 
-Dataverse exposes many messages that are published when various data operations occur. For more information on these messages, see [Use messages with the Organization service](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/org-service/use-messages).
+Dataverse exposes many messages that are published when various data operations occur. For more information on these messages, see [Use messages with the Organization service](/en-us/power-apps/developer/data-platform/org-service/use-messages?azure-portal=true&amp;tabs=sdk).
 
 The basic data operations exposed by Dataverse are:
 
@@ -24,9 +28,9 @@ The basic data operations exposed by Dataverse are:
 
 Also, there are various messages that are exposed contextually, depending on what type of table you're handling. For example if my table has a rollup column, I can implement an event handler on the CalculateRollupField event message.
 
-Generally, we can find an inventory of these custom messages made available via Dataverse by searching through the [Microsoft.Sdk.Messages](https://learn.microsoft.com/en-us/dotnet/api/microsoft.xrm.sdk.messages/) namespace for any classes whose name ends in `*Request`. Another way to see which messages are available for a given type of table is to navigate table-message combinations via the Plugin Registration tool.
+Generally, we can find an inventory of these custom messages made available via Dataverse by searching through the [Microsoft.Sdk.Messages](/en-us/dotnet/api/microsoft.xrm.sdk.messages/?azure-portal=true) namespace for any classes whose name ends in *\Request*. Another way to see which messages are available for a given type of table is to navigate table-message combinations via the Plugin Registration tool.
 
-Also, we can create and expose our own messages by creating custom *Actions*. For more information on Actions, see [Create your own actions](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/custom-actions).
+Also, we can create and expose our own messages by creating custom *Actions*. For more information on Actions, see [Create your own actions](/en-us/power-apps/developer/data-platform/custom-actions?azure-portal=true).
 
 ## Event pipeline
 
@@ -36,7 +40,7 @@ In addition to subscribing to specific messages or event types, Dataverse also e
 
 The Pre-validation event occurs first in the pipeline, before any security checks are performed. It's intended for usage to ensure that the user executing the current transaction has the correct permissions needed to perform the intended operation.
 
-As a developer, you can use this event to run validation logic and cancel the operation before the transaction occurs. For example, if configured to run whenever a table is updated, you can cancel the operation before the update occurs by throwing an `InvalidPluginExecutionException` method within your plugin's execution logic. For more information on execution context, see [Understand the Execution Context](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/understand-the-data-context).
+As a developer, you can use this event to run validation logic and cancel the operation before the transaction occurs. For example, if configured to run whenever a table is updated, you can cancel the operation before the update occurs by throwing an *InvalidPluginExecutionException* method within your plugin's execution logic. For more information on execution context, see [Understand the Execution Context](/en-us/power-apps/developer/data-platform/understand-the-data-context?azure-portal=true).
 
 ### Pre-operation
 
@@ -56,6 +60,8 @@ Plug-ins registered in this mode will run as soon as the processing of the event
 
 ### Asynchronous
 
-Plug-ins registered in this mode dispatch as a system job to the asynchronous service, which executes their logic after the given operation completes. For more information on how system jobs work, see [Asynchronous service](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/asynchronous-service).
+Plug-ins registered in this mode dispatch as a system job to the asynchronous service, which executes their logic after the given operation completes. For more information on how system jobs work, see [Asynchronous service](/en-us/power-apps/developer/data-platform/asynchronous-service?azure-portal=true).
 
-> **Note:** You can only register asynchronous plug-ins for the **PostOperation** stage of the Event Pipeline.
+Note
+
+You can only register asynchronous plug-ins for the **PostOperation** stage of the Event Pipeline.

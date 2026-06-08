@@ -1,8 +1,12 @@
 # Introduction
 
+Completed
+
+- 4 minutes
+
 Microsoft Power Platform custom connectors use OpenAPI (also known as Swagger) definitions to describe authentication, actions, triggers, and their parameters. The OpenAPI specification allows you to define extensions that augment the core definition to handle specific scenarios. Microsoft has defined several extensions to the OpenAPI definition to allow you to configure specific features that are supported by custom connectors.
 
-You can identify each extension by looking for **x-ms-\<name\>** in the OpenAPI definitions. You've likely already used some of these definitions when you configured a custom connector with the designer, such as when entering a summary on an action's parameter that uses the **x-ms-summary** extension to store the value in the definition. Several extensions can only be edited either directly through the designer's Swagger editor or by exporting the connector's definitions and then editing and importing them back. You can find a [complete list of custom connector supported extensions](https://learn.microsoft.com/en-us/connectors/custom-connectors/openapi-extensions/).
+You can identify each extension by looking for **x-ms-&lt;name&gt;** in the OpenAPI definitions. You've likely already used some of these definitions when you configured a custom connector with the designer, such as when entering a summary on an action's parameter that uses the **x-ms-summary** extension to store the value in the definition. Several extensions can only be edited either directly through the designer's Swagger editor or by exporting the connector's definitions and then editing and importing them back. You can find a [complete list of custom connector supported extensions](/en-us/connectors/custom-connectors/openapi-extensions/?azure-portal=true).
 
 This module explains the following extensions and their uses:
 
@@ -28,18 +32,24 @@ While some OpenAPI extensions are configured as you work with definitions by usi
 
 You can make the Swagger editor visible by turning on the **Swagger Editor** toggle switch from any of the steps in the custom designer.
 
+[![Screenshot showing how to enable the Swagger editor.](media/swagger-editor.png)](media/swagger-editor.png#lightbox)
+
 When the editor is engaged, the OpenAPI definition in YAML Ain't Markup Language (YAML) will display on the left, and validation messages (if any) and an operation list will display on the right.
 
-If you aren't familiar with [YAML](https://yaml.org/), it's a human-friendly data serialization standard that helps you make changes to the YAML content, save it, and have it consumed by the connector runtime.
+[![Screenshot of the Swagger editor in use with YAML on the left and an operation list on the right.](media/editor-engaged.png)](media/editor-engaged.png#lightbox)
 
-Most changes that you'll make will have an example to start from. A good place to look for changes in YAML is in other connectors that are located in the [Microsoft Power Platform Connector GitHub repository](https://github.com/microsoft/PowerPlatformConnectors/). For example, if you want to implement an **x-ms-capability** extension, you could search the repository and see how other connectors have configured it.
+If you aren't familiar with [YAML](https://yaml.org/?azure-portal=true), it's a human-friendly data serialization standard that helps you make changes to the YAML content, save it, and have it consumed by the connector runtime.
+
+Most changes that you'll make will have an example to start from. A good place to look for changes in YAML is in other connectors that are located in the [Microsoft Power Platform Connector GitHub repository](https://github.com/microsoft/PowerPlatformConnectors/?azure-portal=true). For example, if you want to implement an **x-ms-capability** extension, you could search the repository and see how other connectors have configured it.
 
 When using the editor, it's best to make small, focused changes. The editor checks your syntax as you type and tells you, in real time, if a mistake has been made and where the mistake is located.
 
-### Tips for working with YAML in the Swagger editor
+[![Screenshot showing a validation error in the editor.](media/editor-error-message.png)](media/editor-error-message.png#lightbox)
+
+Tips for working with YAML in the swagger editor:
 
 - **Indentation matters** - Indentation is part of YAML specifications; therefore, observe how indentation is used to further provide configuration specifics.
-- **Open and closed braces {}** - If you have an open brace `{`, you need to have a closed brace `}`.
+- **Open and closed braces {}** - If you have an open brace **{**, you need to have a closed brace **}**.
 - **Open and closed brackets []** - If you have an open bracket, you need to have a closed bracket.
 - **Ctrl+F** for **Find** - This keyboard shortcut allows you to search within the YAML.
 - **Ctrl+Z** for **Undo** - If you notice that you made a mistake, using the **Ctrl+Z** keyboard shortcut will undo your last change.

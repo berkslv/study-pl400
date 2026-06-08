@@ -1,14 +1,18 @@
-# Compare Azure Functions Hosting Options
+# Compare Azure Functions hosting options
+
+Completed
+
+- 5 minutes
 
 When you create a function app in Azure, you must choose a hosting plan for your app. Azure provides you with these hosting options for your function code:
 
 | Hosting option | Service | Availability | Container support |
 | --- | --- | --- | --- |
-| **Consumption plan** | Azure Functions | Generally available (GA) | None |
-| **Flex Consumption plan** | Azure Functions | GA | None |
-| **Premium plan** | Azure Functions | GA | Linux |
-| **Dedicated plan** | Azure Functions | GA | Linux |
-| **Container Apps** | Azure Container Apps | GA | Linux |
+| **[Consumption plan](/en-us/azure/azure-functions/consumption-plan)** | Azure Functions | Generally available (GA) | None |
+| **[Flex Consumption plan](/en-us/azure/azure-functions/flex-consumption-plan)** | Azure Functions | GA | None |
+| **[Premium plan](/en-us/azure/azure-functions/functions-premium-plan)** | Azure Functions | GA | Linux |
+| **[Dedicated plan](/en-us/azure/azure-functions/dedicated-plan)** | Azure Functions | GA | Linux |
+| **[Container Apps](/en-us/azure/azure-functions/functions-container-apps-hosting)** | Azure Container Apps | GA | Linux |
 
 Azure App Service infrastructure facilitates Azure Functions hosting on both Linux and Windows virtual machines. The hosting option you choose dictates the following behaviors:
 
@@ -19,7 +23,9 @@ Azure App Service infrastructure facilitates Azure Functions hosting on both Lin
 
 The plan you choose also impacts the costs for running your function code.
 
-## Overview of Plans
+## Overview of plans
+
+Following is a summary of the benefits of the various hosting options:
 
 ### Consumption plan
 
@@ -52,7 +58,7 @@ Run your functions within an App Service plan at regular App Service plan rates.
 Consider an App Service plan in the following situations:
 
 - You must have fully predictable billing, or you need to manually scale instances.
-- You want to run multiple web apps and function apps on the same plan.
+- You want to run multiple web apps and function apps on the same plan
 - You need access to larger compute size choices.
 - Full compute isolation and secure network access provided by an App Service Environment (ASE).
 - High memory usage and high scale (ASE).
@@ -70,21 +76,22 @@ Consider hosting your functions on Container Apps in the following situations:
 - You want to avoid the overhead and complexity of managing Kubernetes clusters and dedicated compute.
 - You need the high-end processing power provided by dedicated CPU compute resources for your functions.
 
-## Function App Time-out Duration
+## Function app time-out duration
 
 The `functionTimeout` property in the *host.json* project file specifies the time-out duration for functions in a function app. This property applies specifically to function executions. After the trigger starts function execution, the function needs to return/respond within the time-out duration.
 
 The following table shows the default and maximum values (in minutes) for specific plans:
 
-| Plan | Default | Maximum |
+| Plan | Default | Maximum^1^ |
 | --- | --- | --- |
-| **Flex Consumption plan** | 30 | Unbounded |
-| **Premium plan** | 30 | Unbounded |
-| **Dedicated plan** | 30 | Unbounded |
-| **Container Apps** | 30 | Unbounded |
+| **Flex Consumption plan** | 30 | Unbounded^2^ |
+| **Premium plan** | 30^4^ | Unbounded^2^ |
+| **Dedicated plan** | 30^4^ | Unbounded^3^ |
+| **Container Apps** | 30 | Unbounded^5^ |
 | **Consumption plan** | 5 | 10 |
 
-- Regardless of the function app time-out setting, 230 seconds is the maximum amount of time that an HTTP triggered function can take to respond to a request. This is because of the default idle time-out of Azure Load Balancer. For longer processing times, consider using the Durable Functions async pattern or defer the actual work and return an immediate response.
-- There's no maximum execution time-out duration enforced. However, the grace period given to a function execution is 60 minutes during scale in for the Flex Consumption and Premium plans, and a grace period of 10 minutes is given during platform updates.
-- The Dedicated plan requires the App Service plan be set to Always On. A grace period of 10 minutes is given during platform updates.
-- When the minimum number of replicas is set to zero on Container Apps, the default time-out depends on the specific triggers used in the app.
+1. Regardless of the function app time-out setting, 230 seconds is the maximum amount of time that an HTTP triggered function can take to respond to a request. This is because of the default idle time-out of Azure Load Balancer. For longer processing times, consider using the [Durable Functions async pattern](/en-us/azure/azure-functions/durable/durable-functions-overview#async-http) or defer the actual work and return an immediate response.
+2. There's no maximum execution time-out duration enforced. However, the grace period given to a function execution is 60 minutes during scale in for the Flex Consumption and Premium plans, and a grace period of 10 minutes is given during platform updates.
+3. Requires the App Service plan be set to [Always On](/en-us/azure/azure-functions/dedicated-plan#always-on). A grace period of 10 minutes is given during platform updates.
+4. The default time-out for version 1.x of the Functions host runtime is *unbounded*.
+5. When the minimum number of replicas is set to zero, the default time-out depends on the specific triggers used in the app.

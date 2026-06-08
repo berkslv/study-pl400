@@ -1,16 +1,14 @@
 # Summary
 
-The Power Apps component framework is a robust framework built on modern web technologies. It enables developers to write reusable code components when out-of-the-box components may not meet an app maker's needs.
+Completed
 
-This module covered:
+- 1 minute
 
-- **Architecture** — The overall component framework architecture including the manifest, implementation, and resource files, as well as the component life cycle methods (`init`, `updateView`, `getOutputs`, `destroy`).
-- **Tooling** — The various tools available for developers to create, build, debug, and package code components, including the Power Platform CLI, Visual Studio Code extension, and Visual Studio msbuild.
-- **Manifest** — How to configure component properties, resources (CSS, resx), and feature usage declarations in the `ControlManifest.Input.xml` file.
+The Power Apps component framework is a robust framework built on modern web technologies. It enables developers to write reusable code components when out-of-the-box components may not meet an app maker's needs. In this module, we reviewed the overall component framework architecture and the various tools available for developers to create, build, and package code components.
 
-## Additional resources
+The following links are other Power Platform developer resources you can review.
 
-- [Power Platform Developer Documentation](https://learn.microsoft.com/en-us/power-platform/developer/)
-- [Best practices and guidance for code components created using Power Apps component framework](https://learn.microsoft.com/en-us/power-apps/developer/component-framework/code-components-best-practices/)
-- [Sample components](https://learn.microsoft.com/en-us/power-apps/developer/component-framework/use-sample-components/)
-- [Power Platform Creator Kit](https://learn.microsoft.com/en-us/power-platform/guidance/creator-kit/overview/)
+- [Power Platform Developer Documentation](/en-us/power-platform/developer/?azure-portal=true)
+- [Best practices and guidance for code components created using Power Apps component framework](/en-us/power-apps/developer/component-framework/code-components-best-practices/?azure-portal=true)
+- [Sample components](/en-us/power-apps/developer/component-framework/use-sample-components/?azure-portal=true)
+- [Power Platform Creator Kit](/en-us/power-platform/guidance/creator-kit/overview/?azure-portal=true)

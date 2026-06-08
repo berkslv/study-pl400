@@ -1,10 +1,16 @@
 # Microsoft Dataverse extensibility model
 
+Completed
+
 - 8 minutes
 
 Understanding Microsoft Dataverse's underlying architecture is valuable for extending its capabilities. Since Dataverse is a software-as-a-service platform, most of these details, such as underlying data storage, are successfully abstracted from us as developers, and we can focus on more interesting items, such as building custom business logic and integrating with other applications. The graphic illustrates the underlying components, with the highlighted sections showing areas where developers can extend Power Apps model-driven applications using code.
 
-> **Note:** This unit is only intended to be a high-level view of the Dataverse architecture. For more in-depth analysis of the Dataverse, refer to the [Dataverse Developer Guide](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/overview).
+Note
+
+This unit is only intended to be a high-level view of the Dataverse architecture. For more in-depth analysis of the Dataverse, refer to the [Dataverse Developer Guide](/en-us/power-apps/developer/data-platform/overview?azure-portal=true).
+
+[![Diagram of high-level view of the architecture.](media/architecture.png)](media/architecture.png#lightbox)
 
 ## Metadata and solution-awareness
 
@@ -12,7 +18,7 @@ Microsoft Dataverse provides a metadata-driven architecture, enabling flexibilit
 
 When you create a custom table, metadata about that table, its columns and relationships to other tables, and user interface components (such as forms and views) are stored as metadata in the Dataverse environment in a solution.
 
-Dataverse also exposes an OData V4 RESTful endpoint, known as the Dataverse Web API that can be leveraged to view and manipulate metadata within a Dataverse environment. One common mechanism for browsing your solution's metadata is to leverage the Metadata Browser. Microsoft provides this as a solution that you can install into your app. The current links can be found at [Browse table definitions in your environment](https://learn.microsoft.com/en-us/power-apps/developer/common-data-service/browse-your-metadata). This tool can be installed into any model-driven Power App. In addition, [XrmToolbox](https://www.xrmtoolbox.com/plugins/MsCrmTools.MetadataBrowser/) has a community metadata browser tool available.
+Dataverse also exposes an OData V4 RESTful endpoint, known as the Dataverse Web API that can be leveraged to view and manipulate metadata within a Dataverse environment. One common mechanism for browsing your solution's metadata is to leverage the Metadata Browser. Microsoft provides this as a solution that you can install into your app. The current links can be found at [Browse table definitions in your environment](/en-us/power-apps/developer/common-data-service/browse-your-metadata?azure-portal=true). This tool can be installed into any model-driven Power App. In addition, [XrmToolbox](https://www.xrmtoolbox.com/plugins/MsCrmTools.MetadataBrowser/?azure-portal=true) has a community metadata browser tool available.
 
 ## .NET assemblies (plug-ins)
 

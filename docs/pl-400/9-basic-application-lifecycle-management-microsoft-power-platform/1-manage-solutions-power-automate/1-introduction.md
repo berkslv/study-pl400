@@ -1,5 +1,9 @@
 # Introduction
 
+Completed
+
+- 8 minutes
+
 Solutions allow you to package features, such as apps in Microsoft Power Apps (canvas and model-driven), site maps, flows, entities, forms, custom connectors, web resources, choices, charts, and fields, to transport from one environment to another. Only the metadata, such as entities and their columns and configuration data, are transported. No business data is transported.
 
 Solutions are part of the overall application lifecycle management (ALM) practice of Microsoft Power Platform. Solutions are important mechanisms for implementing ALM. For more information, see [Solutions for implementing ALM](/en-us/power-platform/alm/overview-alm/?azure-portal=true).
@@ -7,6 +11,8 @@ Solutions are part of the overall application lifecycle management (ALM) practic
 ## Learn the basics
 
 ### Power Apps
+
+[![Screenshot of Power Apps home page.](media/power-apps-home.svg)](media/power-apps-home.svg#lightbox)
 
 Power Apps is a user-friendly platform that lets you create apps without needing to be a coding expert. It's a bit like working with Excel formulas, such as SUM and TEXT, which many people are familiar with. With Power Apps, you can make simple tools like vehicle inspection forms and status reports, or more complex solutions for tasks like managing purchases and inventory. If you have an idea for an app that could solve a business problem, you can bring it to life using your existing skills. While Power Apps is designed for business users who aren't tech experts, it also offers advanced features for experienced developers to build intricate applications effortlessly.
 
@@ -20,6 +26,8 @@ Portals let you create websites for external users without any coding skills. Us
 
 ### Power Automate flows
 
+[![Screenshot of Power Automate home page.](media/power-automate-home.svg)](media/power-automate-home.svg#lightbox)
+
 Microsoft Power Automate, also known as Flow, is a handy tool that lets you create workflows. These workflows can be set up to run automatically or started by a user when needed. You have various options to get started, like using ready-made templates that might fit your needs perfectly or require just a few modifications. You can also create workflows using a Microsoft Visio template, a user-friendly interface (UI), or business process flows.
 
 The design feature in Power Automate is easy to use. Sometimes, sketching out your workflow on a Visio diagram can help you plan a more efficient workflow. That's why Power Automate can be integrated with Visio. In Visio, you can use BPMN Basic Shapes to map out your flow, export it, and then import it into Power Automate. This gives you the flexibility to fine-tune your workflow further.
@@ -31,6 +39,8 @@ Business process flows are created using Microsoft Power Platform and Dataverse.
 Flows that you create within a solution in Power Automate are called 'solution-aware flows.' You can create a new flow right within a solution, and you can also edit or delete it from there.
 
 ### Connection references
+
+[![Screenshot of connection references.](media/connections.svg)](media/connections.svg#lightbox)
 
 A connector is a user-friendly way to allow a service to connect with Power Automate. Each connector comes with a set of operations that are classified as **actions** and **triggers**. After you have connected to the service, these operations can be used within your Power Automate workflow.
 
@@ -45,6 +55,8 @@ Previously, it was a common practice for all stored data to be available in a si
 You can add environment variables in a solution, and you can add an existing environment variable in a solution or create a new one that automatically becomes part of that solution.
 
 ## Managed and unmanaged solutions
+
+[![Screenshot of solutions.](media/solutions.svg)](media/solutions.svg#lightbox)
 
 Solutions are like organizing tools in Power Apps and Power Automate, helping you manage your work. There are two types: managed and unmanaged.
 

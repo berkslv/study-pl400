@@ -1,21 +1,34 @@
 # Check your knowledge
 
-## Questions
+Completed
 
-**1. What are a few declarative alternatives to plug-ins for automating business processes?**
+- 6 minutes
 
-- Workflows, Power Automate, Power Apps
-- **Workflow, Power Automate, Rollup Fields** ✓
-- Workflows, Client Script, Rollup Fields
+## Answer the following questions to see what you've learned.
 
-**2. If you need custom logic to run synchronously, which of the following won't achieve that objective?**
+1.
+What are a few declarative alternatives that you have for building plug-ins to automate business processes?
 
-- Plug-ins
-- Workflows
-- **Power Automate** ✓
+Workflows, Power Automate, Power Apps
 
-**3. What method is exposed within a plug-in assembly that enables you to run custom application logic?**
+Workflow, Power Automate, Rollup Fields
 
-- **Execute** ✓
-- Run
-- Start
+Workflows, Client Script, Rollup Fields
+
+2.
+If you need custom logic to run synchronously in your application, which of the following won't achieve that objective?
+
+Plug-ins
+
+Workflows
+
+Power Automate
+
+3.
+What method is exposed within a plug-in assembly that enables you to run custom application logic?
+
+Execute
+
+Run
+
+Start

@@ -1,12 +1,22 @@
 # Upload scripts
 
+Completed
+
 - 4 minutes
 
 To use client scripting on a form, a script must first be uploaded as a script web resource. You can use script web resources to maintain libraries of client script functions written in JavaScript or TypeScript, and you can use them either from within a model-driven app form or from the command bar definition. If you use TypeScript, you must transpile it to JavaScript before uploading it as a web resource.
 
-To upload a script web resource, create a new **Forms Library** from the form editor. The **Add JavaScript Library** pop up will appear. Select **+ New web resource** in the top right. In the **New web resource** pane, be sure to select **JavaScript (JS)** as the type.
+To upload a script web resource, create a new **Forms Library** from the form editor.
 
-For a table column data to be available to include in a script's logic, make sure you've configured the form to display the column. Note that if somebody later removes the column from the form, it will cause your script to break because the referenced column is no longer available. You can add the column as a dependency to ensure the column data is always available for your script logic.
+[![Screenshot of the Add library dialog.](media/add-library.png)](media/add-library.png#lightbox)
+
+The Add JavaScript Library pop up will appear. Select **+ New web resource** in the top right. In the **New web resource** pane, be sure to select **JavaScript (JS)** as the type.
+
+[![Screenshot showing the add web resource dialog with Type of Script selected.](media/add-web-resource.png)](media/add-web-resource.png#lightbox)
+
+For a table column data to be available to include in a script's logic, make sure you've configured the form to display the column. If somebody later removes the column from the form, it causes your script to break because the referenced column is no longer available. You can add the column as a dependency to ensure the column data is always available for your script logic. The following image shows adding the **Idea Score** column from the **Idea** table as a dependency.
+
+[![Screenshot of adding the Idea Score column from the Idea table as a dependency.](media/account-number.png)](media/account-number.png#lightbox)
 
 ## Web resource dependencies
 
@@ -18,7 +28,11 @@ It's important to note that web resource dependencies don't provide any control 
 
 Once configured as a script web resource, client script libraries can be associated with ribbon commands and form events. To associate a script with a form, select the **Form libraries** in the tool bar and then **Add library**.
 
+[![Screenshot of the Form Libraries adding a library.](media/add-library-forms.png)](media/add-library-forms.png#lightbox)
+
 From the **Add library** dialog, you can either associate an existing uploaded script web resource or create a new one.
+
+[![Screenshot of the add library dialog showing you can either associate an existing uploaded script web resource or create a new one.](media/existing-new.png)](media/existing-new.png#lightbox)
 
 Associating the script library with the form is only required once per script for each form, regardless of how many event handlers you register on that form.
 

@@ -1,7 +1,7 @@
 # Quiz: Imperative Development Techniques in Power Apps Canvas Apps
 
-> **Source material:** 1-imperative-vs-declarative.md, 2-variables.md, 3-global-variables.md, 4-contextual-variables.md, 5-collections.md, 6-additional-variables.md, 6a-exercise-variables-collection.md, 7-knowledge-check.md, 8-summary.md
-> **Total questions:** 25
+> **Source material:** 1-imperative-vs-declarative.md, 2-variables.md, 3-global-variables.md, 4-contextual-variables.md, 5-collections.md, 6-additional-variables.md, 7-exercise-variables-collection.md, 8-knowledge-check.md, 9-summary.md
+> **Total questions:** 23
 > **Question types:** Multiple choice (single), Multiple choice (multi-select), Fill-in-the-blank
 
 ---
@@ -10,21 +10,21 @@
 
 ### Question 1 — Single Choice
 
-A developer is choosing between imperative and declarative programming for a new Power Apps canvas app feature. They need fine-grained control over every step of the data processing logic.
+A developer compares two programming paradigms. One approach requires the developer to define every step — get the ingredients, remove the tomato, assemble the sandwich, send it to the user. The other approach only states the desired outcome.
 
-Which programming approach should they use?
+Which characteristic best describes imperative development compared to declarative development?
 
-- A. Declarative, because it focuses on what result you want
-- B. Imperative, because it focuses on how to achieve a goal
-- C. Declarative, because it is the only approach Power Apps supports
-- D. Imperative, because it always produces simpler, easier-to-read code
+- A. It simplifies code by focusing only on the desired outcome
+- B. It gives more control by defining each step of the process
+- C. It relies on abstraction functions to hide complexity from the developer
+- D. It is the default approach used in Excel and other low-code tools
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B. Imperative, because it focuses on how to achieve a goal
+**Correct answer:** B. It gives more control by defining each step of the process
 
-**Explanation:** Imperative development focuses on *how* to achieve a goal and gives developers more control by defining each step of the process. Declarative development focuses on *what* result you want, which is simpler but offers less control over execution.
+**Explanation:** Imperative development focuses on *how* to achieve a goal by specifying each step. This gives more control but often comes with more complexity, unlike declarative development which focuses on *what* result is wanted.
 
 </details>
 
@@ -32,21 +32,21 @@ Which programming approach should they use?
 
 ### Question 2 — Single Choice
 
-A Power Apps developer wants to store information that can be accessed from any screen in the app. They need to set the value once and reference it on multiple screens without repeated data source calls.
+A developer evaluates a formula `GetSandwich(Kitchen, Mouth)` and notes that it requires no knowledge of the intermediate steps. However, customizing the output (such as removing tomatoes) depends entirely on what the function's creator supports.
 
-Which type of variable should they use?
+Which development approach does this formula illustrate?
 
-- A. Context variable, using UpdateContext
-- B. Collection, using the Collect function
-- C. Global variable, using the Set function
-- D. Local variable, using the Let function
+- A. Imperative development, because the function defines each execution step
+- B. Declarative development, because the focus is on the desired result, not the process
+- C. Imperative development, because the developer pushes data explicitly
+- D. Declarative development, because the developer defines every step in detail
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** C. Global variable, using the Set function
+**Correct answer:** B. Declarative development, because the focus is on the desired result, not the process
 
-**Explanation:** Global variables are created and set with the `Set` function and can be referenced anywhere within the app. Context variables are scoped to a single screen, and collections store tabular data rather than single values. There is no "local variable" type in Power Apps.
+**Explanation:** Declarative development focuses on *what* result you want rather than *how* to produce it. Low-code tools like Excel use this approach, and the formula pulls data without requiring the developer to specify intermediate steps.
 
 </details>
 
@@ -54,47 +54,36 @@ Which type of variable should they use?
 
 ### Question 3 — Single Choice
 
-An app displays a welcome message using `"Welcome " & User().FullName` on five different screens. Users report that the app feels slow when navigating between screens.
+A developer new to Power Apps asks whether they need to declare a variable type before assigning a value, as they would in C#.
 
-What is the most likely cause of this performance issue?
+Which statement accurately describes how variables work in Power Apps?
 
-- A. The `User()` function is not supported in Label controls
-- B. Each screen load triggers a separate network call to Microsoft Entra ID to resolve the user's name
-- C. The string concatenation operator `&` is computationally expensive
-- D. Welcome messages should only appear on the first screen
+- A. Variables must be declared with an explicit data type before use
+- B. Variables must be initialized to a default value before they can be referenced
+- C. Power Apps automatically determines the variable type when a value is first assigned
+- D. Variables persist across sessions and are stored in the connected data source
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B. Each screen load triggers a separate network call to Microsoft Entra ID to resolve the user's name
+**Correct answer:** C. Power Apps automatically determines the variable type when a value is first assigned
 
-**Explanation:** Using `User().FullName` inline on every screen causes Power Apps to query Microsoft Entra ID every time a screen opens, generating repetitive network calls that slow down the app. Storing the result in a global variable at app start and referencing that variable on each screen eliminates these redundant calls.
+**Explanation:** In Power Apps, you do not need to initialize, declare, or type a variable. When you assign a value using the appropriate function, Power Apps automatically infers the data type. Variables are also temporary and cleared when the user closes the app.
 
 </details>
 
 ---
 
-### Question 4 — Single Choice
+### Question 4 — Fill-in-the-Blank
 
-A developer sets up the following formula on the `OnStart` property of the App object:
-
-```
-Set(varUserDisplayName, User().FullName)
-```
-
-Where should the developer reference `varUserDisplayName` to display the user's name in a Label control?
-
-- A. In the `Text` property of the Label, as `"Welcome " & varUserDisplayName`
-- B. In the `OnVisible` property of each screen
-- C. In the `OnSelect` property of the Label control
-- D. In the `Default` property of a Text Input control only
+Power Apps supports three types of variables. ___ variables are available throughout the entire app, ___ variables are scoped to the screen where they are created, and ___ store a table of data in memory.
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** A. In the `Text` property of the Label, as `"Welcome " & varUserDisplayName`
+**Answer:** Global, context (contextual), collections
 
-**Explanation:** After setting a global variable with `Set`, you reference its value directly by name in any property of any control. Using `"Welcome " & varUserDisplayName` in the Label's `Text` property produces the same output as the inline `User().FullName` call but without repeated network queries.
+**Explanation:** Global variables use `Set`, context variables use `UpdateContext` and are screen-scoped, and collections use `Collect` or `ClearCollect` to store tabular data in memory.
 
 </details>
 
@@ -102,21 +91,21 @@ Where should the developer reference `varUserDisplayName` to display the user's 
 
 ### Question 5 — Single Choice
 
-A canvas app has a complex formula that checks whether a customer has more than three outstanding invoices. This check needs to control the `Visible` property of both a warning icon and an approval button on the same screen.
+A developer wants to store the signed-in user's full name when a canvas app loads, so it can be displayed in a welcome message on every screen without repeated calls to Microsoft Entra ID.
 
-What is the best approach to avoid duplicate network calls and simplify maintenance?
+Which formula should they place in the **OnStart** property of the App object?
 
-- A. Copy the formula into the `Visible` property of both controls
-- B. Set a global variable using the complex formula in `OnStart` and bind both controls to that variable
-- C. Set a variable using the complex formula in the screen's `OnVisible` property, then bind both controls to that variable
-- D. Create two separate data connections and bind each control to its own connection
+- A. `UpdateContext({varUserDisplayName: User().FullName})`
+- B. `Set(varUserDisplayName, User().FullName)`
+- C. `Collect(varUserDisplayName, User().FullName)`
+- D. `ClearCollect(varUserDisplayName, User().FullName)`
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** C. Set a variable using the complex formula in the screen's `OnVisible` property, then bind both controls to that variable
+**Correct answer:** B. `Set(varUserDisplayName, User().FullName)`
 
-**Explanation:** Running the complex formula once in the screen's `OnVisible` property and storing the result in a variable means the data source is queried only once per screen load. Both controls then reference the variable, which eliminates duplicate network traffic and keeps the formula in a single location for easier maintenance.
+**Explanation:** The `Set` function creates and assigns a value to a global variable. Placing this in `OnStart` ensures the user's name is retrieved once when the app loads and stored for reference across all screens.
 
 </details>
 
@@ -124,21 +113,21 @@ What is the best approach to avoid duplicate network calls and simplify maintena
 
 ### Question 6 — Single Choice
 
-A developer copies a group of controls that include a popup dialog driven by a context variable named `varShowPopUp` from Screen1 to Screen2.
+A canvas app displays a welcome message on every screen using the formula `"Welcome " & User().FullName` in each label's Text property. Users report the app becomes slow when navigating between screens.
 
-What happens to the value of `varShowPopUp` on Screen1 when it is set to `true` on Screen2?
+What is the best approach to improve performance?
 
-- A. The value on Screen1 also changes to `true` because global variable names are shared
-- B. The value on Screen1 is unaffected because context variables are scoped to the screen where they are created
-- C. An error occurs because two variables cannot share the same name in the same app
-- D. The value on Screen1 resets to its default because context variables are read-only after copying
+- A. Increase the delegation limit in app settings to reduce query frequency
+- B. Replace the formula with a hard-coded static string to avoid network calls
+- C. Store the user's name in a global variable during `OnStart` and reference it across all screens
+- D. Use a context variable on each screen to cache the user's name per screen
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B. The value on Screen1 is unaffected because context variables are scoped to the screen where they are created
+**Correct answer:** C. Store the user's name in a global variable during `OnStart` and reference it across all screens
 
-**Explanation:** Context variables with the same name on different screens are independent. Each instance is scoped to its own screen, so changing `varShowPopUp` on Screen2 does not affect the value of `varShowPopUp` on Screen1.
+**Explanation:** Placing `Set(varUserDisplayName, User().FullName)` in `OnStart` retrieves the user's name once. Each screen can then reference `varUserDisplayName` instead of calling `User().FullName` repeatedly, eliminating duplicate network calls to Microsoft Entra ID.
 
 </details>
 
@@ -146,21 +135,21 @@ What happens to the value of `varShowPopUp` on Screen1 when it is set to `true` 
 
 ### Question 7 — Single Choice
 
-A developer is unsure whether to use a global variable or a context variable for a new feature. The feature doesn't need to share state across screens.
+A developer sets a global variable `varActiveStatus` to `true` in the `OnVisible` property of Screen1 in a multi-screen canvas app.
 
-Which guidance does Microsoft recommend as the default choice when in doubt?
+On which screens is `varActiveStatus` accessible?
 
-- A. Context variables, because they are faster to evaluate
-- B. Collections, because they are the most flexible variable type
-- C. Global variables, because they are available everywhere and offer the most flexibility
-- D. Context variables, because they prevent accidental cross-screen state sharing
+- A. Only Screen1, where it was originally set
+- B. Only screens that explicitly call the `Set` function to reference the variable
+- C. All screens in the app
+- D. Only screens that were open at the time the variable was set
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** C. Global variables, because they are available everywhere and offer the most flexibility
+**Correct answer:** C. All screens in the app
 
-**Explanation:** According to the documentation, when in doubt about whether to use global or contextual variables, global variables are the default answer because they are available everywhere in the app, making them the most flexible option.
+**Explanation:** Global variables are available throughout the entire app after they are set, regardless of which screen set them. This is the key advantage of global variables over context variables.
 
 </details>
 
@@ -168,19 +157,21 @@ Which guidance does Microsoft recommend as the default choice when in doubt?
 
 ### Question 8 — Single Choice
 
-A developer needs to declare three context variables in a single formula call. Which formula correctly creates `varCount` set to `1`, `varActive` set to `true`, and `varName` set to the user's full name?
+A developer builds a canvas app with a "Delete record" button on multiple screens. Each screen needs its own popup confirmation dialog that can be shown and hidden independently, without one screen's popup state affecting another.
 
-- A. `Set(varCount, 1); Set(varActive, true); Set(varName, User().FullName)`
-- B. `UpdateContext({varCount: 1, varActive: true, varName: User().FullName})`
-- C. `UpdateContext(varCount: 1); UpdateContext(varActive: true); UpdateContext(varName: User().FullName)`
-- D. `Set({varCount: 1, varActive: true, varName: User().FullName})`
+Which variable type is the most appropriate solution?
+
+- A. Global variable, because it is the most flexible option
+- B. Collection, because it stores multiple states as tabular data
+- C. Context variable, because the same variable name can have independent values on different screens
+- D. Environment variable, because it isolates values by screen
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B. `UpdateContext({varCount: 1, varActive: true, varName: User().FullName})`
+**Correct answer:** C. Context variable, because the same variable name can have independent values on different screens
 
-**Explanation:** `UpdateContext` accepts a record containing multiple name-value pairs, allowing multiple context variables to be declared or updated in a single call. The `Set` function can only set one variable per call, so multiple `Set` statements are needed to achieve the same result with global variables.
+**Explanation:** Context variables are scoped to the screen where they are created. When controls are copied to another screen, the context variable with the same name operates independently on each screen, making them ideal for reusable, screen-specific UI state like popup dialogs.
 
 </details>
 
@@ -188,21 +179,21 @@ A developer needs to declare three context variables in a single formula call. W
 
 ### Question 9 — Single Choice
 
-A developer uses the following formula to populate a collection: `Collect(collectProjects, Projects)`. After the app loads, a user adds a new record directly in the connected data source.
+A developer wants to show a popup confirmation group when a user selects a Trash icon in a gallery. They set the **Visible** property of the popup group to `varPopup`.
 
-What happens to the data in `collectProjects`?
+Which formula should be placed on the **OnSelect** property of the Trash icon to display the popup?
 
-- A. `collectProjects` is automatically refreshed to include the new record
-- B. `collectProjects` remains unchanged until the app explicitly re-queries the data source
-- C. `collectProjects` is cleared and must be repopulated using `ClearCollect`
-- D. An error is raised because collections cannot be created from an existing data source
+- A. `Set(varPopup, true)`
+- B. `Collect(varPopup, true)`
+- C. `UpdateContext({varPopup: true})`
+- D. `SetContext(varPopup, true)`
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B. `collectProjects` remains unchanged until the app explicitly re-queries the data source
+**Correct answer:** C. `UpdateContext({varPopup: true})`
 
-**Explanation:** Collections are not linked to the data source after they are created. Changes made to the data source after collection creation are not automatically reflected in the collection. The app must explicitly re-query (e.g., re-run `Collect` or `ClearCollect`) to refresh the data.
+**Explanation:** The `UpdateContext` function creates and sets context variable values. It takes a record literal as its argument. `Set` is for global variables, and `SetContext` is not a valid Power Apps function.
 
 </details>
 
@@ -210,65 +201,60 @@ What happens to the data in `collectProjects`?
 
 ### Question 10 — Single Choice
 
-A developer creates the collection `collectProjects` using `Collect(collectProjects, Projects)` where the data source has 1,200 records. How many records will the collection contain by default?
+A developer needs to initialize three context variables — a counter, an active flag, and the current user's name — in a single formula on a screen's `OnVisible` property.
 
-- A. All 1,200 records, because Collect retrieves the full data set
-- B. Up to 2,000 records, the default Power Apps delegation limit
-- C. Up to 500 records, because Collect is not delegable and uses the default data row limit
-- D. Zero records, because Collect requires a Filter expression to retrieve data
+Which formula correctly declares all three context variables at once?
+
+- A. `Set(varCount, 1); Set(varActive, true); Set(varName, User().FullName)`
+- B. `UpdateContext({varCount: 1}); UpdateContext({varActive: true}); UpdateContext({varName: User().FullName})`
+- C. `UpdateContext({varCount: 1, varActive: true, varName: User().FullName})`
+- D. `Collect(varCount, 1, varActive, true, varName, User().FullName)`
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** C. Up to 500 records, because Collect is not delegable and uses the default data row limit
+**Correct answer:** C. `UpdateContext({varCount: 1, varActive: true, varName: User().FullName})`
 
-**Explanation:** The `Collect` function is not delegable, which means by default only the first 500 records from the data source are retrieved and stored in the collection. Developers who need more records must handle delegation limits separately.
+**Explanation:** The `UpdateContext` function uniquely supports declaring multiple context variables in a single call by separating entries with commas inside a single record literal. The `Set` function requires one call per variable.
 
 </details>
 
 ---
 
-### Question 11 — Single Choice
+### Question 11 — Fill-in-the-Blank
 
-A developer adds the following formula to a Button's `OnSelect` property:
-
-```
-Set(varCounter, varCounter + 1)
-```
-
-The button is selected three times in a row. What is the value of `varCounter` after the third press, assuming no other formula sets `varCounter`?
-
-- A. 0, because variables reset after each button press
-- B. 1, because `Set` always assigns a fixed value
-- C. 3, because `varCounter` starts at 0 and is incremented by 1 each press
-- D. An error, because a variable cannot reference itself inside a `Set` formula
+A context variable created using the ___ function is only accessible on the ___ where it was created. Copying controls that use this variable to another screen results in two independent instances of the variable with the same name.
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** C. 3, because `varCounter` starts at 0 and is incremented by 1 each press
+**Answer:** `UpdateContext`, screen
 
-**Explanation:** Variables can self-reference in Power Apps. An unset number variable defaults to `0`. Each button press evaluates `varCounter + 1` using the current value and stores the result back, so after three presses the value is `3`.
+**Explanation:** Context variables are screen-scoped by design. Unlike global variables (created with `Set`), context variables cannot be read or modified from a different screen, even if they share the same name.
 
 </details>
 
 ---
 
-### Question 12 — Single Choice
+### Question 12 — Multi-Select
 
-A developer stores the entire user record in a global variable with `Set(varUser, User())`. They want to display the user's email address in a Label. Which formula should they use in the Label's `Text` property?
+A developer is evaluating whether to use a collection to store project data in a canvas app. They want to understand the capabilities and limitations before proceeding.
 
-- A. `varUser["Email"]`
-- B. `varUser.Email`
-- C. `GetField(varUser, "Email")`
-- D. `varUser->Email`
+Which statements about collections are accurate? (Select **three**.)
+
+- A. The `Collect` function is not delegable, so only the first 500 records from a data source are retrieved by default
+- B. Collections are linked to the data source and automatically sync changes back
+- C. Collections are temporary and are removed when the app is closed
+- D. Collections can be used directly with the Form control for editing records
+- E. After creation, collections support standard table functions such as Filter, Sort, and CountRows
+- F. Collections must always be populated from an existing external data source
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B. `varUser.Email`
+**Correct answer:** A, C, E
 
-**Explanation:** When a record is stored in a variable, individual fields are accessed using dot (`.`) notation. The `User()` record has three columns — `Email`, `FullName`, and `Image` — all of which can be accessed using `varUser.Email`, `varUser.FullName`, or `varUser.Image`.
+**Explanation:** The `Collect` function is not delegable (limited to 500 records by default), collections are temporary in-memory structures cleared on app close, and they support standard table functions. Collections are NOT linked to the data source (changes don't auto-save), cannot be used directly with the Form control, and can be created manually within the app without an external data source.
 
 </details>
 
@@ -276,41 +262,36 @@ A developer stores the entire user record in a global variable with `Set(varUser
 
 ### Question 13 — Single Choice
 
-An app stores the number of open support tickets in a global variable during `OnStart`. A support agent submits a new ticket while using the app. The agent notices the ticket count displayed in the app hasn't changed.
+A developer configures the `OnStart` property of an app to load a collection named `colCustomer` from a data source each time the app starts. During testing, they notice that records are being duplicated in the collection on subsequent runs.
 
-What is the most accurate explanation for this behaviour?
+Which function should they use instead of `Collect` to prevent duplicate records?
 
-- A. Global variables are read-only and cannot track changing data
-- B. Variables do not automatically update; the variable only reflects the value it was set to, until explicitly updated or the app is restarted
-- C. The `Set` function is asynchronous, so updates are delayed by up to 30 seconds
-- D. The support ticket data source is not compatible with global variables
+- A. `Remove`
+- B. `UpdateContext`
+- C. `ClearCollect`
+- D. `Patch`
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B. Variables do not automatically update; the variable only reflects the value it was set to, until explicitly updated or the app is restarted
+**Correct answer:** C. `ClearCollect`
 
-**Explanation:** Variables in Power Apps do not auto-update when the underlying data changes. The variable retains its original value until the app explicitly updates it (e.g., by re-running a `Set` formula after the new record is created) or until the app is closed and reopened, triggering `OnStart` again.
+**Explanation:** `ClearCollect` first clears all existing data from the collection before adding new records, preventing duplication. Using `Collect` appends data to any existing collection contents, which causes duplicates when run multiple times.
 
 </details>
 
 ---
 
-### Question 14 — Single Choice
+### Question 14 — Fill-in-the-Blank
 
-A developer needs to temporarily store a table of customer records retrieved from Dataverse and display them in a Gallery control. Which function should they use to create the collection?
-
-- A. `Set`
-- B. `UpdateContext`
-- C. `Collect` or `ClearCollect`
-- D. `LookUp`
+The ___ function used to populate a collection from a data source is not delegable. This means that by default only the first ___ records from the data source are retrieved and stored in the collection.
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** C. `Collect` or `ClearCollect`
+**Answer:** `Collect`, 500
 
-**Explanation:** Collections are created with the `Collect` or `ClearCollect` functions. `Collect` appends records to an existing collection, while `ClearCollect` clears the collection first and then adds the records. `Set` and `UpdateContext` are used for single-value variables, and `LookUp` retrieves a single record from a table.
+**Explanation:** Because `Collect` is not delegable, Power Apps retrieves only the first 500 records by default. Developers who need more records must use techniques to work around delegation limits, such as splitting queries or adjusting the data row limit setting.
 
 </details>
 
@@ -318,41 +299,43 @@ A developer needs to temporarily store a table of customer records retrieved fro
 
 ### Question 15 — Single Choice
 
-Which of the following controls is explicitly NOT compatible with a collection as its data source?
+A developer adds a button to a canvas app. Each time the button is pressed, it should increment a global counter by 1. When the app first loads, no initial value has been explicitly set for the counter.
 
-- A. Gallery
-- B. Data Table
-- C. Form control
-- D. Combo Box
+Which formula should be placed on the button's **OnSelect** property?
+
+- A. `Set(varCounter, 1)`
+- B. `Set(varCounter, 0 + 1)`
+- C. `Set(varCounter, varCounter + 1)`
+- D. `Collect(varCounter, varCounter + 1)`
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** C. Form control
+**Correct answer:** C. `Set(varCounter, varCounter + 1)`
 
-**Explanation:** According to the documentation, collections cannot be used directly with the Form control, even though they store tabular data. Galleries, Data Tables, and Combo Boxes can all use collections as their data source.
+**Explanation:** Variables in Power Apps can self-reference. On the first press, `varCounter` defaults to `0`, so the result is `1`. On each subsequent press, the current value is incremented by `1`. This pattern is commonly used for counter variables.
 
 </details>
 
 ---
 
-### Question 16 — Multi-Select
+### Question 16 — Single Choice
 
-A team is reviewing best practices for variable usage in Power Apps canvas apps. They need to identify scenarios where using a **global variable** is the most appropriate choice. (Select **three**.)
+A developer adds a button to a canvas app with the formula `Set(varStatus, varStatus & " active")` on its **OnSelect** property. No initial value has been assigned to `varStatus` anywhere in the app.
 
-- A. Storing a user's display name at app start so it can be shown on every screen
-- B. Storing a Boolean value that controls the visibility of a popup that is copied to multiple screens independently
-- C. Caching a complex calculation result that is referenced in multiple formulas across different screens
-- D. Storing tabular data from a data source for reuse throughout the app
-- E. Keeping track of a running counter that multiple screens need to read and increment
-- F. Storing a single record retrieved via LookUp so its fields can be accessed using dot notation across the app
+What value does `varStatus` hold before the button is pressed for the first time?
+
+- A. `null`
+- B. `"undefined"`
+- C. `0`
+- D. `""` (empty string)
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** A, C, F
+**Correct answer:** D. `""` (empty string)
 
-**Explanation:** Global variables are ideal for values that need to be shared across multiple screens: storing user info at startup (A), caching cross-screen computations (C), and storing a record for dot-notation access throughout the app (F). Popup state reused independently per screen (B) benefits from context variables. Tabular data (D) uses collections, not global variables. A counter shared across screens (E) can use a global variable, but storing tabular data (D) requires a collection.
+**Explanation:** In Power Apps, text variables default to `""` (empty string) before they are explicitly set. Number variables default to `0` and Boolean variables default to `false`. No initialization is required, but developers should be aware of these default values.
 
 </details>
 
@@ -360,62 +343,60 @@ A team is reviewing best practices for variable usage in Power Apps canvas apps.
 
 ### Question 17 — Multi-Select
 
-A developer is learning about collections in Power Apps. Which of the following statements about collections are **true**? (Select **two**.)
+A developer builds a canvas app that uses three different variable types. None of the variables have been explicitly initialized before they are first referenced.
 
-- A. A collection is automatically synchronized with its data source when the data source changes
-- B. A collection is removed from memory when the user closes the app
-- C. A collection can be created manually within the app without loading data from an external data source
-- D. A collection can be used directly with the Form control to display and edit records
-- E. A collection is only accessible on the screen where it is created
+Which statements correctly describe the default values of uninitialized variables in Power Apps? (Select **two**.)
+
+- A. Number variables default to `0`
+- B. Boolean variables default to `null`
+- C. Text variables default to `""` (empty string)
+- D. All uninitialized variables default to `false` regardless of type
+- E. Number variables default to `-1`
+- F. Boolean variables default to `true`
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B, C
+**Correct answer:** A, C
 
-**Explanation:** Collections are temporary and are cleared when the app is closed (B). They can also be created dynamically within the app without an external data source, for example to populate a dropdown list (C). Collections are not auto-synced with their data source (A), cannot be used directly with the Form control (D), and are available throughout the entire app — not just the screen where they are created (E).
+**Explanation:** Power Apps assigns type-specific defaults to uninitialized variables: text variables default to `""`, number variables default to `0`, and Boolean variables default to `false`. There is no `null` default for any variable type.
 
 </details>
 
 ---
 
-### Question 18 — Multi-Select
+### Question 18 — Single Choice
 
-A developer is explaining the differences between Power Apps variable types to a new team member. Which of the following statements correctly describe **context variables**? (Select **two**.)
+A developer stores the entire user record in a global variable using `Set(varUser, User())`. The user record contains the columns Email, FullName, and Image. They want to display the user's email address in a Label control.
 
-- A. They are created and updated using the `Set` function
-- B. They are scoped to the screen where they are created
-- C. They can be referenced from any screen in the app
-- D. They allow multiple variables to be declared in a single function call
-- E. They persist after the user closes the app
+Which formula should be placed in the Label's **Text** property?
+
+- A. `varUser["Email"]`
+- B. `varUser.Email`
+- C. `User().Email`
+- D. `GetField(varUser, "Email")`
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B, D
+**Correct answer:** B. `varUser.Email`
 
-**Explanation:** Context variables are scoped to the screen where they are created (B) and the `UpdateContext` function allows multiple context variables to be declared at once using a record syntax (D). They are created with `UpdateContext`, not `Set` (A). They cannot be referenced from other screens (C). Like all variables in Power Apps, they do not persist after the app is closed (E).
+**Explanation:** When a record is stored in a variable, individual fields are accessed using dot (`.`) notation. This works for records stored from action-based data sources like `User()` or retrieved using `LookUp` from a tabular data source.
 
 </details>
 
 ---
 
-### Question 19 — Multi-Select
+### Question 19 — Fill-in-the-Blank
 
-An organization wants to improve the performance of their Power Apps canvas app. Which of the following actions leverage variables to achieve performance improvements? (Select **two**.)
-
-- A. Using `Set` in `OnStart` to store `User().FullName` once instead of calling `User()` inline on every screen
-- B. Using `UpdateContext` to set a Boolean variable instead of evaluating a complex filter formula on multiple controls
-- C. Using `Collect` to store all records from a large data source exceeding 10,000 rows
-- D. Using a global variable to track which screen the user is currently viewing
-- E. Using `ClearCollect` after every button press to refresh the collection in real time
+In Power Apps, variables do not automatically ___ when the underlying data source is modified during an active session. For example, a variable storing an invoice count set during `OnStart` will retain its original value even after a user creates a new invoice, unless the developer adds explicit ___ logic or the app is restarted.
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** A, B
+**Answer:** update (refresh), update (refresh)
 
-**Explanation:** Storing `User().FullName` in a global variable at startup eliminates repeated Entra ID network calls (A). Using a variable to store the result of a complex formula means the formula runs once instead of once per control that uses it, reducing duplicate processing (B). `Collect` has a 500-record non-delegable limit, making it unsuitable for very large data sets (C). Tracking screen navigation in a variable doesn't directly improve performance (D). Calling `ClearCollect` on every button press would hurt performance rather than improve it (E).
+**Explanation:** A common source of confusion for developers new to Power Apps is that variables are not reactive. They hold the value assigned at the time of the last explicit `Set` or `UpdateContext` call and do not track changes to data sources on their own.
 
 </details>
 
@@ -423,36 +404,44 @@ An organization wants to improve the performance of their Power Apps canvas app.
 
 ### Question 20 — Multi-Select
 
-A developer is deciding what default values to expect when variables are first used without being explicitly set. Which of the following pairings of **variable type** and **default value** are correct? (Select **three**.)
+A developer is choosing between global variables and context variables for different requirements in a canvas app.
 
-- A. Text variable → `""` (empty string)
-- B. Number variable → `1`
-- C. Boolean variable → `false`
-- D. Text variable → `null`
-- E. Number variable → `0`
-- F. Boolean variable → `true`
+Which statements correctly describe the differences between global and context variables? (Select **two**.)
+
+- A. Global variables are available on all screens; context variables are scoped to a single screen
+- B. Context variables are created with the `Set` function; global variables use `UpdateContext`
+- C. Global variables are set using the `Set` function; context variables are set using `UpdateContext`
+- D. Context variables can store tabular data, while global variables can only store single values
+- E. Global variables support declaring multiple variables in a single formula using a comma separator
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** A, C, E
+**Correct answer:** A, C
 
-**Explanation:** In Power Apps, variables that have not been explicitly set have the following default values: Text → `""` (empty string), Number → `0`, Boolean → `false`. They do not default to `null`, `1`, or `true`.
+**Explanation:** Global variables use the `Set` function and are accessible across all screens, while context variables use `UpdateContext` and are scoped to the screen where they are created. It is `UpdateContext` — not `Set` — that supports declaring multiple variables in a single formula call.
 
 </details>
 
 ---
 
-### Question 21 — Fill-in-the-Blank
+### Question 21 — Single Choice
 
-In Power Apps, you use the `___` function to create or update a global variable, and the `___` function to create or update a context variable.
+A developer wants to populate a combo box control in a canvas app with a list of project statuses: "Active", "On Hold", and "Closed". There is no external data source available for this data.
+
+Which approach is the most appropriate?
+
+- A. Create a global variable that holds a comma-separated string of the status values
+- B. Use `ClearCollect` to create a collection with the status values and bind it to the combo box
+- C. Hard-code the status values into a context variable scoped to the screen
+- D. Use the Form control to load a static list from a SharePoint list
 
 <details>
 <summary>Answer</summary>
 
-**Answer:** `Set` (global variable); `UpdateContext` (context variable)
+**Correct answer:** B. Use `ClearCollect` to create a collection with the status values and bind it to the combo box
 
-**Explanation:** `Set` creates and updates global variables that are accessible throughout the entire app. `UpdateContext` creates and updates context variables that are scoped to the screen where they are used.
+**Explanation:** Collections can be created dynamically within the app without an external data source, making them ideal for populating dropdown and combo box controls with manually defined data. Context variables and global variables are not designed to hold tables of data in the same way.
 
 </details>
 
@@ -460,64 +449,36 @@ In Power Apps, you use the `___` function to create or update a global variable,
 
 ### Question 22 — Fill-in-the-Blank
 
-A developer writes the following formula in the `OnStart` property of the App object:
-
-```
-Set(varUser, User())
-```
-
-To display the user's full name from the stored record in a Label control, the developer sets the Label's `Text` property to `___`.
+To avoid repeated network calls to Microsoft Entra ID across multiple screens, a developer stores the user's full name using the formula `Set(varUserDisplayName, User().FullName)` in the App object's ___ property. Each Label control on subsequent screens then references ___ in its Text property instead of calling `User().FullName` directly.
 
 <details>
 <summary>Answer</summary>
 
-**Answer:** `varUser.FullName`
+**Answer:** `OnStart`, `varUserDisplayName`
 
-**Explanation:** When a record is stored in a variable, individual fields are accessed using dot (`.`) notation. The `User()` function returns a record with `Email`, `FullName`, and `Image` fields, so `varUser.FullName` retrieves the full name from the stored record.
+**Explanation:** The `OnStart` property runs once when the app loads, making it the ideal location to initialize global variables with values that would otherwise require repeated data source calls. Referencing the variable on each screen eliminates redundant queries.
 
 </details>
 
 ---
 
-### Question 23 — Fill-in-the-Blank
+### Question 23 — Multi-Select
 
-Collections are created using the `___` function, which appends records to an existing collection, or the `___` function, which clears the collection before adding new records.
+A developer reviews the unique behaviors of context variables before deciding to use them for screen-level UI state management.
 
-<details>
-<summary>Answer</summary>
+Which statements are true specifically about context variables and not global variables? (Select **two**.)
 
-**Answer:** `Collect`; `ClearCollect`
-
-**Explanation:** `Collect` adds records to a collection without removing existing ones, while `ClearCollect` clears all existing records first and then adds the new ones. Both functions create the collection if it does not already exist.
-
-</details>
-
----
-
-### Question 24 — Fill-in-the-Blank
-
-Variables in Power Apps are `___` by nature, which means the information stored in them is no longer available once `___`.
+- A. They are created and set using the `UpdateContext` function
+- B. They are available on all screens in the app after being set
+- C. They are scoped to the screen where they were created, keeping values independent per screen
+- D. They are populated using the `ClearCollect` function
+- E. They can only store Boolean or numeric values
 
 <details>
 <summary>Answer</summary>
 
-**Answer:** temporary; the user closes the app (or their session ends)
+**Correct answer:** A, C
 
-**Explanation:** All three variable types — global variables, context variables, and collections — are temporary and session-scoped. When the user closes Power Apps, all variable data is lost. To persist data, it must be written to a data source before the session ends.
-
-</details>
-
----
-
-### Question 25 — Fill-in-the-Blank
-
-When using `Collect` to load data from a data source, by default only the first `___` records are retrieved because the `Collect` function is not `___`.
-
-<details>
-<summary>Answer</summary>
-
-**Answer:** 500; delegable
-
-**Explanation:** The `Collect` function is not delegable, meaning the data retrieval is processed on the client side rather than the server side. As a result, only the first 500 records (the default data row limit) are retrieved from the data source and stored in the collection.
+**Explanation:** Context variables are unique in that they use the `UpdateContext` function (instead of `Set`) and are strictly scoped to the screen where they are created. This scoping allows the same variable name to exist independently on multiple screens, which is useful for reusable UI patterns like popups.
 
 </details>

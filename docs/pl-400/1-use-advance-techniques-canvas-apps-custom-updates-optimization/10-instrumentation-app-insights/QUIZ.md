@@ -1,6 +1,6 @@
-# Quiz: Instrumentation of Canvas Apps with Application Insights
+# Quiz: Canvas App Instrumentation with Application Insights
 
-> **Source material:** 1-introduction.md, 2-configure.md, 3-view-app-insights.md, 4-custom-logging.md, 5-exercise.md, 6-check.md, 7-summary.md, SUMMARY.md
+> **Source material:** 1-introduction.md, 2-configure.md, 3-view-app-insights.md, 4-custom-logging.md, 5-exercise.md, 6-check.md, 7-summary.md
 > **Total questions:** 22
 > **Question types:** Multiple choice (single), Multiple choice (multi-select), Fill-in-the-blank
 
@@ -10,21 +10,21 @@
 
 ### Question 1 — Single Choice
 
-Your organization has just launched a canvas app for 200 employees. You want to understand which screens are slow and how many people are using the app each day. You have an Azure subscription available.
+You have built a canvas app and shared it with hundreds of users in your organization. You want to start monitoring how the app is performing and which screens are used most often.
 
-Which step is required to start collecting telemetry from the canvas app?
+What must you configure on the canvas app to enable telemetry to be sent to Application Insights?
 
-- A. Install the Application Insights connector from Microsoft AppSource.
-- B. Configure the Instrumentation Key on the app object, then save and publish the app.
-- C. Enable telemetry in the Power Apps admin center.
-- D. Add the `Monitor()` function to each screen's `OnVisible` property.
+- A. A connection string on the App object
+- B. The Instrumentation Key on the App object
+- C. The App ID registered in Microsoft Entra ID
+- D. A resource token from the Azure portal
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B. Configure the Instrumentation Key on the app object, then save and publish the app.
+**Correct answer:** B. The Instrumentation Key on the App object
 
-**Explanation:** Canvas apps send telemetry to Application Insights only after you set the Instrumentation Key on the app object in Power Apps Studio, then save and publish the app. No connector or admin center setting is required.
+**Explanation:** Canvas apps send telemetry to Application Insights when the Instrumentation Key is set on the App object in Power Apps Studio. After setting the key and publishing the app, the Power Apps runtime automatically sends basic screen telemetry for each published run.
 
 </details>
 
@@ -32,21 +32,21 @@ Which step is required to start collecting telemetry from the canvas app?
 
 ### Question 2 — Single Choice
 
-A developer is testing a new canvas app in Power Apps Studio and wants to verify that telemetry is being captured in Application Insights. After running the app from within Studio for 30 minutes, no data appears in Application Insights.
+A developer has set the Instrumentation Key on a canvas app and is actively building new features in Power Apps Studio. They notice that no new telemetry is appearing in Application Insights.
 
-What is the most likely reason?
+Which statement explains this behavior?
 
-- A. The Instrumentation Key is incorrect.
-- B. Application Insights has a 24-hour delay before showing data.
+- A. The Instrumentation Key only works in production environments.
+- B. Telemetry requires the Azure Monitor agent to be installed on the developer's machine.
 - C. Telemetry is only captured when the published app is run outside of Power Apps Studio.
-- D. The Azure subscription has not been linked to the Power Platform environment.
+- D. The developer must call the Trace() function before any automatic telemetry is sent.
 
 <details>
 <summary>Answer</summary>
 
 **Correct answer:** C. Telemetry is only captured when the published app is run outside of Power Apps Studio.
 
-**Explanation:** Canvas app telemetry is only sent to Application Insights when users run the published app. Running the app from within Power Apps Studio does not generate telemetry, regardless of whether the Instrumentation Key is configured.
+**Explanation:** Usage from within Power Apps Studio while building the app does not send telemetry to Application Insights. Only the published app, when run by users outside of the Studio, generates telemetry data.
 
 </details>
 
@@ -54,21 +54,21 @@ What is the most likely reason?
 
 ### Question 3 — Single Choice
 
-Your company runs three different canvas apps and wants to use a single Application Insights resource to monitor all of them using the same Instrumentation Key.
+Your organization is evaluating the cost of using Application Insights to monitor a low-traffic internal canvas app that generates sporadic data.
 
-Which statement best describes the consequence of this approach?
+Which pricing model does Application Insights use, and what is included at no additional cost?
 
-- A. Each app will have its own isolated dashboard with no data mixing.
-- B. Application Insights will reject telemetry from more than one app per resource.
-- C. Default visualizations will mix data from all apps, making it harder to analyze a single app.
-- D. The `ms-appSessionId` property will be used to separate data from different apps.
+- A. Flat monthly fee with unlimited data ingestion
+- B. Pay-as-you-go based on data volume ingested; each billing account includes 5 GB of free log data ingestion
+- C. Per-user licensing with 1 GB of data per licensed user
+- D. Pay-as-you-go based on the number of events logged, with no free tier
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** C. Default visualizations will mix data from all apps, making it harder to analyze a single app.
+**Correct answer:** B. Pay-as-you-go based on data volume ingested; each billing account includes 5 GB of free log data ingestion
 
-**Explanation:** When multiple apps share the same Instrumentation Key, all their data lands in one Application Insights resource. The default visualizations mix that data, making single-app analysis difficult. Each app's events do include an `ms-appId` property, but default views don't filter by it automatically.
+**Explanation:** Application Insights uses a pay-as-you-go model based on data volume ingested and, optionally, longer data retention. Each billing account includes 5 GB of free log data ingestion, so low-usage apps with sporadic data may incur no additional ingestion cost.
 
 </details>
 
@@ -76,21 +76,21 @@ Which statement best describes the consequence of this approach?
 
 ### Question 4 — Single Choice
 
-A company uses the Power Platform CLI to unpack and pack its canvas apps as part of a CI/CD pipeline. The app uses an Application Insights Instrumentation Key. They need different keys for development, test, and production environments.
+Your team maintains five canvas apps and wants to configure Application Insights so that each app's telemetry is easy to analyze independently.
 
-Where is the Instrumentation Key stored after unpacking the app with the CLI?
+What is the recommended approach?
 
-- A. `settings.json`
-- B. `AppInsightsKey.json`
-- C. `manifest.yml`
-- D. `properties.json`
+- A. Use a single Application Insights resource with the same Instrumentation Key for all apps, then use ms-appId to filter.
+- B. Configure separate Application Insights resources with individual Instrumentation Keys for each app.
+- C. Use a single Log Analytics workspace for all apps and differentiate by app name.
+- D. Create cohorts in Application Insights to separate the data from each app.
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B. `AppInsightsKey.json`
+**Correct answer:** B. Configure separate Application Insights resources with individual Instrumentation Keys for each app.
 
-**Explanation:** When using the Power Platform CLI to unpack an app that has an Instrumentation Key configured, the key is stored in a file named `AppInsightsKey.json`. Teams can use source control strategies to substitute different keys for different environments.
+**Explanation:** When each app has its own Application Insights resource and Instrumentation Key, the event data is separated, making it easier to visualize single-app usage patterns. Sharing a single resource mixes data from all apps in the default visualizations, making per-app analysis more difficult.
 
 </details>
 
@@ -98,21 +98,21 @@ Where is the Instrumentation Key stored after unpacking the app with the CLI?
 
 ### Question 5 — Single Choice
 
-A developer wants to log additional data when users open a job record in a canvas app. The goal is to record the job ID and job name so they can determine which jobs are viewed most frequently.
+Multiple canvas apps share the same Application Insights resource and Instrumentation Key. A developer needs to write a log query that returns traces only from a specific app.
 
-Which Power Fx function should the developer use?
+Which automatically added property should the developer use to filter by app?
 
-- A. `Notify("Job Viewed", NotificationType.Information)`
-- B. `Log("Job Viewed", {JobId: ThisItem.JobId})`
-- C. `Trace("Job Viewed", TraceSeverity.Information, {JobId: ThisItem.JobId, JobName: ThisItem.JobName})`
-- D. `Patch(AppInsights, {Message: "Job Viewed", JobId: ThisItem.JobId})`
+- A. ms-appVersion
+- B. ms-appSessionId
+- C. ms-appName
+- D. ms-appId
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** C. `Trace("Job Viewed", TraceSeverity.Information, {JobId: ThisItem.JobId, JobName: ThisItem.JobName})`
+**Correct answer:** D. ms-appId
 
-**Explanation:** The `Trace()` Power Fx function is the correct way to send custom events from a canvas app to Application Insights. It accepts a message, an optional severity level, and an optional custom record with contextual data.
+**Explanation:** When multiple apps log data to the same Application Insights resource, each app's events include an ms-appId property that uniquely identifies the app. Developers can use ms-appId in log queries to filter traces for a specific app.
 
 </details>
 
@@ -120,21 +120,21 @@ Which Power Fx function should the developer use?
 
 ### Question 6 — Single Choice
 
-You are writing a Kusto query in Application Insights Logs to find all custom events logged by the `Trace()` function in your canvas app.
+A developer uses Power Platform CLI to unpack a canvas app that has an Instrumentation Key configured. They want to use source control to maintain different keys for development and production environments.
 
-Which table name should you use in your query?
+In which file does the CLI store the unpacked Instrumentation Key?
 
-- A. `customEvents`
-- B. `pageViews`
-- C. `appEvents`
-- D. `traces`
+- A. config.json
+- B. settings.json
+- C. AppInsightsKey.json
+- D. telemetry.json
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** D. `traces`
+**Correct answer:** C. AppInsightsKey.json
 
-**Explanation:** Custom events logged by the `Trace()` function are written to the `traces` table in Application Insights. The `pageViews` table contains screen navigation events that are sent automatically by the Power Apps runtime.
+**Explanation:** When using the Power Platform CLI to unpack an app that has the Instrumentation Key set up, the key is stored in a file named AppInsightsKey.json. This allows teams to use source control strategies to apply different keys per environment.
 
 </details>
 
@@ -142,21 +142,21 @@ Which table name should you use in your query?
 
 ### Question 7 — Single Choice
 
-An administrator needs to identify all telemetry from a specific canvas app when multiple apps share the same Application Insights resource.
+A Power Apps maker has just configured Application Insights for a newly published canvas app. They want to understand app adoption and start by checking how many users have run the app.
 
-Which field in the logged events identifies the specific app?
+Which Application Insights section is the recommended starting point?
 
-- A. `ms-appSessionId`
-- B. `ms-appId`
-- C. `ms-userId`
-- D. `appName`
+- A. Monitoring > Logs
+- B. Monitoring > Workbooks > App Performance Index
+- C. Usage > Users
+- D. Investigate > Transaction Search
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B. `ms-appId`
+**Correct answer:** C. Usage > Users
 
-**Explanation:** When multiple apps log to the same Application Insights resource, each event includes an `ms-appId` property that uniquely identifies the source app. The `ms-appSessionId` identifies a specific user's session within an app, not the app itself.
+**Explanation:** The recommended starting point is Usage > Users, which allows you to visualize summary data for a time period and drill down into more detail about who is using the app and how often.
 
 </details>
 
@@ -164,21 +164,21 @@ Which field in the logged events identifies the specific app?
 
 ### Question 8 — Single Choice
 
-A canvas app team wants to receive an automatic notification when the average page load time exceeds a defined threshold.
+A developer wants to use the Trace() function to record that a validation rule failed and include the number of hours worked in the logged record.
 
-Which Application Insights feature should they configure?
+Which syntax correctly represents this call?
 
-- A. Cohorts
-- B. Workbooks
-- C. Alerts
-- D. User Flows
+- A. `Trace(TraceSeverity.Warning, "Validation Failed", {hoursWorked: ThisItem.HoursWorked})`
+- B. `Trace("Validation Failed", TraceSeverity.Warning, {hoursWorked: ThisItem.HoursWorked})`
+- C. `Trace({hoursWorked: ThisItem.HoursWorked}, "Validation Failed", TraceSeverity.Warning)`
+- D. `Trace("Validation Failed", {hoursWorked: ThisItem.HoursWorked}, TraceSeverity.Warning)`
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** C. Alerts
+**Correct answer:** B. `Trace("Validation Failed", TraceSeverity.Warning, {hoursWorked: ThisItem.HoursWorked})`
 
-**Explanation:** The Alerts feature in Application Insights allows you to define metric thresholds and receive notifications when those thresholds are exceeded. For example, you can set an alert to trigger when average page load time is too high.
+**Explanation:** The Trace() function signature is `Trace(message, trace_severity, custom_record)`. The message parameter is required and comes first, followed by the optional severity level, then the optional custom record containing context data fields.
 
 </details>
 
@@ -186,21 +186,21 @@ Which Application Insights feature should they configure?
 
 ### Question 9 — Single Choice
 
-A developer needs to analyze Application Insights data for a canvas app using a custom report with visualizations that are not available in the Azure portal.
+A developer wants to query all custom events logged by their canvas app using the Trace() function. They open the Logs section of Application Insights on the Azure portal.
 
-Which option allows the developer to build fully custom visualizations of the Application Insights data?
+Which table name should they use in their Kusto query?
 
-- A. Transaction Search
-- B. Power BI
-- C. Workbooks
-- D. Cohorts
+- A. customEvents
+- B. pageViews
+- C. telemetry
+- D. traces
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B. Power BI
+**Correct answer:** D. traces
 
-**Explanation:** You can import Application Insights log data into a Power BI dataset to create fully custom visualizations. Workbooks provide prebuilt and customizable dashboards within the Azure portal, but Power BI offers far greater flexibility for custom reporting.
+**Explanation:** Custom events logged by the Trace() function are stored in the `traces` table. The `pageViews` table is used for screen navigation events that are automatically sent by the Power Apps runtime.
 
 </details>
 
@@ -208,21 +208,21 @@ Which option allows the developer to build fully custom visualizations of the Ap
 
 ### Question 10 — Single Choice
 
-A developer wants to automate the delivery of a daily email listing all errors logged by the canvas app in the past 24 hours. They plan to use data from Application Insights.
+A canvas app has been configured with an Instrumentation Key and published to a development environment. The app is then exported and imported into a test environment with no additional changes.
 
-Which Microsoft service and component should they use to build this automated workflow?
+What happens to the telemetry when the app is run in the test environment?
 
-- A. Power Automate with the Application Insights connector
-- B. Power Automate with the Azure Monitor connector
-- C. Logic Apps with the Power Apps connector
-- D. Azure Functions with the Event Hubs connector
+- A. The app stops sending telemetry until a new key is configured for the test environment.
+- B. The app uses the same Instrumentation Key and logs to the same Application Insights resource as development.
+- C. The app generates a new Instrumentation Key automatically from the test environment.
+- D. The test environment clears the Instrumentation Key for security reasons.
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B. Power Automate with the Azure Monitor connector
+**Correct answer:** B. The app uses the same Instrumentation Key and logs to the same Application Insights resource as development.
 
-**Explanation:** The Azure Monitor connector in Power Automate allows you to build automated workflows that query Application Insights data. This is the supported approach for building scheduled reports, such as a daily error digest email.
+**Explanation:** By default, if you transport the app to test and production environments, it will use the same Instrumentation Key and log to the same Application Insights resource. Environment variables are not currently supported for configuring the Instrumentation Key.
 
 </details>
 
@@ -230,21 +230,21 @@ Which Microsoft service and component should they use to build this automated wo
 
 ### Question 11 — Single Choice
 
-An analyst wants to understand the browsing behavior of users across screens in a canvas app — specifically which screens users navigate to after a specific starting screen.
+A developer queries trace data in Application Insights and wants to examine the custom context data that was passed when the Trace() function was called.
 
-Which Application Insights feature is most appropriate for this analysis?
+Which property in the query results contains this information?
 
-- A. Usage > Users
-- B. Usage > Sessions
-- C. Usage > User Flows
-- D. Monitoring > Workbooks > Usage Calendar
+- A. properties
+- B. dimensions
+- C. customDimensions
+- D. traceData
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** C. Usage > User Flows
+**Correct answer:** C. customDimensions
 
-**Explanation:** The User Flows visualization in Application Insights shows how users navigate from one event (such as a page view) to the next, making it the best tool for understanding navigation patterns between screens.
+**Explanation:** In the query results, each trace row contains a customDimensions property that can be expanded to show the named fields that were logged as context data when the Trace() function was invoked. Automatically added ms-* fields are also included here.
 
 </details>
 
@@ -252,47 +252,43 @@ Which Application Insights feature is most appropriate for this analysis?
 
 ### Question 12 — Single Choice
 
-Your company does not have direct access to the Azure subscription. You need to connect your canvas app to Application Insights.
+A team wants to receive a daily email summarizing all errors logged by users of their canvas app. They plan to build this workflow using Azure and Microsoft Power Platform services.
 
-What is the correct approach?
+Which combination of tools enables this automated reporting?
 
-- A. Use the Power Apps admin center to self-provision Application Insights without an Azure subscription.
-- B. Ask a Microsoft Entra ID administrator to create the Application Insights resource and share the Instrumentation Key.
-- C. Use a trial Azure subscription independently of the company's tenant.
-- D. Application Insights cannot be used without direct access to an Azure subscription.
+- A. Power BI and a scheduled dataset refresh
+- B. Power Automate with the Azure Monitor connector
+- C. Azure Data Factory and Power BI streaming dataset
+- D. Application Insights Alerts with an email action
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B. Ask a Microsoft Entra ID administrator to create the Application Insights resource and share the Instrumentation Key.
+**Correct answer:** B. Power Automate with the Azure Monitor connector
 
-**Explanation:** Even without direct Azure subscription access, you can still use Application Insights by having an Entra ID administrator create the resource and share the Instrumentation Key. The administrator can also grant you access to view the collected data.
+**Explanation:** By using the Azure Monitor connector in Power Automate, you can build automated workflows that use data from your Application Insights workspace. For example, you could create a flow that sends a daily email containing a list of errors logged by users of your app.
 
 </details>
 
 ---
 
-### Question 13 — Multi-Select
+### Question 13 — Single Choice
 
-A canvas app developer is adding `Trace()` calls to record important events in the app. They want to categorize traces by severity for easier querying.
+A developer adds Trace() calls to a canvas app in production to help diagnose a reported issue. They need to confirm that the trace data is visible somewhere other than Application Insights.
 
-Which of the following are valid severity levels for the `Trace()` function? (Select **three**.)
+In addition to Application Insights, where else is Trace() data visible?
 
-- A. Information
-- B. Debug
-- C. Warning
-- D. Critical
-- E. Verbose
-- F. Error
+- A. Power Apps Studio Formula Bar and Dataverse audit logs
+- B. The Monitor tool and Power Apps Test Studio results
+- C. Power Automate run history and Azure Log Analytics
+- D. Azure DevOps dashboards and Teams notifications
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** A. Information, C. Warning, D. Critical, F. Error
+**Correct answer:** B. The Monitor tool and Power Apps Test Studio results
 
-*(Select any three of these four — the module lists all four as valid.)*
-
-**Explanation:** The `Trace()` function's `trace_severity` parameter accepts four values: `Information`, `Warning`, `Error`, and `Critical`. `Debug` and `Verbose` are not valid severity levels for this function.
+**Explanation:** In addition to logging data to Application Insights, trace data is also visible in the Monitor tool and Power Apps Test Studio results, making it useful for debugging and testing as well as production monitoring.
 
 </details>
 
@@ -300,25 +296,22 @@ Which of the following are valid severity levels for the `Trace()` function? (Se
 
 ### Question 14 — Multi-Select
 
-A Power Apps developer is exploring the Application Insights portal for a canvas app and wants to identify visualizations relevant to app usage and performance.
+A maker wants to configure a new canvas app to send telemetry to Application Insights. They need to identify the required steps to complete this setup.
 
-Which of the following are listed as useful for canvas apps? (Select **three**.)
+Which two steps are required? (Select **two**.)
 
-- A. Monitoring > Workbooks > App Performance Index
-- B. Monitoring > Workbooks > Dependency Tracking
-- C. Usage > User Flows
-- D. Usage > Exceptions
-- E. Monitoring > Workbooks > User Retention
-- F. Investigate > Transaction Search
+- A. Install the Application Insights connector from the Power Apps connector catalog
+- B. Provision an Application Insights resource in the Azure portal
+- C. Set the Instrumentation Key on the App object in Power Apps Studio and publish the app
+- D. Enable the telemetry feature toggle in the Power Apps admin center
+- E. Add a Trace() call to the app's OnStart property
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** A. Monitoring > Workbooks > App Performance Index, C. Usage > User Flows, E. Monitoring > Workbooks > User Retention, F. Investigate > Transaction Search
+**Correct answer:** B. Provision an Application Insights resource in the Azure portal; C. Set the Instrumentation Key on the App object in Power Apps Studio and publish the app
 
-*(Select any three of these four correct options.)*
-
-**Explanation:** Application Insights offers many visualizations, but only a subset is applicable to canvas apps. The module specifically lists App Performance Index, User Flows, User Retention, and Transaction Search among the useful options. Dependency Tracking and Exceptions are not listed as applicable for canvas apps.
+**Explanation:** Setting up a canvas app for Application Insights requires two steps: (1) provisioning an Application Insights resource in the Azure portal to obtain an Instrumentation Key, and (2) setting that key on the App object in Power Apps Studio and publishing the app. No connector installation, admin toggle, or Trace() call is required for basic telemetry.
 
 </details>
 
@@ -326,22 +319,22 @@ Which of the following are listed as useful for canvas apps? (Select **three**.)
 
 ### Question 15 — Multi-Select
 
-A developer is reviewing the best practices for using the `Trace()` function in a production canvas app.
+A developer is designing a strategy for adding Trace() function calls to a new canvas app. They need to identify the valid scenarios for instrumentation.
 
-Which of the following are recommended best practices? (Select **two**.)
+Which three of the following are appropriate use cases for Trace() calls? (Select **three**.)
 
-- A. Log customer names and email addresses to help identify which users encounter errors.
-- B. Use consistent field names across related `Trace()` calls to simplify querying.
-- C. Log as much data as possible to ensure no event is missed.
-- D. Avoid logging sensitive data that may cause compliance issues.
-- E. Always use `TraceSeverity.Error` regardless of the actual event type.
+- A. Logging when a user views a specific job record in a gallery
+- B. Improving delegation limits on SharePoint data sources
+- C. Recording which validation fields failed when a user submits a form
+- D. Logging when a user cancels a multi-step action
+- E. Replacing the built-in Power Apps runtime screen telemetry
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B. Use consistent field names across related `Trace()` calls to simplify querying, D. Avoid logging sensitive data that may cause compliance issues.
+**Correct answer:** A. Logging when a user views a specific job record in a gallery; C. Recording which validation fields failed when a user submits a form; D. Logging when a user cancels a multi-step action
 
-**Explanation:** The documentation highlights two key best practices: using consistent field names to make cross-call querying easier, and avoiding sensitive data (such as names or email addresses) that could create compliance problems. Logging excessive data and using a single severity level for all events are explicitly discouraged.
+**Explanation:** Trace() is used to capture custom app events such as viewing records, validation failures, and user actions like cancellations. It complements, rather than replaces, the automatic runtime telemetry. Trace() does not affect delegation behavior.
 
 </details>
 
@@ -349,37 +342,45 @@ Which of the following are recommended best practices? (Select **two**.)
 
 ### Question 16 — Multi-Select
 
-A team is deciding how to access and analyze Application Insights data for their canvas app.
+A maker is reviewing best practices for using the Trace() function. They need to identify which guidelines should be followed when composing Trace() calls.
 
-Which of the following are valid ways to access data from an Application Insights resource? (Select **three**.)
+Which three guidelines are recommended? (Select **three**.)
 
-- A. Individual visualizations (e.g., Users report)
-- B. Directly from Power Apps Studio's formula bar
-- C. Workbooks
-- D. Logs (Kusto queries)
-- E. The Power Apps Monitor tool (live view)
+- A. Avoid logging sensitive data such as customer names and email addresses
+- B. Use a different field name in every Trace() call to maximize data variety
+- C. Send only the data that is needed for analysis or querying
+- D. Use consistent field names across related Trace() calls to simplify querying
+- E. Always set trace severity to Critical to ensure the data is captured
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** A. Individual visualizations (e.g., Users report), C. Workbooks, D. Logs (Kusto queries)
+**Correct answer:** A. Avoid logging sensitive data such as customer names and email addresses; C. Send only the data that is needed for analysis or querying; D. Use consistent field names across related Trace() calls to simplify querying
 
-**Explanation:** From an Application Insights resource in the Azure portal, you can access data via individual visualizations, workbooks, and logs (Kusto query interface). Power Apps Studio's formula bar and the Power Apps Monitor tool are separate tools not used to access Application Insights data.
+**Explanation:** Best practices for Trace() include avoiding sensitive data to prevent compliance issues, sending only what is needed to avoid excessive data volume, and using consistent field names to make log queries easier. Varying field names and always using Critical severity are both discouraged.
 
 </details>
 
 ---
 
-### Question 17 — Fill-in-the-Blank
+### Question 17 — Multi-Select
 
-Canvas apps automatically send basic ___ telemetry to Application Insights once the ___ is configured on the app object and the app is published.
+A team wants to analyze Application Insights data using tools beyond the built-in Azure portal visualizations. They need to identify which external tools can be integrated.
+
+Which two tools can be used to consume Application Insights data outside of the Azure portal? (Select **two**.)
+
+- A. Azure Data Studio
+- B. Power BI, by importing log data into a Power BI dataset
+- C. Microsoft Purview compliance dashboards
+- D. Power Automate using the Azure Monitor connector
+- E. Azure Synapse Analytics real-time streams
 
 <details>
 <summary>Answer</summary>
 
-**Answer:** screen (page view) | Instrumentation Key
+**Correct answer:** B. Power BI, by importing log data into a Power BI dataset; D. Power Automate using the Azure Monitor connector
 
-**Explanation:** Power Apps runtime automatically sends basic screen/page view telemetry to Application Insights when the Instrumentation Key is set on the app. No additional code is required for this default telemetry.
+**Explanation:** Application Insights data can be imported into a Power BI dataset for custom visualizations, and the Azure Monitor connector in Power Automate can be used to build automated workflows based on Application Insights data such as error summaries.
 
 </details>
 
@@ -387,14 +388,14 @@ Canvas apps automatically send basic ___ telemetry to Application Insights once 
 
 ### Question 18 — Fill-in-the-Blank
 
-When using the Power Platform CLI to unpack a canvas app that has an Instrumentation Key configured, the key is stored in a file named ___.
+To enable a canvas app to send telemetry to Application Insights, a maker must set the ___ property on the App object in Power Apps Studio and then save and publish the app.
 
 <details>
 <summary>Answer</summary>
 
-**Answer:** AppInsightsKey.json
+**Answer:** Instrumentation Key
 
-**Explanation:** The Power Platform CLI stores the Instrumentation Key in a dedicated file called `AppInsightsKey.json` during the unpack operation. This file can be managed in source control to support different keys per environment.
+**Explanation:** The Instrumentation Key, copied from the Application Insights resource in the Azure portal, must be pasted into the Instrumentation Key field in the App object's Properties pane. Once the app is published, the Power Apps runtime will automatically send basic telemetry.
 
 </details>
 
@@ -402,14 +403,14 @@ When using the Power Platform CLI to unpack a canvas app that has an Instrumenta
 
 ### Question 19 — Fill-in-the-Blank
 
-The complete syntax of the Power Fx function used for custom logging is: `___(message, trace_severity, custom_record)`, where only the ___ parameter is required.
+The Power Fx function ___ is used to send custom event data from a canvas app to Application Insights. Its first parameter, which is ___, identifies the purpose of the call.
 
 <details>
 <summary>Answer</summary>
 
-**Answer:** Trace() | message
+**Answer:** Trace(); required (message)
 
-**Explanation:** The `Trace()` function is used for custom logging in canvas apps. Its first parameter, `message`, is the only required argument. The `trace_severity` and `custom_record` parameters are optional but highly recommended for effective querying.
+**Explanation:** The Trace() function enables custom logging from within a canvas app. The message parameter is mandatory and should describe why the trace was called, such as "Timesheet Validation Failed". The severity and custom record parameters are optional.
 
 </details>
 
@@ -417,59 +418,43 @@ The complete syntax of the Power Fx function used for custom logging is: `___(me
 
 ### Question 20 — Fill-in-the-Blank
 
-To query all screen navigation events that are automatically sent by the Power Apps runtime to Application Insights, you use the Kusto table named ___. To query custom events logged by the `Trace()` function, you use the table named ___.
+When using Power Platform CLI to unpack a canvas app that has an Instrumentation Key configured, the key is stored in a file named ___.
 
 <details>
 <summary>Answer</summary>
 
-**Answer:** pageViews | traces
+**Answer:** AppInsightsKey.json
 
-**Explanation:** The Power Apps runtime writes automatic screen navigation events to the `pageViews` table, while custom events from `Trace()` function calls are written to the `traces` table. Both tables are accessible via the Logs (Kusto) interface in Application Insights.
+**Explanation:** The Power Platform CLI unpacks the Instrumentation Key into a file named AppInsightsKey.json. This enables source control strategies that allow different Application Insights keys to be used per environment (development, test, production).
 
 </details>
 
 ---
 
-### Question 21 — Single Choice
+### Question 21 — Fill-in-the-Blank
 
-An analyst wants to define a subset of users who interacted with a specific screen in the app, and then use that subset to filter Application Insights visualizations.
-
-Which Application Insights feature supports this use case?
-
-- A. Alerts
-- B. Cohorts
-- C. User Flows
-- D. Transaction Search
+In Application Insights log queries, screen navigation events automatically sent by the Power Apps runtime are stored in the ___ table, while custom events logged using the Trace() function are stored in the ___ table.
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B. Cohorts
+**Answer:** pageViews; traces
 
-**Explanation:** Cohorts let you define named sets of users, events, or operations that share a common trait — such as users who visited a specific screen. Once defined, a cohort can be used as a filter in most Application Insights visualizations.
+**Explanation:** The Power Apps runtime automatically logs screen navigation to the pageViews table. Custom events generated by Trace() function calls appear in the traces table. Knowing the correct table name is essential for writing targeted KQL queries.
 
 </details>
 
 ---
 
-### Question 22 — Single Choice
+### Question 22 — Fill-in-the-Blank
 
-Application Insights pricing is based on a pay-as-you-go model. Your canvas app is used infrequently by a small team.
-
-How much free log data ingestion is included per billing account before additional charges apply?
-
-- A. 1 GB per month
-- B. 5 GB per month
-- C. 10 GB per month
-- D. Unlimited, with charges only for retention beyond 90 days
+In Application Insights, a ___ is a defined set of users, events, or operations that share a common property. Once defined, it can be used to ___ any Application Insights visualization.
 
 <details>
 <summary>Answer</summary>
 
-**Correct answer:** B. 5 GB per month
+**Answer:** cohort; filter
 
-**Explanation:** Each Application Insights billing account includes 5 GB of free log data ingestion per month. Low-usage apps that log sporadic data are likely to remain within this free tier with no extra ingestion cost.
+**Explanation:** Cohorts allow you to group users or events that meet a common criterion — for example, all users of a specific screen or all users from a particular country/region. You can then apply the cohort as a filter across built-in visualizations such as Users, Sessions, and Metrics.
 
 </details>
-
----

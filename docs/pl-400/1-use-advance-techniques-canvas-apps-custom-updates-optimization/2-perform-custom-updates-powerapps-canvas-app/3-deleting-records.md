@@ -1,5 +1,7 @@
 # Delete records from data sources and collections
 
+Completed
+
 - 8 minutes
 
 In this unit, we're going to cover the concept of deleting a record from a tabular data source or collection. Unlike creating and editing records, which have multiple controls and functions, for deleting records there are only a few options including the **Remove**, **RemoveIf**, and **Clear** functions. We most often add these functions to the **OnSelect** property of a button or icon control to delete a record.
@@ -38,6 +40,8 @@ It's also possible to delete all of the records in a data source. This is most c
 
 The **Clear** function deletes all the records of a *collection*. The columns of the collection remain. The only input you pass to the function is the collection name.
 
+For example, you could use the following formula to delete all of the records from a collection called collectSelectedItems.
+
 ```powerappsfl
 Clear(collectSelectedItems)
 ```
@@ -55,9 +59,7 @@ All three functions have their place. One way to think about whether you want to
 
 ### Delete all of the records from a data source
 
-It's possible to delete all of the records from a data source using **RemoveIf**. This isn't a common scenario. Again there's no confirmation before the formula processes unless you build such functionality. Finally, there's no undo or recycle bin in Power Apps.
-
-> **Warning:** If you want to recover your data, you would need to go to your data source and use whatever recovery process is available for that data source, outside of Power Apps. Proceed with caution.
+It's possible to delete all of the records from a data source using **RemoveIf**. This isn't a common scenario. Again there's no confirmation before the formula processes unless you build such functionality. Finally, there's no undo or recycle bin in Power Apps. If you want to recover your data, you would need to go to your data source and use whatever recovery process is available for that data source, outside of Power Apps. Proceed with caution.
 
 For example, you could use the following formula to delete all of the records from a data source.
 
@@ -69,4 +71,6 @@ This formula deletes all of the records from the **CustomerOrders** data source 
 
 The reason this works is **RemoveIf** checks every record in the data source to see if the equation equals **true**. In this case, the equation is set to true, so every record is deleted.
 
-> **Note:** Setting the equation portion to **true** also works with the **Filter** function. This can be a valuable setting if you are trying to troubleshoot formulas where you are not sure if Filter is returning data.
+Note
+
+Setting the equation portion to **true** also works with the **Filter** function. This can be a valuable setting if you are trying to troubleshoot formulas where you are not sure if Filter is returning data.

@@ -1,29 +1,38 @@
 # Check your knowledge
 
-Answer the following questions to see what you've learned.
+Completed
 
-## Questions
+- 6 minutes
 
-**1. What Power Fx function do you use to get a table of possible values for a choice column?**
+## Answer the following questions to see what you've learned.
 
-- Select()
-- **Choices()** ✅
-- LookUp()
-- None, you should manually build the table
+1.
+What Power Fx function do you use to get a table of possible values for a choice column?
 
----
+Select()
 
-**2. What isn't a valid type of a list of values for a choice or choices column?**
+Choices()
 
-- **Private choice** ✅
-- Global choice
-- Local choice
+LookUp()
 
----
+None, you should manually build the table
 
-**3. If you want to clear the existing stored value, what would you set the value of a choice column to when using the Patch() function?**
+2.
+What isn't a valid type of a list of values for a choice or choices column?
 
-- **Blank()** ✅
-- Empty()
-- IsBlank()
-- Reset()
+Private choice
+
+Global choice
+
+Local choice
+
+3.
+If you want to clear the existing stored value, what would you set the value of a choice column to when using the Patch() function?
+
+Blank()
+
+Empty()
+
+IsBlank()
+
+Reset()

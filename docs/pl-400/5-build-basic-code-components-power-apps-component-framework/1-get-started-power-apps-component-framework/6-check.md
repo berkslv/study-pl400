@@ -1,23 +1,38 @@
 # Check your knowledge
 
-## Questions
+Completed
 
-### 1. Which of the following options is NOT a template type for the controls built with the Power Apps component framework?
+- 6 minutes
 
-- Field
-- **Unbound** ✅ *(correct answer)*
-- Dataset
+## Answer the following questions to see what you've learned.
 
-### 2. Which of the following files is used to define control properties for a Power App code component?
+1.
+Which of the following options is NOT a template type for the controls built with the Power Apps component framework?
 
-- index.ts
-- **Manifest File** ✅ *(correct answer)*
-- Resource File
-- CSS File
+Field
 
-### 3. Which of the following methods can be used to notify the framework that the control has new outputs?
+Unbound
 
-- **notifyOutputChanged** ✅ *(correct answer)*
-- init
-- updateView
-- getOutputs
+Dataset
+
+2.
+Which of the following files is used to define control properties for a Power App code component?
+
+index.ts
+
+Manifest File
+
+Resource File
+
+CSS File
+
+3.
+Which of the following methods can be used to notify the framework that the control has new outputs?
+
+notifyOutputChanged
+
+init
+
+updateView
+
+getOutputs

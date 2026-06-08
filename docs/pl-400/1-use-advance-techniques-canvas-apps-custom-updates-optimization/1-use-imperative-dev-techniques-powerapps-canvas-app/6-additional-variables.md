@@ -1,5 +1,9 @@
 # Additional variable concepts
 
+Completed
+
+- 6 minutes
+
 Now that you have an understanding of Power Apps logic concepts and variable types, there a few additional concepts to expand on that will help you integrate variables into your app.
 
 ## Variables can self-reference
@@ -12,8 +16,10 @@ Set(varCounter, varCounter + 1)
 
 Next to the button put a **Label**, and in the **Text** property, put **varCounter**. The first time that you select the button your value will be 1. If you select the button a second time the value will be 2. Use the following table to see the literal translation.
 
+![Animation of varCounter functionality.](media/6-varcounter.gif)
+
 | Value of varCounter before the button press | Button press | Formula | Values | Value of varCounter after button press |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | 0 | First | Set(varCounter, varCounter + 1) | Set(varCounter, 0 + 1) | 1 |
 | 1 | Second | Set(varCounter, varCounter + 1) | Set(varCounter, 1 + 1) | 2 |
 | 2 | Third | Set(varCounter, varCounter + 1) | Set(varCounter, 2 + 1) | 3 |
@@ -49,7 +55,6 @@ This example stores the record from an action-based data source. You could also 
 A common point of confusion for people who are new to variables is that variables don't automatically update. For example, they can use a variable to store the number of customer invoices using OnStart for the app. Then in the app, the user creates a new invoice. The variable doesn't distinguish the number of invoices in the system that have changed. The variable will only update when:
 
 - The user closes the app and then opens it again. This causes OnStart to perform the operation to calculate the number of invoices.
-
 - You implement functionality to update the variable after the user creates an invoice.
 
 Be aware of this common point of confusion if you're new to using variables to track data.

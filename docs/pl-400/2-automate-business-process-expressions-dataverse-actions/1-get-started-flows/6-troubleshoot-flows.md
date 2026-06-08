@@ -1,77 +1,87 @@
 # Troubleshoot flows
 
+Completed
+
 - 8 minutes
 
 In this unit, you'll learn how to troubleshoot common issues that might occur while you run your flows.
 
 ## Identify the error
 
-Before you can fix a flow, you must identify why it failed. Power Automate, by default, sends you an email with a list of failures each week. You can also view your *Cloud flow activity* from the Power Automate home page:
+Before you can fix a flow, you must identify why it failed. Power Automate, by default, sends you an email with a list of failures each week. If you go to the Power Automate home page, you can view your *Cloud flow activity*. Here's how to do that.
 
-1. Select the **More ...** option from the left-side menu, then select **Cloud flow activity** (or select the **Activity** tab in the mobile app). If you don't see that option, select **Discover all** at the bottom of the **More** dialog box, and then find/select **Cloud flow activity**.
-2. Select your flow from the list that appears to view the run.
-3. Details about the flow appear. Steps that succeeded show green check marks; steps with errors show a red exclamation point (**!**). Open the failed step and review the error message for insight on what happened and how to fix your flow.
+1. Select **My flows** from the left navigation, then select the failed flow.
+2. In the **28-day run history** section, select the date of the failed run.
+3. Expand the failed step (marked with a red exclamation point icon) and review the error message to understand what happened and how to fix your flow.
 
 ## Authentication failures
 
-Flows fail with authentication errors when the error message includes the word **"Unauthorized"** or an error code of **401** or **403**. Fix by updating the connection:
+In many cases, flows fail because of an authentication error. If this type of error occurs, the error message includes the word "Unauthorized," or an error code of 401 or 403 appears. You can usually fix authentication errors by updating the connection.
 
-1. Open the flow details by selecting the flow from **My Flows**.
-2. Scroll to the connection that showed the "Unauthorized" error.
-3. Next to the connection, select the **Fix connection** link.
-4. Verify your credentials by following the instructions that appear, then return to your flow-run failure and select **Resubmit**.
+1. Select **My flows** from the left navigation, then select the failed flow.
+2. In the run history, select the failed run and expand the failed step.
+3. In the right pane under **How to fix**, select **View Connections**.
+4. Locate the unauthorized connection and select **Fix connection**.
+5. Verify your credentials by following the instructions that appear. Then return to your flow-run failure and select **Resubmit**.
+
+The flow should now run as expected.
 
 ## Action configuration issues
 
-Flows fail with configuration issues when the error message includes **"Bad request"** or **"Not found"**, or an error code of **400** or **404**:
+Flows sometimes fail if a setting in one of the flow's actions doesn't work as expected. In this case, the error message includes the phrase "Bad request" or "Not found," or an error code 400 or 404 appears.
+
+The error message should indicate how to fix the failure.
 
 1. Select the **Edit** button, and then fix the issues inside the flow definition.
-2. Save the updated flow, and then select **Resubmit** to try running the flow again.
+2. Save the updated flow, and then select **Resubmit** to try to run the flow again with the updated configuration.
 
 ## Temporary issues
 
-If error code **500** or **502** appears, the failure is temporary or transient:
+If error code 500 or 502 appears, the failure is temporary or transient.
 
 - Select **Resubmit** to try to run the flow again.
 
 ## Issues with your pricing plan
 
-Sometimes flows might behave unexpectedly because of the wrong plan:
+Sometimes your flows might behave unexpectedly because you aren't using the correct plan.
 
-- In Power Automate, select the question mark icon in the header, then select **Pricing** from the *Help* panel. If you arrive at the Power Automate products page, look for the **Pricing** tab.
+- To view your current license, in Power Automate select the **Settings** (gear icon) in the title bar, and then select **View My Licenses**.
+
+    Learn more about [pricing and how to switch plans](https://make.powerautomate.com/pricing/).
 
 ## Issues with data usage
 
-You might have run out of data that you can use:
+You might have run out of data that you can use.
 
-- **Free or trial plan:** Select the **Settings** button (gear symbol) to show your current usage against your plan.
-- **Paid plan:** Runs are pooled across all users in your organization.
+- For information about your current run and API request limits, see [Limits and configuration in Power Automate](/en-us/power-automate/limits-and-config).
+- If you're on a paid plan, runs are pooled across all users in your organization.
 
-> **Important:** If you exceed your data limit, Power Automate throttles your flow runs.
+Important
+
+If you exceed your data limit, Power Automate throttles your flow runs.
+
+Learn more about [usage limits](/en-us/power-automate/limits-and-config).
 
 ## You might be running flows too often
 
-Your plan determines how often your flows run. For example, flows might run every 15 minutes on the free plan. If a flow is triggered less than 15 minutes after its last run, it's queued until 15 minutes have passed.
+Your plan determines how often your flows run. For example, your flows might run every 15 minutes if you're on the free plan. If a flow is triggered less than 15 minutes after its last run, it's queued until 15 minutes have passed.
 
-Whenever a flow is triggered (automatically or manually), the action counts as a run. Checks for new data do **not** count as runs.
+Whenever a flow is triggered, whether by an automatic trigger or because you manually start it, the action counts as a run. Checks for new data don't count as runs.
 
-## You might be using an incorrect account
+Learn more about [usage limits](/en-us/power-automate/limits-and-config).
 
-If you sign in by using a Microsoft account (for example, an account that ends with `@outlook.com` or `@gmail.com`), you can use only the free plan. To take advantage of paid features, sign in by using your organizational account or school email address.
+## You must use a work or school account
+
+Power Automate requires a Microsoft work or school account. Personal Microsoft accounts (such as accounts ending in @outlook.com or @gmail.com) are no longer supported. To sign in, use your organizational email address or contact your IT administrator.
 
 ## Some flows run more often than expected
 
-Some flows might run more often than you expect. For example, a flow that sends you a push notification whenever your manager sends you an email must run every time you get an email from **anyone**, because the flow must check whether the email came from your manager. This action counts as a run.
+Some flows might run more often than you expect. For example, you create a flow that sends you a push notification whenever your manager sends you an email. That flow must run every time you get an email from anyone, because the flow must check whether the email came from your manager. This action counts as a run.
 
-## Other limits and caveats
+## Other issues that are based on limits, and caveats
 
-Each account can have up to:
+You might have issues that are based on other limits:
 
-- 600 flows
-- 50 custom connectors
-- 20 connections per API and 100 connections total
-
-Additional notes:
-
+- Each account can have up to 600 flows. For the most current limits, see [Limits and configuration in Power Automate](/en-us/power-automate/limits-and-config).
 - You can install a gateway only in the default environment.
-- Some external connectors, like **X (Twitter)**, implement connection throttling to control the quality of service. Your flows might fail when throttling is in effect. Review the run history details to investigate.
+- Some external connectors, like **X**, implement connection throttling to control the quality of service. Your flows might fail when throttling is in effect. If your flows are failing, review the details of the run that failed in the flow's run history.

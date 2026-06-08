@@ -1,12 +1,13 @@
 # Create or edit modern commands
 
-From the Power Apps model-driven app designer, you can create or edit modern commands by selecting **Edit command bar** from the pages area in the app designer.
+Completed
 
-The following shows the process to create and configure a new command bar button:
+- 4 minutes
 
-1. Open the model-driven app in the app designer.
-2. Select **Edit command bar** for the desired table and command bar location.
-3. Select **+ New** > **Command** to add a new command.
-4. Choose **Power Fx** or **JavaScript** as the action type.
-5. Configure the command properties: label, icon, tooltip, visibility, and action logic.
-6. Select **Save and publish** to apply changes.
+From the Power Apps model-driven app designer, you can create or edit modern commands by selecting edit command bar from the pages area in the app designer.
+
+The following shows the process to create and configure a new command bar button.
+
+[![Diagram of the process to create and configure a command bar button.](media/process.png)](media/process.png#lightbox)
+
+The following video walks through the process to create a new command bar button.

@@ -1,5 +1,9 @@
 # Create triggers and bindings
 
+Completed
+
+- 8 minutes
+
 A trigger defines how a function is invoked and a function must have exactly one trigger. Triggers have associated data, which is often provided as the payload of the function.
 
 Binding to a function is a way of declaratively connecting another resource to the function; bindings might be connected as *input bindings*, *output bindings*, or both. Data from bindings is provided to the function as parameters.
@@ -11,8 +15,8 @@ Triggers and bindings let you avoid hardcoding access to other services. Your fu
 When you develop your functions locally, you need to take trigger and binding behaviors into consideration. For HTTP triggers, you can call the HTTP endpoint on the local computer, using `http://localhost/`. For non-HTTP triggered functions, there are several options to run locally:
 
 - The easiest way to test bindings during local development is to use connection strings that target live Azure services. You can target live services by adding the appropriate connection string settings in the `Values` array in the local.settings.json file. When you do this, local executions during testing use live service data. Because of this, consider setting-up separate services to use during development and testing, and then switch to different services during production.
-- For storage-based triggers, you can use the local [Azurite emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite) when testing functions with Azure Storage bindings (Queue Storage, Blob Storage, and Table Storage), without having to connect to remote storage services.
-- You can manually run non-HTTP trigger functions by using special administrator endpoints. For more information, see [Manually run a non HTTP-triggered function](https://learn.microsoft.com/en-us/azure/azure-functions/functions-manually-run-non-http).
+- For storage-based triggers, you can use the local [Azurite emulator](/en-us/azure/storage/common/storage-use-azurite) when testing functions with Azure Storage bindings (Queue Storage, Blob Storage, and Table Storage), without having to connect to remote storage services.
+- You can manually run non-HTTP trigger functions by using special administrator endpoints. For more information, see [Manually run a non HTTP-triggered function](/en-us/azure/azure-functions/functions-manually-run-non-http).
 
 ## Trigger and binding definitions
 
@@ -26,7 +30,9 @@ Triggers and bindings are defined differently depending on the development langu
 | Python | v2 programming model: define inputs/outputs with decorators; v1: configure in *function.json* |
 | PowerShell | configure in *function.json* |
 
-> **Note:** In modern models (Node.js v4 and Python v2), you author trigger and binding configuration in code and the runtime generates the corresponding *function.json*. Older models (Node.js v3, Python v1, PowerShell) use *function.json* directly. You can't mix programming models within the same function app.
+Note
+
+In modern models (Node.js v4 and Python v2), you author trigger and binding configuration in code and the runtime generates the corresponding *function.json*. Older models (Node.js v3, Python v1, PowerShell) use *function.json* directly. You can't mix programming models within the same function app.
 
 For languages that rely on *function.json* (for example, Node.js v3, Python v1, and PowerShell), the portal provides a UI for adding bindings in the **Integration** tab. You can also edit the file directly in the portal in the **Code + test** tab of your function. For code-first models like Node.js v4 and Python v2, configure bindings in code in your local project; the portal reflects configuration but might not support direct edits.
 
@@ -72,14 +78,14 @@ Here's a legacy *function.json* file for this scenario (applicable to Node.js v3
             "authLevel": "function",
             "methods": ["get","post"]
         },
-        {
-            "type": "queue",
-            "direction": "out",
-            "name": "outqueue",
-            "queueName": "outqueue",
-            "connection": "AzureWebJobsStorage"
-        }
-    ]
+                {
+                    "type": "queue",
+                    "direction": "out",
+                    "name": "outqueue",
+                    "queueName": "outqueue",
+                    "connection": "AzureWebJobsStorage"
+                }
+  ]
 }
 ```
 
@@ -87,11 +93,13 @@ The first element in the `bindings` array is the HTTP trigger. The `type` and `d
 
 The second element in the `bindings` array is the Storage Queue output binding. The `type` and `direction` properties identify the binding. The `name` property specifies how the function provides the new queue message, the `queueName` identifies the queue, and `connection` refers to the app setting that holds the storage connection string.
 
-> **Note:** Disabling a function via the `disabled` property in *function.json* is legacy behavior. Prefer using the app setting `AzureWebJobs.<FunctionName>.Disabled=true`.
+Note
+
+Disabling a function via the `disabled` property in *function.json* is legacy behavior. Prefer using the app setting `AzureWebJobs.<FunctionName>.Disabled=true`.
 
 ### C# (isolated worker) example
 
-This example shows an HTTP-triggered function that writes a message to a Storage Queue using an output binding defined by attributes. For more information, see [C# isolated worker guide](https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide).
+This example shows an HTTP-triggered function that writes a message to a Storage Queue using an output binding defined by attributes. For more information, see [C# isolated worker guide](/en-us/azure/azure-functions/dotnet-isolated-process-guide).
 
 ```csharp
 using Microsoft.Azure.Functions.Worker;
@@ -122,7 +130,7 @@ public class MultiResponse
 
 ### Node.js (v4 programming model) example
 
-In the v4 Node.js programming model, you configure inputs and outputs in code using `@azure/functions`. For more information, see [Node.js developer guide (v4)](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-node?pivots=nodejs-model-v4#inputs-and-outputs).
+In the v4 Node.js programming model, you configure inputs and outputs in code using `@azure/functions`. For more information, see [Node.js developer guide (v4)](/en-us/azure/azure-functions/functions-reference-node?pivots=nodejs-model-v4#inputs-and-outputs).
 
 ```javascript
 import { app, output } from "@azure/functions";
@@ -146,7 +154,7 @@ app.http("HttpToQueue", {
 
 ### Python (v2 programming model) example
 
-In the v2 Python programming model, you use decorators to define bindings. The runtime generates *function.json* for you. Visit the [Python developer guide](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-python) for more information.
+In the v2 Python programming model, you use decorators to define bindings. The runtime generates *function.json* for you. Visit the [Python developer guide](/en-us/azure/azure-functions/functions-reference-python) for more information.
 
 ```python
 import azure.functions as func
@@ -161,4 +169,6 @@ def HttpToQueue(req: func.HttpRequest, msg: func.Out[str]) -> func.HttpResponse:
     return func.HttpResponse("Queued", status_code=200)
 ```
 
-> **Note:** In Node.js v4 and Python v2, the runtime generates *function.json* from your code. Avoid editing *function.json* directly in the portal for these models; make changes in code and republish.
+Note
+
+In Node.js v4 and Python v2, the runtime generates *function.json* from your code. Avoid editing *function.json* directly in the portal for these models; make changes in code and republish.

@@ -1,5 +1,7 @@
 # Improve performance with data sources
 
+Completed
+
 - 9 minutes
 
 In the previous unit, you learned that data sources are often the main reason for slow performance in your app. In this unit, you learn about some of the common techniques you can apply to mitigate those performance issues.
@@ -22,7 +24,7 @@ When you finish the app, you realize that you're querying the **DepartmentList**
 ClearCollect(colDepartmentList, Filter(DepartmentList, Status = "Active"))
 ```
 
-Now that you stored that information, you can change the **Items** property of the drop-down controls to be **colDepartmentList** instead of `Filter(DepartmentList, Status = "Active")`. These small changes add up to increase performance in your app. Also, as you become more familiar with this technique, you can build your app this way from the onset, which reduces the number of formulas you have to write and maintain.
+Now that you stored that information, you can change the **Items** property of the drop-down controls to be **colDepartmentList** instead of Filter(DepartmentList, Status = "Active"). These small changes add up to increase performance in your app. Also, as you become more familiar with this technique, you can build your app this way from the onset, which reduces the number of formulas you have to write and maintain.
 
 ### Watch out for delegation
 
@@ -30,7 +32,7 @@ One thing to keep in mind is that the Collect function isn't delegable. That mea
 
 ## Delegation also affects performance
 
-When you learned about delegation, you focused on returning the right number of rows for your data source. It's also important to remember that delegation, especially for mobile apps, can affect performance.
+When you learned about [delegation](/en-us/training/modules/work-with-data-source-limits-powerapps-canvas-app/), you focused on returning the right number of rows for your data source. It's also important to remember that delegation, especially for mobile apps, can affect performance.
 
 When a formula delegates to the data source, all of the processing is handled by the data source, and only the matching rows are returned across the network to the app to be displayed. If a function isn't delegable, then it's common to change the delegation limit to 2,000 rows. This means that the first 2,000 rows are downloaded across the network and then processed locally. In scenarios where you are on a slow cellular connection or a low-end mobile device, this processing can take a considerable amount of time, causing a poor experience for the user.
 
@@ -52,9 +54,9 @@ The Concurrent function allows you to process all of those calls at the same tim
 
 ```powerappsfl
 Concurrent(
-    ClearCollect(colDepartmentList, Filter(DepartmentList, Status = "Active")),
-    ClearCollect(colCompanyList, CompanyList),
-    ClearCollect(colRegions, RegionList)
+ClearCollect(colDepartmentList, Filter(DepartmentList, Status = "Active")),
+ClearCollect(colCompanyList, CompanyList),
+ClearCollect(colRegions, RegionList)
 )
 ```
 
@@ -68,7 +70,7 @@ Within Power Apps, there are other, advanced features you can implement in your 
 
 Preview features are features that are well-tested and are close to being released. They'll be available for all apps soon. Testing and understanding these features helps you to prepare for when they become standard, and most are enabled by default in new apps.
 
-An example of a current preview feature that helps to increase performance is **Optimize for devices**. This feature lets makers build stunning, native apps for mobile users with device-optimized screens that use native UI elements, instead of rendering inside of web view.
+An example of a current preview feature that helps to increase performance is [Optimize for devices](/en-us/power-apps/mobile/optimize-for-devices-overview). This feature lets makers build stunning, native apps for mobile users with device-optimized screens that use native UI elements, instead of rendering inside of web view.
 
 ### Experimental features
 

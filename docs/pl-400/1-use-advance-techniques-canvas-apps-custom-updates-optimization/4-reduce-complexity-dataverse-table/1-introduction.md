@@ -1,5 +1,9 @@
 # Introduction
 
+Completed
+
+- 8 minutes
+
 When data is modeled in Microsoft Dataverse, separate tables are used to represent distinct objects and concepts. Organizations can use more tables to help secure specific information, avoid data repetition, describe other properties, or make the reporting easier. Just as real-life objects are related to each other, the relationships are used in Dataverse to link rows from one table to another. Additionally, relationships can provide constraints and behaviors that apply when actions are performed on the records.
 
 Essentially, Dataverse tables and relationships can work together to tell the story of your data. When building a good user experience in a canvas app from Microsoft Power Apps by using the tables and relationships, you would want to hide unnecessary complexities of the data model. To accomplish that task, your formulas and data usage must efficiently navigate the tables by using the relationships. This module will examine how to use the different types of table relationships that Dataverse offers.
@@ -26,7 +30,7 @@ The one-to-many relationship (which is also called 1:N or parent-child) includes
 
 A one-to-many relationship is also referred to as a many-to-one (or N:1) relationship, where you'll use the relationship starting at the child pointing to the parent. It's the same physical relationship definition but from a different angle. In a canvas app, if you're working with the child record and want to display a property from the parent, you would use the many-to-one relationship navigation property on the child row.
 
-By default, a single table is used as the primary, and the lookup column always points to a row from that table. Dataverse also supports multi-table lookups (occasionally referred to as *polymorphic lookups*), which allow a lookup field to point to a row from one of the multiple tables, providing flexibility for more complex data models. For example, you can set up a multi-table lookup column by creating a column of data type Customer. Then, you can set the customer lookup value to point to a contact or to an account table row. On all activity tables (for example, email, task, and so on), the corresponding column can point to any table that is enabled for activity tracking. Additionally, you can use the Multi-table lookup column type to set up a custom multi-table lookup column. When working with these multi-table lookup columns in Power Apps, you'll use the **IsType** and **AsType** Microsoft Power Fx functions to determine the parent table and to use the data.
+By default, a single table is used as the primary, and the lookup column always points to a row from that table. Dataverse also supports multi-table lookups (occasionally referred to as *polymorphic lookups*), which allow a lookup field to point to a row from one of the multiple tables, providing flexibility for more complex data models. For example, you can set up a multi-table lookup column by creating a column of data type Customer. Then, you can set the customer lookup value to point to a contact or to an account table row. On all activity tables (for example, email, task, and so on), the corresponding column can point to any table that is enabled for activity tracking. Additionally, you can use the [Multi-table lookup](/en-us/power-apps/developer/data-platform/webapi/multitable-lookup/?azure-portal=true) column type to set up a custom multi-table lookup column. When working with these multi-table lookup columns in Power Apps, you'll use the **IsType** and **AsType** Microsoft Power Fx functions to determine the parent table and to use the data.
 
 In the module's example data model, the following one-to-many relationships have been defined to support the scenario.
 
@@ -47,8 +51,14 @@ The many-to-many relationship (also called N:N) includes a special hidden table 
 
 In this module's example, **Desk** and **Desk Feature** would have a many-to-many relationship. The list of desk features would be shared by all desks, and each desk could have one or more associated features. Many-to-many relationships allow users to know that the desk has chairs but won't let you store how many chairs that each desk had.
 
-After you have created all tables and relationships, the data model for the example scenario should resemble the following diagram:
+The following video demonstrates how to create relationships between tables.
 
-> **Note:** Do not create these tables and relationships now. You'll import a solution with the appropriate tables and relationships as part of the exercise in unit 4.
+After you have created all tables and relationships, the data model for the example scenario should resemble the following diagram.
+
+Note
+
+Do not create these tables and relationships now. You'll import a solution with the appropriate tables and relationships as part of the exercise in unit 4.
+
+[![Diagram of an example data model that shows relationships between tables.](media/table-relationship.png)](media/table-relationship.png#lightbox)
 
 The rest of this module explores how to work with this data model from a canvas app.

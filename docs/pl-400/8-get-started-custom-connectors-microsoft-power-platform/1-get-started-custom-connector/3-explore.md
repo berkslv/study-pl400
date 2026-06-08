@@ -1,10 +1,16 @@
 # Explore custom connector configuration options
 
+Completed
+
+- 8 minutes
+
 This unit continues explaining the basics of custom connectors by taking an in-depth look at some available configuration options.
 
 ## Connector naming and general information
 
-One of the first decisions that you'll make is the name of your connector. The name should be unique and clarify what the connector is to the consumer. You're limited to 30 characters for this name, and you can elaborate more in the **Description** field. The **Icon background color** field can also help you visually identify your connector. These fields are important because they show when the user is selecting the connector to use, and these visual cues help a user work more efficiently. If you plan to submit your connector for certification, make sure that you review the stricter requirements in the [Instructions on submitting your connector to Microsoft](https://learn.microsoft.com/en-us/connectors/custom-connectors/certification-submission/#title) documentation.
+One of the first decisions that you'll make is the name of your connector. The name should be unique and clarify what the connector is to the consumer. You're limited to 30 characters for this name, and you can elaborate more in the **Description** field. The **Icon background color** field can also help you visually identify your connector. These fields are important because they show when the user is selecting the connector to use, and these visual cues help a user work more efficiently. If you plan to submit your connector for certification, make sure that you review the stricter requirements in the [Instructions on submitting your connector to Microsoft](/en-us/connectors/custom-connectors/certification-submission/?azure-portal=true#title) documentation.
+
+[![A screenshot showing the General tab for defining a custom connector.](media/general.png)](media/general.png#lightbox)
 
 ## Action and trigger naming
 
@@ -12,11 +18,21 @@ After a user has narrowed down to your connector, they'll pick an action or trig
 
 The **Summary** field is important because it shows up in the list of actions and triggers when you're selecting the one to use. We recommend that you're descriptive enough so that you can tell what the action or trigger does. For example, the GetInvoice action description could be *Get a specific invoice by ID*. Frequently, makers will find the action by searching, so having descriptive names can help them find the right action quickly.
 
+The following image shows where the summary and description elements are used when you select an action or trigger.
+
+[![Screenshot highlighting summary and description when selecting an action or trigger.](media/summary.png)](media/summary.png#lightbox)
+
 After you've selected an action or trigger, you'll be able to see both summary and description elements on each action card in the designer.
+
+[![Screenshot showing the location of the summary and description.](media/location.png)](media/location.png#lightbox)
+
+In the previous images, notice that the naming patterns are inconsistent, where some names have spaces in the summary and some don't. You can fix that error by updating the fields in the portal or, if you own the API, you can ask the developer to update what they provide on the OpenAPI definition that you import. Be aware that if you manually make changes in the portal and then import the OpenAPI definition again, it will overwrite your changes.
 
 ## Action visibility
 
 You can set the **Visibility** option on an action to influence how the action will show in the maker experience.
+
+[![Screenshot of visibility options - none, advanced, internal, and important.](media/visibility.png)](media/visibility.png#lightbox)
 
 - **None** - This option is the default. The action will display normally.
 - **Advanced** - The action will be available but not prioritized.
@@ -31,7 +47,17 @@ Actions that are selected as **important** are shown first. The user needs to se
 
 The request defines what parameters/data will be passed into the operation when the action invokes the operation on the API. When you import an Open API definition, it will configure the request query, headers, and body settings. You can also import manually by importing from the sample.
 
-By editing each of the parameters, or by having the API developer provide more details, you can make the user experience better when you're using the action. Selecting the ellipsis (**...**) on each parameter will show you the edit screen.
+The following image shows an example of what the screen looks like when you're looking at the definition.
+
+[![Screenshot from the request query section showing the parameters that are configured.](media/query.png)](media/query.png#lightbox)
+
+This configuration is important because it translates into what the user sees when they use the action.
+
+[![Screenshot showing the names without being edited for readability.](media/list.png)](media/list.png#lightbox)
+
+By editing each of the parameters, or by having the API developer provide more details, you can make the user experience better when you're using the action. Selecting the ellipsis (**...**) on each parameter will show you the following edit screen.
+
+[![Screenshot showing the parameter options that you can configure.](media/parameter.png)](media/parameter.png#lightbox)
 
 The fields and options that you should review and change are:
 
@@ -44,24 +70,46 @@ The fields and options that you should review and change are:
 - **Type and Format** - Make sure that these fields are appropriate because the parameter that's importing from samples makes assumptions that aren't always correct.
 - **Dropdown type** - Use this parameter to configure a static or dynamic list of values to help make user selection easier and more predictable.
 
+The following image shows an example of what the screen would look like after you fix the **From Date** parameter.
+
+[![Screenshot showing the step after correction of the names.](media/from.png)](media/from.png#lightbox)
+
 ## Response
 
 The response defines what you expect to be returned from the API. Unlike the request, which has only a single definition, you can have different responses based on the HTTP status. For example, if your API call generates an error, the body will contain the error details instead of whatever your API returns. You can also have a default response, which is a catch-all response if one isn't available for a specific HTTP status.
 
+[![Screenshot showing the responses that are available for configuration.](media/response.png)](media/response.png#lightbox)
+
 Selecting one of the responses will reveal the details and, similar to the process with a request, you can edit these items for easier consumption.
 
-The items in the response correspond to what shows in the **Dynamic content** panel. Similar to the request, make sure that you've included good names and descriptions because they can help make using the values easier.
+[![Screenshot showing a specific response in the available configuration options.](media/response-2.png)](media/response-2.png#lightbox)
+
+The items in the response correspond to what shows in the **Dynamic content** panel.
+
+[![Screenshot showing the list of dynamic content from the connector.](media/dynamic.png)](media/dynamic.png#lightbox)
+
+Similar to the request, make sure that you've included good names and descriptions because they can help make using the values easier.
 
 ## Validation
 
-A validation section appears at the bottom of the screen. Make sure that this screen doesn't show errors, and then take the time to resolve issues that are listed.
+Notice that a validation section similar to the following image appears at the bottom of the screen.
+
+[![Screenshot showing that validation was successful.](media/validation.png)](media/validation.png#lightbox)
+
+Make sure that this screen doesn't show errors, and then take the time to resolve issues that are listed.
+
+[![Screenshot showing the validation errors.](media/validation-errors.png)](media/validation-errors.png#lightbox)
 
 ## Other settings
 
 There are also other settings such as triggers, references, and policies that aren't covered in-depth in this module.
 
-- **Triggers** can be configured if the API supports either polling or webhook events. When defined, triggers allow you to use your connector as the trigger for a Power Automate flow.
-- **References** define reusable parameters and are typically created when you import the definition and it defines a reusable parameter. References can also be handcrafted by using the built-in swagger editor.
-- **Policies** can be used to change the behaviors of actions and triggers. Policies are created by using one of the prebuilt policy templates.
+Triggers can be configured if the API supports either polling or webhook events. When defined, triggers allow you to use your connector as the trigger for a Power Automate flow.
+
+References define reusable parameters and are typically created when you import the definition and it defines a reusable parameter. References can also be handcrafted by using the built-in swagger editor.
+
+Policies can be used to change the behaviors of actions and triggers. Policies are created by using one of the prebuilt policy templates.
 
 These advanced topics are covered in detail later in this learning path.
+
+[![Screenshot showing choosing a policy template.](media/policy.png)](media/policy.png#lightbox)

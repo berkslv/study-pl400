@@ -1,29 +1,13 @@
 # Microsoft Dataverse for apps makes relationships even easier
 
+Completed
+
 - 10 minutes
 
-In the previous unit, you gained insights into using functions to establish connections between related tables. This capability enables you to construct apps that effectively utilize relational data.
+In the previous unit, you gained insights into using functions to establish connections between related tables. This capability enables you to construct apps that effectively utilize relational data. Particularly with Microsoft Dataverse, relationships are defined at the table level, laying a structured foundation for your data connections.
 
-## Relationships in Microsoft Dataverse
+With these relationships established, Power Apps offers a convenient dot (.) notation that allows you to navigate into related data directly. This dot notation serves as a shortcut, minimizing the necessity for numerous LookUp functions within your app. By using dot notation, you can access and work with related data seamlessly, reducing complexity and streamlining your app's logic. This approach simplifies your codebase, making it more intuitive and efficient when dealing with relational data in Power Apps.
 
-With Microsoft Dataverse, relationships are defined at the **table level**, laying a structured foundation for your data connections. Once a relationship is established in Dataverse, Power Apps provides a convenient **dot (.) notation** that allows you to navigate into related data directly.
+The following video shows how to configure a relationship in Dataverse.
 
-### Benefits of Dataverse relationships
-
-- **Dot notation**: Access related data without writing numerous `LookUp` functions.
-- **Reduced complexity**: Streamlines app logic when working with related records.
-- **Structured foundation**: Relationships are enforced at the data layer, not just the app layer.
-
-For example, instead of:
-
-```powerapps
-LookUp(CustomerTable, ID = ThisItem.CustomerID, CustomerName)
-```
-
-With a Dataverse relationship configured, you can use dot notation to traverse to the related record directly within a Gallery or form.
-
-## Configuring a relationship in Dataverse
-
-Relationships are configured in the **Data** section of Power Apps Studio or in the Dataverse maker portal. Once configured, the relationship is available to all apps connecting to those tables.
-
-> **Key takeaway:** Dataverse relationships remove the manual overhead of `LookUp` calls by automatically surfacing related data through dot notation, making apps simpler, more efficient, and easier to maintain.
+Now that we have a relationship configured in Dataverse, let's take a look at how to use a relationship in a Power Apps app.

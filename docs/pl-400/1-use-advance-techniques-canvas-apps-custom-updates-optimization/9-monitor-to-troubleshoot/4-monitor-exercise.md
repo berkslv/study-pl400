@@ -1,5 +1,9 @@
 # Exercise - Debug and collaborate with Monitor in Power Apps
 
+Completed
+
+- 15 minutes
+
 In this exercise scenario, you've created and published the Bottle Management application for your organization, CoHo Winery.
 
 You've received the following feedback:
@@ -7,7 +11,9 @@ You've received the following feedback:
 - Users receive a warning when starting the application.
 - Users encounter an error when submitting volume data that includes decimal numbers.
 
-> **Note:** To complete all steps in this lab, you must have access to two users in your environment or work in pairs. If a second user isn't available, complete the available steps and review the paired activities.
+Note
+
+To complete all steps in this lab, you must have access to two users in your environment or work in pairs. If a second user isn't available, complete the available steps and review the paired activities.
 
 ## Tasks
 
@@ -30,11 +36,13 @@ The objectives for this exercise are to:
 
 ## Exercise 1: Import a solution and run a flow
 
+In this exercise, you'll import a solution and run a Power Automate cloud flow that creates sample data.
+
 ### Task 1: Import a solution
 
 1. Download the [solution zip file](https://github.com/MicrosoftDocs/mslearn-developer-tools-power-platform/blob/master/power-apps/troubleshoot-monitor/CohoVineyardMonitorModule_1_0_0_1.zip).
 2. Go to [Power Apps maker portal](https://make.powerapps.com/) and select your environment.
-3. Select **Solutions > Import solution**.
+3. Select **Solutions &gt; Import solution**.
 4. Select **Browse** and upload the zip file.
 5. Select **Next** twice.
 6. If prompted, create or select a connection.
@@ -44,7 +52,7 @@ The objectives for this exercise are to:
 ### Task 2: Run a flow
 
 1. In the solution, select **Generate Test Data** cloud flow.
-2. Select **Run > Run flow**.
+2. Select **Run &gt; Run flow**.
 3. Select **Done** and wait for 3 to 6 minutes.
 4. Return to the solution and open the **CoHo Bottle Management** app.
 5. Verify that test data appears on the home screen.
@@ -54,8 +62,8 @@ The objectives for this exercise are to:
 ### Task 1: Debug
 
 1. Open the **CoHo Bottle Management** app in edit mode.
-2. Select **Advanced tools > Open live monitor**.
-3. Alternatively, use the **App checker > Open monitor**.
+2. Select **Advanced tools &gt; Open live monitor**.
+3. Alternatively, use the **App checker &gt; Open monitor**.
 4. With Monitor open, return to the browser tab hosting your app and select **Preview**.
 5. In the app, select **Refresh**.
 6. In Monitor, select the warning event and in the **Filter** panel under **Details** expand the **formulaData** and **data** nodes.
@@ -70,12 +78,12 @@ The objectives for this exercise are to:
 2. In the **Items** property, replace the formula with:
 
     ```powerappsfl
-    Filter(Bottles, 'Modified On' > DateAdd(Today(), -7, TimeUnit.Days))
+    Filter(Bottles, 'Modified On' > DateAdd(Today(), -7, TimeUnit.Days))   
     ```
 
     The warning should go away.
 3. Open Monitor again from **Advanced tools**.
-4. In Power Apps, select **Preview > Refresh**.
+4. In Power Apps, select **Preview &gt; Refresh**.
 5. In Monitor, verify no warnings appear.
 6. Select **Clear data**, then **Upload** and reload the saved log.
 7. Confirm the warning event appears in the saved log. This problem has been resolved.
@@ -101,9 +109,8 @@ The objectives for this exercise are to:
 3. In the **DisplayMode** property, use:
 
     ```powerappsfl
-    If(IsMatch(TextVolume.Text,Match.MultipleDigits),DisplayMode.Edit,DisplayMode.Disabled)
+    If(IsMatch(TextVolume.Text,Match.MultipleDigits),DisplayMode.Edit,DisplayMode.Disabled)     
     ```
-
 4. Select Preview and test values `28`, `28.5`, and `28 oz`.
 5. Confirm the **Fill Bottle** button behaves correctly.
 6. Use Monitor to confirm no errors. Then close Monitor and cancel Preview.
@@ -113,29 +120,33 @@ The objectives for this exercise are to:
 ### Task 1: Share a debugging session
 
 1. Open **CoHo Bottle Management** in Power Apps.
-2. Select **Advanced tools > Open monitor**.
+2. Select **Advanced tools &gt; Open monitor**.
 3. Select **Invite** and add a user from your organization.
 4. Copy and share the session link.
-5. In the app, select **Preview > Refresh**.
+5. In the app, select **Preview &gt; Refresh**.
 6. In Monitor, confirm both users see the event log.
 
 ### Task 2: Debug a published application
 
-1. In the app, select **Settings > Debug published app**.
+1. In the app, select **Settings &gt; Debug published app**.
 2. Save and publish the app.
 
 ### Task 3: Share and debug a published application
+
+Tip
+
+For detailed steps on how to create and manage security roles in Power Platform, see the Microsoft documentation:[Create or edit a security role](/en-us/power-platform/admin/create-edit-security-role)
 
 1. Share the app with a user.
 2. In the **Admin center**, create a **Bottle Filler** security role.
 3. Assign full access to the **Bottle** table.
 4. Add your colleague to the role.
-5. In Power Apps, select **Apps > Details > Monitor**.
+5. In Power Apps, select **Apps &gt; Details &gt; Live monitor**.
 6. In Monitor, select **Play published app**.
 7. Use the app and review Monitor logs.
 8. Select **Connect user** and invite your colleague.
 9. Share the session link.
-10. Observe the event logs from your colleague's actions.
+10. Observe the event logs from your colleagueÔÇÖs actions.
 11. Close Monitor to end the session.
 
 Monitor helps you debug issues and collaborate in real time with colleagues to improve your canvas apps.

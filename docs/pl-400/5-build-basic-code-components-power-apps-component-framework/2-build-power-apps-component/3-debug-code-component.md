@@ -8,7 +8,7 @@ As you develop more complex components, you might need to test and debug their l
 
 ## Test and debug your code component in the Power Apps component test harness
 
-The Power Apps component test harness is a utility built by Microsoft that helps you quickly render a Power Apps component in a localized environment. If you've gone through the exercise in this module on writing a code component, you've already seen this utility in action. You can start a local test harness from within a Power Apps component project by using the `npm start` command.
+The Power Apps component test harness is a utility built by Microsoft that helps you quickly render a Power Apps component in a localized environment. If you've gone through the exercise in this module on writing a code component, you've already seen this utility in action. You can start a local test harness from within a Power Apps component project by using the *npm* start command.
 
 After the test harness has started, your component will display in a browser window, like the one that you built in the previous exercise.
 
@@ -30,15 +30,13 @@ If your component is a dataset component, you can load CSV files with mock data.
 
 In the previous example, if you wanted to build a new CSV file, it should look similar to the following sample:
 
-```
-name, telephone1, address1_city
+name, telephone1, address1\_city
 
 Joe, 123-555-0100, Seattle
 
 Mary, 123-555-0101, Atlanta
 
 Steve, 123-555-0102, Redmond
-```
 
 After the CSV has successfully loaded, the component will display its records and, as with your property controls, you can assign various types as specified by the component's corresponding type group (which is defined in the component's ControlManifest.Input.xml file).
 
@@ -50,7 +48,7 @@ Most modern browsers have various built-in debugging capabilities. Microsoft Edg
 
 | Browser | Developer Tools Documentation |
 | --- | --- |
-| Microsoft Edge | [https://learn.microsoft.com/microsoft-edge/devtools-guide-chromium](https://learn.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium) |
+| Microsoft Edge | [https://learn.microsoft.com/microsoft-edge/devtools-guide-chromium](/en-us/microsoft-edge/devtools-guide-chromium) |
 | Google Chrome | https://developers.google.com/web/tools/chrome-devtools |
 | Mozilla Firefox | https://developer.mozilla.org/docs/Tools/Debugger |
 | Apple Safari | https://support.apple.com/guide/safari-developer/welcome/mac |
@@ -64,16 +62,14 @@ In DevTools, the first available tab after **Welcome** is **Elements**. Select *
 1. Select the **Select an element in the page to inspect it** icon at the top left of the Elements panel, and then select the element in the Component Test Harness. This action selects that element in your viewer on the right (see 3 in the diagram below).
 
 ![Screenshot of selecting an element on the Elements panel.](media/elements.png)
-
 2. Highlight and right-click an element within your component and then select **Inspect**.
 
 ![Screenshot of selecting an element in your component and selecting Inspect.](media/inspect.png)
-
 3. Select any element from the Elements panel.
 
 ## Inspect console logs and run script in the console panel
 
-A frequent mechanism for providing debug context within client script is to use the `console.log()` method. If you want to provide logging inside of your component's logic, you can use this method. These logs are displayed in the DevTools console panel whenever they're run, which provides a valuable way to trace logic as it runs within your component. The following image shows an example of a couple of logs from the test harness.
+A frequent mechanism for providing debug context within client script is to use the *console.log()* method. If you want to provide logging inside of your component's logic, you can use this method. These logs are displayed in the DevTools console panel whenever they're run, which provides a valuable way to trace logic as it runs within your component. The following image shows an example of a couple of logs from the test harness.
 
 ![Screenshot of an example of console logs written by test harness.](media/logs.png)
 
@@ -83,7 +79,7 @@ You also have the ability to run your own script from within the console. This m
 
 ## Set debugger breakpoints in the sources panel
 
-One of the most valuable utilities in DevTools is the ability to set debugger breakpoints in your code so that you can inspect variables and the flow of your method implementation. This example sets a breakpoint in your `index.ts` file that you developed as part of your Power Apps component. In the following example, you'll stop at a breakpoint on each run of the `refreshData` method.
+One of the most valuable utilities in DevTools is the ability to set debugger breakpoints in your code so that you can inspect variables and the flow of your method implementation. This example sets a breakpoint in your *index.ts* file that you developed as part of your Power Apps component. In the following example, you'll stop at a breakpoint on each run of the *refreshData* method.
 
 ![Screenshot of an example of a breakpoint set to run anytime that the buttonClick function is called.](media/breakpoint.png)
 

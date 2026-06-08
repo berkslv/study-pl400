@@ -1,5 +1,7 @@
 # Deploy apps with Package Deployer
 
+Completed
+
 - 4 minutes
 
 Package Deployer lets administrators deploy packages into Microsoft Dataverse environments. These packages are also used by Independent Software Vendors (ISVs) to deploy certified solutions to customer environments. Developers can help configure the package and build code that runs during the installation phases.
@@ -15,6 +17,8 @@ A deployment package is different from a single Dataverse solution in that it ca
 
 Microsoft provides a Visual Studio template for creating packages. The level of effort can vary depending on how much custom code is included for execution during installation. Frequently a package only includes one or more solutions and data. The following are the steps to build a deployment package:
 
+[![Diagram of the steps to build a deployment package.](media/steps.png)](media/steps.png#lightbox)
+
 You can initialize a folder with the deployment project template and create your initial package using the Power Platform CLI. The following command is used to populate a folder:
 
 ```
@@ -28,7 +32,7 @@ pac package add-solution --path ..\MySolution1_1_0_0_2_managed.zip
 pac package add-solution --path ..\MySolution2_2_0_0_0_managed.zip
 ```
 
-You can add custom logic by editing the `PackageImportExtension.cs` class and adding logic to the appropriate event handler. The following are the available events you can add your logic to run:
+You can add custom logic by editing the PackageImportExtension.cs class and adding logic to the appropriate event handler. The following are the available events you can add your logic to run:
 
 - **InitializeCustomExtension** - Called to initialize any functions in the custom extension.
 - **BeforeImportStage** - Called before the main import process begins, after solutions and data.
@@ -36,13 +40,15 @@ You can add custom logic by editing the `PackageImportExtension.cs` class and ad
 - **RunSolutionUpgradeMigrationStep** - Called during a solution upgrade when both solutions, old and new, are present in the system. This function can be used to provide a means to do data transformation or upgrade while a solution update is occurring.
 - **AfterPrimaryImport** - Called after all import steps are complete, allowing for final customizations or adjustment of the environment.
 
-Once configured and with any custom code added, you can build the package to prepare it for deployment. You can load the `.csproj` file into Visual Studio or use the dotnet command to run MSBuild. The following shows the command to build the package from the command line:
+You can also make other [customizations](/en-us/power-platform/alm/package-deployer-tool?tabs=cli#configure-the-package?azure-portal=yes) by making changes to the configuration files directly.
+
+Once configured and with any custom code added, you can build the package to prepare it for deployment. You can load .csproj file into Visual Studio or use the dotnet command to run MSBuild. The following shows the command to build the package from the command line:
 
 ```
 dotnet publish
 ```
 
-Building the package creates a `.zip` file containing everything needed to deploy the package.
+Building the package creates a .zip file containing everything needed to deploy the package.
 
 ## Deploying a package
 
@@ -53,19 +59,23 @@ Once a package is configured, it can be deployed to Dataverse environments using
 - **Windows PowerShell** - Using this approach allows command-line installation. This approach is suitable for packages deployed as part of an automated process.
 - **AppSource** - This approach is used when an ISV offer is selected for install from the AppSource portal.
 
-You can read more about how deployment works with these approaches in [Deploy packages using Package Deployer and Windows PowerShell](https://learn.microsoft.com/en-us/power-platform/admin/deploy-packages-using-package-deployer-windows-powershell/).
+You can read more about how deployment works with these approaches in [Deploy packages using Package Deployer and Windows PowerShell](/en-us/power-platform/admin/deploy-packages-using-package-deployer-windows-powershell/?azure-portal=true).
 
 ## Including data
 
 One of the key things that differentiates Package Deployer from simply installing a solution is that you can include reference / configuration data as part of a deployment package.
 
-The [Configuration Migration tool](https://learn.microsoft.com/en-us/power-platform/admin/manage-configuration-data/) is used to transport configuration and test data from one environment to another. It provides the means to capture such data, include that data in the source control repository, and use that data to automate testing. This tool can be used standalone, however, the `data.zip` file it produces as output can be included as part of a deployment package. The high-level steps are:
+The [Configuration Migration tool](/en-us/power-platform/admin/manage-configuration-data/?azure-portal=true) is used to transport configuration and test data from one environment to another. It provides the means to capture such data, include that data in the source control repository, and use that data to automate testing. This tool can be used standalone, however, the data.zip file it produces as output can be included as part of a deployment package. The high-level steps are:
 
 1. Define the schema of the source data to be exported
 2. Use the schema to export data
 3. Import the exported data
 
-When used with Package Deployer the output `.zip` file can be included in the deployment package.
+The following diagrams the process to use the tool:
+
+[![Diagram of the configuration schema process to use the tool.](media/process.png)](media/process.png#lightbox)
+
+When used with Package Deployer the output .zip file can be included in the deployment package.
 
 The following are some of the key benefits of using Configuration Migration for preparing data:
 
@@ -73,8 +83,7 @@ The following are some of the key benefits of using Configuration Migration for 
 - Analyze relationships between records and run the import using multiple passes to ensure data integrity.
 - Use a query to define a subset of records to be included in the package.
 - Avoid duplicate records on the target system by defining a uniqueness condition for each table based on a combination of columns in the table, which is used to compare against the values on the target system.
-  - If there are no matching values, a unique record is created on the target system.
-  - If a matching record is found, the record is updated on the target system.
+- If there are no matching values, a unique record is created on the target system. If a matching record is found, the record is updated on the target system.
 - Validate the schema for the selected tables to be exported to ensure that all the required data/information is present.
 - Reuse an existing schema to export data from a source system.
 - Automatically move values for date and datetime columns forward at import to keep data up to date in demo environments.

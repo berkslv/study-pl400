@@ -1,5 +1,7 @@
 # Event handlers
 
+Completed
+
 - 4 minutes
 
 Client scripting logic runs as event handlers for form events. You must register your event handlers for your logic to be executed. Registration for common events can be done via either the form properties dialog or from code. Some events can only be registered with code. Event handlers can run on multiple forms but must be registered separately on each form.
@@ -14,6 +16,10 @@ In the form designer you can register event handlers for the following events:
 - **Tabs** - This handler allows you to register events for each tab on the form for a tab state change. This is commonly used to know if a tab is expanded so you can do something like dynamically load data.
 - **Columns** - This handler allows you to register an event handler if column data is changed.
 
+The following is an example of registering an **OnLoad** event handler for the account table. This is an example of the Form event handler.
+
+[![Screenshot showing configuring an event handler in the form designer.](media/configure-event.png)](media/configure-event.png#lightbox)
+
 One common pattern is registering an **OnLoad** handler and then registering the remaining event handlers via code in the OnLoad event handler logic. The benefit of this approach is that when you need your logic to run on multiple forms, you don't have to register all the event handlers on each form. Another advantage is if you need to dynamically determine some of the event handlers, you can use logic to decide whether to register a handler. For example, you may want to skip registering an event handler for a column if you can determine when the form is loaded and if this column is read-only or hidden.
 
 ## Register using code
@@ -25,12 +31,13 @@ Registering event handlers using code is possible for all handlers except **OnLo
 - Register the **OnLoad** event handler on the account form properties.
 
 ```javascript
-function LearnLab_handleAccountOnLoad(executionContext) {
+function LearnLab_handleAccountOnLoad(executionContext)
+{
     var formContext = executionContext.getFormContext();
-    formContext.getAttribute('accountnumber').addOnChange(LearnLab_handleOnChangeAccountNumber);
+    formContext.getAttribute('accountnumber').addOnChange(LearnLab_handleOnChangeAccountNumber)
 }
-
-function LearnLab_handleOnChangeAccountNumber(executionContext) {
+function LearnLab_handleOnChangeAccountNumber(executionContext)
+{
     var formContext = executionContext.getFormContext();
     formContext.ui.setFormNotification('Check other systems', 'INFO', 'AcctNumber');
 }
@@ -38,4 +45,6 @@ function LearnLab_handleOnChangeAccountNumber(executionContext) {
 
 This code displays a form level notification whenever the account number column data changed.
 
-There are many other client side events for which you can register handlers.
+[![Screenshot showing the form level notification after the custom script logic executed.](media/notification.png)](media/notification.png#lightbox)
+
+There are many other [client side events](/en-us/power-apps/developer/model-driven-apps/clientapi/reference/events/?azure-portal=true) for which you can register handlers.

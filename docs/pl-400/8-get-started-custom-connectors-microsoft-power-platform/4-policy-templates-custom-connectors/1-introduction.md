@@ -1,5 +1,9 @@
 # Introduction
 
+Completed
+
+- 4 minutes
+
 This module explores using policies with custom connectors and explains how you can configure them by using policy templates.
 
 In this module, you will:
@@ -19,9 +23,13 @@ You can use policies to handle specific API needs and make the connector easier 
 
 ## Apply a policy
 
-Applying a policy template to a custom connector allows you to select a policy that you want to use from a list of templates. Each selected template prompts you to fill out the necessary configuration for that policy. When you complete the form, the policy is activated after you update the connector.
+Applying a policy template to a custom connector allows you to select a policy that you want to use from a list of templates. Each selected template prompts you to fill out the necessary configuration for that policy. When you complete the form, the policy is activated after you update the connector. The following screenshot shows an example of creating a new policy by using one of the templates.
+
+[![Screenshot of policy details with Template drop-down values.](media/policy-details.png)](media/policy-details.png#lightbox)
 
 When you're applying a policy template, you can choose to have it apply to all actions and triggers or only for specific ones.
+
+[![Screenshot of the list of actions and triggers for an operation.](media/policy-template-actions.png)](media/policy-template-actions.png#lightbox)
 
 For example, the **Set host URL** template is typically applied to all actions and triggers. Contrarily, the **Convert an array to an object (Preview)** template might only be applied to one or two actions that return similar data.
 
@@ -29,15 +37,21 @@ When configuring a policy to run on all actions and triggers, you need to ensure
 
 In the list of configured policies, you can select the ellipsis (**...**) next to each policy and move it up or down in the list. This feature allows you to configure the order in which policies are applied at runtime, which can be helpful in scenarios where you use multiple policy templates to accomplish your data conversion. For example, one policy could parse a delimited string into an array, and another policy could convert the array into an object. In this example, the order of implementation would be important.
 
+[![Screenshot showing polices and Move up/Move down options.](media/policy-delete-move.png)](media/policy-delete-move.png#lightbox)
+
 Configuring a policy template results in modification of the connector's API properties. API properties are stored separately from the API definition for the connector. You can import an updated API definition through the portal without overwriting the policies that you've configured.
 
 ## View and modify by using CLI
 
-In addition to viewing policies in the portal, you can also export them as part of the API properties file by using the `paconn download` command from CLI.
+In addition to viewing policies in the portal, you can also export them as part of the API properties file by using the paconn download command from [CLI](/en-us/connectors/custom-connectors/paconn-cli/?azure-portal=true).
 
-- The download includes four files: `apiDefintion.swagger.json`, `apiProperties.json`, `icon.png`, `settings.json`.
-- If you open the `apiProperties.json` file and locate the **policyTemplateInstances** section, you'll see all policies configured.
+- The download includes four files (apiDefintion.swagger.json, apiProperties.json, icon.png, settings.json).
+- If you open the apiProperties.json file and locate the **policyTemplateInstances** section, you'll see all policies configured.
 
-You can also modify the `apiProperties.json` file directly if you're familiar with working in JSON. With some policies, such as **Set host URL**, if you want to prompt for the URL when a connection is created, you'll have to modify **connectionParameters** in the `apiProperties.json` file to complete the policy configuration. The `paconn update` command can be used to import the changes.
+The following screenshot is an example of the **policyTemplateInstances** section.
 
-It might be beneficial to consider how other connectors use policies. The [Microsoft Power Platform Connectors](https://github.com/Microsoft/PowerPlatformConnectors/) GitHub repository has many great examples of certified and noncertified connectors that you can look at. Additionally, you can browse through and look at the connectors' `apiProperties.json` file. Searching the repository by using a policy template name, such as **setHeader**, can also quickly reveal which connectors are using that policy.
+[![Example of the policyTemplateInstances section with policies configured.](media/section-example.png)](media/section-example.png#lightbox)
+
+You can also modify the apiProperties.json file directly if you're familiar with working in JSON. With some policies, such as **Set host URL**, if you want to prompt for the URL when a connection is created, you'll have to modify **connectionParameters** in the apiPropertiess.json file to complete the policy configuration. The paconn update command can be used to import the changes.
+
+It might be beneficial to consider how other connectors use policies. The [Microsoft Power Platform Connectors](https://github.com/Microsoft/PowerPlatformConnectors/?azure-portal=true) GitHub repository has many great examples of certified and noncertified connectors that you can look at. Additionally, you can browse through and look at the connectors' apiProperties.json file. Searching the repository by using a policy template name, such as **setHeader**, can also quickly reveal which connectors are using that policy.

@@ -1,6 +1,10 @@
 # Introduction to developing with Microsoft Dataverse
 
+Completed
+
 - 5 minutes
+
+[![Diagram showing overview of the Business Application Platform.](media/platform.png)](media/platform.png#lightbox)
 
 Extending the Dataverse platform with code is required whenever some level of automation needs to occur that existing features don't support and you can't easily build the automation with low-code techniques like Power Automate. These types of extensibility points frequently execute as server-side code via an asset called a plug-in. Flow and other options enable asynchronous automation and logic but cannot fully replicate the capabilities of plug-ins for synchronous rules. Plug-ins are still required when you need to implement synchronous operations within a model-driven application.
 

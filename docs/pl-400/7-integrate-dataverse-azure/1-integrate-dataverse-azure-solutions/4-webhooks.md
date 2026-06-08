@@ -1,5 +1,9 @@
 # Publish Microsoft Dataverse events with webhooks
 
+Completed
+
+- 20 minutes
+
 Another method for publishing events from Microsoft Dataverse to an external service is registering webhooks. A webhook is an HTTP-based mechanism for publishing events to any Web API-based service you choose. This method allows you to write custom code hosted on external services as a point-to-point integration.
 
 ## Webhooks vs. Azure Service Bus
@@ -49,16 +53,24 @@ Webhook endpoint registration is performed similarly to Service Endpoint registr
 
 Within the Plug-in Registration Tool, you can register a new webhook by selecting **Register New Web Hook** under the **Register** menu option.
 
-The **WebHook Registration** dialog box appears, where you can configure the URL of your endpoint, along with any authentication options.
+[![Screenshot of the Register New Web Hook option.](media/webhook-updated.png)](media/webhook-updated.png#lightbox)
+
+The following **WebHook Registration** dialog box appears, where you can configure the URL of your endpoint, along with any authentication options.
 
 ### Register with HTTPHeader authentication
 
 If **HttpHeader** authentication is selected, the screen prompts you to add **Keys** and **Values** that are passed as part of your HTTP request. Commonly, the keys and values might include an OAuth bearer token or other various authentication formats.
 
+[![Screenshot of the WebHook Registration + Add Property button.](media/add-property.png)](media/add-property.png#lightbox)
+
 ### Register with WebhookKey authentication
 
 If **WebhookKey** is specified as the **Authentication** method, a query string is passed to the URL with the given key in the format `?code=[web hook key]`. This method is useful when you're calling Azure Functions because it uses this code parameter by default to perform its authentication.
 
+[![Screenshot of WebhookKey set as Authentication.](media/webhook-key.png)](media/webhook-key.png#lightbox)
+
 ### Register with HTTPQueryString authentication
 
 You can pass Query String parameters by specifying **HttpQueryString** as the **Authentication** option. As with the **HTTPHeader** option, it presents the option to pass a set of key/value pairs to your Web API. You could also pass other parameters, and even manually pass the "code" parameter that is expected through Azure Functions in this manner.
+
+[![Screenshot of HTTPQueryString set as Authentication.](media/query.png)](media/query.png#lightbox)

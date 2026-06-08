@@ -1,10 +1,12 @@
 # Custom logging with trace
 
-> 5 minutes
+Completed
 
-In addition to the telemetry that is sent automatically by Power Apps runtime to Application Insights, you can use the Power Fx `Trace()` function to send custom events. By instrumenting your app with trace calls, you can capture important events and associated data.
+- 5 minutes
 
-Examples of when you might add `Trace()` function calls include:
+In addition to the telemetry that is sent automatically by Power Apps runtime to Application Insights, you can use the Power Fx Trace() function to send custom events. By instrumenting your app with trace calls, you can capture important events and associated data.
+
+Examples of when you might add Trace() function calls include:
 
 - Using **OnStart** to log the parameters that are passed to your app when it was started
 - When users enable or disable options in your application
@@ -18,23 +20,19 @@ Examples of when you might add `Trace()` function calls include:
 
 In addition to logging the data for Application Insights, trace data is also visible in the Monitor tool and Power Apps Test Studio results.
 
-## Trace() syntax
+The syntax for the function is as follows:
 
-```powerappsfl
-Trace(message, trace_severity, custom_record)
-```
+`Trace(message, trace_severity, custom_record )`
 
-- **message** (required) - Identifies why you called trace, such as `"Timesheet Validation Failed"`.
-- **trace_severity** (optional) - Severity level: `Information`, `Warning`, `Error`, or `Critical`. Useful for categorizing and querying traces.
-- **custom_record** (optional) - A data record with context information using braces (`{}`).
+The message parameter is required, and you should use it to identify why you called trace, such as entering **Trace("Timesheet Validation Failed")**.
 
-Example with context data:
+Optionally, you can pass a severity level of information, warning, error, or critical. When used to consistently categorize your traces, severity can be helpful in querying the data. For example, you could get a daily email with a list of all errors that were captured.
 
-```powerappsfl
-Trace("Timesheet Validation Failed", Warning, { hoursWorked: ThisItem.HoursWorked })
-```
+The Trace() function also allows you to pass a data record with context information. This record can have one or more data fields that would be helpful in analyzing the trace event data later. Additionally, you can use this data in the log queries to reduce the set of trace records that you review. You can compose the inline record by using braces (**{}**) that contain named field values. For example, you could enhance your previous validation by passing more context information:
 
-## Best practices
+`Trace(ÔÇ£Timesheet Validation FailedÔÇØ,Warning, { hoursWorked:ThisItem.HoursWorkedÔÇØ)`
+
+When composing Trace() function calls, make sure that you keep the following parameters in mind:
 
 - Avoid sensitive data being recorded in Application Insights that might cause compliance problems, such as a customer's name and email address.
 - Be alert for bad data or a formula that might cause unexpected results.
@@ -43,23 +41,18 @@ Trace("Timesheet Validation Failed", Warning, { hoursWorked: ThisItem.HoursWorke
 
 ## Query the traces
 
-You can query and view the data that is captured by each `Trace()` function call by querying the log and using **traces** as the table name.
+You can query and view the data that is captured by each Trace() function call by querying the log and using **traces** as the table name.
 
-In the results, each line will have an **itemType** of **trace**. In each row, the **message** and **severityLevel** will display. If you expand the row, a **customDimensions** property will display that you can further expand to show the fields that you logged as context data when you invoked the `Trace()` function.
+[![Screenshot of building a query of traces from the log data.](media/query.png)](media/query.png#lightbox)
 
-### Useful query fields
+In the results, each line will have an **itemType** of **trace**. In each row, the **message** and **severityLevel** will display. If you expand the row, a **customDimensions** property will display that you can further expand to show the fields that you logged as context data when you invoked the Trace() function.
 
-| Field | Description |
-|---|---|
-| `ms-appId` | Unique identifier for the app — use to find all traces for a specific app |
-| `ms-appSessionId` | Identifies all traces for a user for that session of running the app |
-| Custom fields (e.g., `JobId`, `JobName`) | Context data passed to `Trace()` |
+[![Screenshot of query results with custom dimensions highlighted.](media/custom-dimensions.png)](media/custom-dimensions.png#lightbox)
 
-Example query to filter for all trace records from a specific `JobId`:
+In the preceding image, **JobId** and **JobName** were context data. All **ms-** fields are automatically added to every trace. You can use this data to build a query similar to the following example that queries for all trace records from a specific **JobId**.
 
-```kusto
-traces
-| where customDimensions["JobId"] == "12345"
-```
+[![Screenshot of the query traces.](media/traces.png)](media/traces.png#lightbox)
 
-Adding traces to your app can provide you with a valuable resource to track problems. Traces are especially valuable because you can use them to capture data for an app that is running in production and doesn't require you to run the app in Power Apps Studio. By proactively adding `Trace()` function calls to your application, you will be ready when users report a challenging problem in production.
+You can use **ms-appId** to find all traces for a specific app and **ms-appSessionId** to find all traces for a user for that session of running the app. Each app that logs data will have a unique **ms-appId**.
+
+Adding traces to your app can provide you with a valuable resource to track problems. Traces are especially valuable because you can use them to capture data for an app that is running in production and doesn't require you to run the app in Power Apps Studio. By proactively adding Trace() function calls to your application, you will be ready when users report a challenging problem in production.

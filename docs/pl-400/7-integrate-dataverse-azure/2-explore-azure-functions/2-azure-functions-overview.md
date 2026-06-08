@@ -1,5 +1,9 @@
 # Discover Azure Functions
 
+Completed
+
+- 3 minutes
+
 Azure Functions is a serverless solution that allows you to write less code, maintain less infrastructure, and save on costs. Instead of worrying about deploying and maintaining servers, the cloud infrastructure provides all the up-to-date resources needed to keep your applications running.
 
 We often build systems to react to a series of critical events. Whether you're building a web API, responding to database changes, processing IoT data streams, or even managing message queues - every application needs a way to run some code as these events occur.
@@ -10,7 +14,7 @@ Azure Functions supports *triggers*, which are ways to start execution of your c
 
 Both Functions and Logic Apps are Azure Services that enable serverless workloads. Azure Functions is a serverless compute service, whereas Azure Logic Apps is a serverless workflow integration platform. Both can create complex *orchestrations*. An orchestration is a collection of functions or steps, called actions in Logic Apps, that are executed to accomplish a complex task.
 
-For Azure Functions, you develop orchestrations by writing code and using the Durable Functions extension. For Logic Apps, you create orchestrations by using a GUI or editing configuration files.
+For Azure Functions, you develop orchestrations by writing code and using the [Durable Functions extension](/en-us/azure/azure-functions/durable/durable-functions-overview). For Logic Apps, you create orchestrations by using a GUI or editing configuration files.
 
 The following table lists some of the key differences between Functions and Logic Apps:
 
@@ -35,6 +39,6 @@ Azure Functions is built on the WebJobs SDK, so it shares many of the same event
 | **Develop and test in browser** | Yes | No |
 | **Pay-per-use pricing** | Yes | No |
 | **Integration with Logic Apps** | Yes | No |
-| **Trigger events** | Timer, Azure Storage queues and blobs, Azure Service Bus queues and topics, Azure Cosmos DB, Azure Event Hubs, HTTP/WebHook (GitHub, Slack), Azure Event Grid | Timer, Azure Storage queues and blobs, Azure Service Bus queues and topics, Azure Cosmos DB, Azure Event Hubs, File system |
+| **Trigger events** | TimerAzure Storage queues and blobsAzure Service Bus queues and topicsAzure Cosmos DBAzure Event HubsHTTP/WebHook (GitHubSlack)Azure Event Grid | TimerAzure Storage queues and blobsAzure Service Bus queues and topicsAzure Cosmos DBAzure Event HubsFile system |
 
 Azure Functions offers more developer productivity than Azure App Service WebJobs does. It also offers more options for programming languages, development environments, Azure service integration, and pricing. For most scenarios, it's the best choice.

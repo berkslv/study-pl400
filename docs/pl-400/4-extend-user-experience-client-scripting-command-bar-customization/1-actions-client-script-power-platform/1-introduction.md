@@ -1,5 +1,7 @@
 # Introduction to client-side scripting
 
+Completed
+
 - 5 minutes
 
 Client scripting allows you to use JavaScript in Power Apps model-driven apps to implement custom business logic. Client scripting is an alternative for when declarative business rules don't meet the requirements. Client scripting runs on a model-driven form in response to form events. The following are the most common events you can use event handlers for:
@@ -19,9 +21,11 @@ Some of the common tasks that you can accomplish using client scripting include:
 - Open forms, views, dialogs, and reports.
 - Interact with the business process flow control.
 
-Using the provided client scripting API, you can implement your interaction with your data, form content changes, or app behavior modifications. While you write your logic in JavaScript, it's important to note that even though the form uses standard HTML, direct manipulation of the form content isn't supported. Client scripting provides an object model with methods for interacting with the various form components. This approach ensures any changes in the layout or specific HTML used in the form rendering don't affect your business logic. It's equally important to only use documented objects and functions, not any that you may discover, as these can change or not be available at any time.
+Using the provided client scripting API, you can implement your interaction with your data, form content changes, or app behavior modifications. While you write your logic in JavaScript, it's important to note that even though the form uses standard HTML, direct manipulation of the form content isn't supported. Client scripting provides an object model with methods for interacting with the various form components. This approach ensures any changes in the layout or specific HTML used in the form rendering don't affect your business logic. It's equally important to only use documented objects and functions, not any that you may discover, as these can change or not be available at any time. For more information about supported and unsupported customizations, see [Microsoft Dataverse app building practices - Power Apps](/en-us/power-apps/developer/data-platform/customization-support?azure-portal=true#common-unsupported-customization-practices) in the Dataverse developer guide.
 
 This is the high-level structure of the client scripting API object model and namespaces:
+
+[![Screenshot showing all the namespaces in the client scripting API object model. Xrm, App, device, Encoding, Navigation, Panel, Utility, WebAPI.](media/xrm-object.png)](media/xrm-object.png#lightbox)
 
 - **App** - Enables adding event handlers for any app level notifications.
 - **Device** - Allows, with consent, access to device content such as image, video, audio, location, and more.
@@ -33,10 +37,11 @@ This is the high-level structure of the client scripting API object model and na
 
 Another key high-level concept is that context objects are either available as event handler parameters or retrieved using special methods. These context objects help avoid writing code that you hard-wire to a particular form control layout or specific control. The following are the contexts you work with:
 
-- **Execution** - Defines the event context in which your code executes. The execution context is passed when an event occurs on a form or grid, which you can use in your event handler to perform various tasks such as determine formContext or gridContext or manage the save event.
-- **Form** - Provides a reference to the form or to an item on the form, such as a quick view control or a row in an editable grid, against which the current code executes. Form context is retrieved using `getFormContext()` method of the execution context or included as an argument when code is executed from a ribbon action. Form context has the following key namespaces within it:
-  - **data** - This namespace provides access to the data for the table row presented on a form, including functions like save and refresh. Example: `formContext.data.entity.save("saveandnew");`
-  - **ui** - This namespace allows you to manipulate controls on the form such as tabs, sections, and controls. Common tasks include hiding, showing, and making fields required or not required. Example: `formContext.ui.refreshRibbon(true);`
+- **Execution** - Defines the event context in which your code executes. The execution context is passed when an event occurs on a form or grid, which you can use in your event handler to perform various tasks such as determine formContext or gridContext or manage the saved event.
+- **Form** - Provides a reference to the form or to an item on the form, such as a quick view control or a row in an editable grid, against which the current code executes. Form context is retrieved using getFormContext() method of the execution context or included as an argument when code is executed from a ribbon action. Form context has the following key namespaces within it:
+
+    - **data** - This namespace provides access to the data for the table row presented on a form, including functions like save and refresh. An example of using this method is: formContext.data.entity.save("saveandnew");
+    - **ui** - This namespace allows you to manipulate controls on the form such as tabs, sections, and controls. Common tasks include hiding, showing, and making fields require or not required. An example of using this method is: formContext.ui.refreshRibbon(true);
 - **Grid** - Provides context information to event handlers registered on subgrids on a form.
 
-Logic implemented with client-side scripting only enforces your logic when the user is using the application. In many cases, client scripting must be paired with server-side implementation to ensure the logic always runs, regardless of the method used to access the data and functionality.
+As you can tell from these high-level descriptions, using the client scripting API gives you more flexibility to implement client-side logic. It's important to remember that logic implemented with client-side scripting only enforces your logic when the user is using the application. In many cases, client scripting must be paired with server-side implementation to ensure the logic always runs, regardless of the method used to access the data and functionality. The rest of this module dives deeper into how to use client scripting.

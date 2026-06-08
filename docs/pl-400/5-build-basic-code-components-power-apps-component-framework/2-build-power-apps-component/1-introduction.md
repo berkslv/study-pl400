@@ -4,7 +4,7 @@ Completed
 
 - 15 minutes
 
-Power Apps provides numerous built-in functionalities for app makers to build their apps, but sometimes, you'll need to create custom user experiences to handle your unique requirements. Examples might be replacing a percentage value with a gauge, rendering a bar code rather than an ID, or replacing existing controls with controls that have more functionality—like a drag-and-drop grid view. You can also wrap the Power Apps component framework around existing components you've written in other web frameworks, like React or Angular.
+Power Apps provides numerous built-in functionalities for app makers to build their apps, but sometimes, you'll need to create custom user experiences to handle your unique requirements. Examples might be replacing a percentage value with a gauge, rendering a bar code rather than an ID, or replacing existing controls with controls that have more functionalityÔÇölike a drag-and-drop grid view. You can also wrap the Power Apps component framework around existing components you've written in other web frameworks, like React or Angular.
 
 Creating these components allows you to use the full breadth of the modern web development ecosystem: the libraries, frameworks, and other tools you might be familiar with, and packages that capability into a form that allows app makers to build apps with your code as if it were an out-of-the-box part of the platform.
 

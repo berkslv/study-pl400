@@ -1,5 +1,7 @@
 # Sometimes you need something more than forms
 
+Completed
+
 - 6 minutes
 
 When building canvas apps in Power Apps, you go to Galleries to display records from your data source and Forms to view, create, and edit an individual record, but sometimes forms are not enough. In those scenarios, Power Apps has functions for updating your tabular data sources directly.
@@ -10,7 +12,7 @@ In this module, you will learn about using the **Patch** function to update your
 
 Patch is most often used when you need to take action on the data without user interaction in a repetitive manner, or your app design doesn't allow for the use of forms. For example, if you want to update a logging data source every time a user clicks a button to navigate to another screen you could use the formula for the OnSelect property of the button.
 
-```powerappsfl
+```
 Patch(LoggingTable, Defaults(LoggingTable), {WhoClicked:
 User().FullName, WhenClicked: Now()}); Navigate(NextScreen,
 ScreenTransition.Cover)
@@ -27,7 +29,7 @@ There are also functions available for deleting one or more records from your da
 
 For example, if you wanted to give the user the ability to delete a record from a Gallery control, add a Trash icon to the Gallery displaying the data source **CustomerOrders** and then set the **OnSelect** property of the icon to the following.
 
-```powerappsfl
+```
 Remove(CustomerOrders, ThisItem)
 ```
 
@@ -38,13 +40,13 @@ This formula would delete the record for the item that was displaying the Trash 
 Patch and Remove are both functions that are used to affect one record. If you need to affect change on more than one record, there are two options:
 
 - Use the **ForAll** function, which was covered in the previous module, to loop through a table of data and run a Patch or Remove function for each record in the table.
-- Use the **Collect** function to write from one table to another. Each record of the source table is added as a separate record to the target table.
+- Use the [Collect](/en-us/power-apps/maker/canvas-apps/functions/function-clear-collect-clearcollect/?azure-portal=true) function to write from one table to another. Each record of the source table is added as a separate record to the target table.
 
 These topics are covered in other Power Apps learning paths and are not covered in this learning path.
 
 ## Collections are data sources
 
-It's important to remember that these functions can use a collection as their target. Patch, Remove, and RemoveIf can all be used to modify both tabular data sources and collections. As you build more complex apps storing data in collections and working with those items is very common, these functions will be a big part of that manipulation.
+ItÔÇÖs important to remember that these functions can use a collection as their target. Patch, Remove, and RemoveIf can all be used to modify both tabular data sources and collections. As you build more complex apps storing data in collections and working with those items is very common, these functions will be a big part of that manipulation.
 
 The remainder of this module will refer to updating a data source. Remember that a data source can either be a tabular data source or a collection unless stated otherwise.
 

@@ -1,5 +1,9 @@
 # Exercise - Create an Azure Function by using Visual Studio Code
 
+Completed
+
+- 15 minutes
+
 In this exercise, you learn how to create a C# function that responds to HTTP requests. After creating and testing the code locally in Visual Studio Code, you deploy and test the function in Azure.
 
 Tasks performed in this exercise:
@@ -35,4 +39,4 @@ Select the **Launch Exercise** button, it opens the exercise instructions in a n
 - A summary of what you've learned
 - To earn a badge for completing this module
 
-[Launch Exercise](https://go.microsoft.com/fwlink/?linkid=2320473)
+[![Button to launch exercise.](../../wwl-azure/develop-azure-functions/media/launch-exercise.png)](https://go.microsoft.com/fwlink/?linkid=2320473)

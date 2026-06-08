@@ -1,10 +1,14 @@
 # Global variables
 
+Completed
+
+- 8 minutes
+
 Global variables are the most commonly used variables because of their flexibility. After you set the variable, you can reference it or update it throughout your app. This allows you to avoid repetitive query for the same information repetitively, to build out the information you need in an imperative way, or sometimes just as a place holder.
 
 ## Storing information for your user
 
-A common design pattern in apps is personalization. For example, you might display a welcome message that includes the user's name on every screen. In Power Apps, you can retrieve the user's name in a declarative way by using the following formula in a Label control:
+A common design pattern in apps is personalization. For example, you might display a welcome message that includes the userÔÇÖs name on every screen. In Power Apps, you can retrieve the userÔÇÖs name in a declarative way by using the following formula in a Label control:
 
 ```
 "Welcome " & User().FullName

@@ -1,23 +1,69 @@
-# Create your first flow
+# Create a cloud flow
 
-- 8 minutes
+Completed
 
-In the previous unit we learned about the key concepts such as templates, connectors, actions, and conditions. Here we'll put all of those concepts into practice by building your first flow.
+- 10 minutes
 
-Since it can be time consuming to search for attachments in your emails, creating a flow can save you time by storing all your email attachments in a folder in your Microsoft OneDrive account.
+Every flow starts with a **trigger** and includes one or more **actions**. The trigger is the event that starts the flow, such as a new email arriving in your inbox. Actions are what happen in response ÔÇö for example, saving the attachment to OneDrive or posting a message to Teams.
 
-## Important concepts in Power Automate
+If you would like to see the process of creating different types of flows, watch the following video.
 
-Every flow has two main parts: a *trigger*, and one or more *actions*.
+## Create a flow with Copilot
 
-### Triggers
+Copilot in Power Automate lets you create automation using natural language ÔÇö no need to manually search for connectors or configure triggers from scratch. You describe what you want your flow to do, and Copilot builds the structure for you.
 
-You can think of the trigger as the starting action for the flow. The trigger can be something like a new email arriving in your inbox or a new item being added to a list in Microsoft Lists.
+When you use Copilot to create or edit a cloud flow, it can:
 
-### Actions
+- Understand your intent and generate a flow based on the prompt you provide.
+- Automatically configure connections on your behalf.
+- Apply the necessary parameters in the flow based on your prompt.
+- Update or replace actions when you ask, and answer questions about your flow.
+- Suggest a description for the flow when you edit its details.
 
-Actions are what you want to happen when a trigger is invoked. For example, the new email trigger will start the action of creating a new file on OneDrive. Other examples of actions include sending an email, posting a tweet, and starting an approval.
+Note
 
-Every flow has one trigger and one or more actions. Trigger and actions will come into play later when you build your own flows from scratch.
+Copilot in Power Automate is optimized for English and may have limited support in other languages. This capability is powered by Azure OpenAI Service. For more information, see [Responsible AI FAQ for Copilot in cloud flows](/en-us/power-automate/faqs-copilot).
 
-Let's move on to the exercise!
+To create a flow with Copilot:
+
+1. Sign in to [Power Automate](https://make.powerautomate.com/).
+2. On the left navigation pane, select **Home**.
+3. In the **Create your automation with Copilot** field, describe your automation in natural language. As you type, Copilot suggests prompts to help you refine your request.
+4. When you're satisfied with your prompt, select **Generate**.
+5. Copilot generates a suggested flow structure with a trigger and one or more actions. If you're satisfied, select **Keep it and continue**. If you want to adjust the flow, enter more details in the refinement field and select the arrow to regenerate.
+6. Verify that the connections in the flow are configured correctly. Connections that are ready show a green check mark. Connections that need attention show a red exclamation mark. Select any connection that needs attention and follow the instructions.
+7. Select **Create flow**. The designer opens with your flow and the Copilot pane on the right.
+8. In the Copilot pane, follow any suggestions to complete setup, ask questions, or request edits.
+9. When your flow is complete, select **Save** on the command bar.
+
+## Write effective prompts
+
+The quality of your prompt directly affects the quality of the generated flow. Keep these tips in mind:
+
+- Use a **When X happens, do Y** format. For example: *When an email arrives from my manager, post the subject to the General channel in Teams.*
+- Be as specific as possible. Mention the connectors you want to use, such as Outlook, Teams, or SharePoint.
+- If the first result isn't what you expected, refine your prompt and generate again.
+
+Here are a few example prompts to try:
+
+- *When an email arrives from contoso@contoso.com, post it in Teams.*
+- *When an item is created in SharePoint, send me a mobile notification with the item title.*
+- *When a new file is added to OneDrive, copy it to a SharePoint document library.*
+
+## Edit an existing flow with Copilot
+
+You can also use Copilot in the flow designer to modify flows you've already built.
+
+1. Sign in to [Power Automate](https://make.powerautomate.com/).
+2. On the left navigation pane, select **My flows**.
+3. Find your flow, select the vertical ellipsis (**Ôï«**), and then select **Edit**. Your flow opens with the Copilot pane on the right.
+4. In the Copilot pane, type what you want to change. For example:
+
+    - *Delete the Send an email action.*
+    - *Instead of email, post a message to a Teams channel.*
+    - *Add a condition that checks if the subject contains "urgent".*
+5. Select **Save** when you're done.
+
+Tip
+
+Ask Copilot questions about your flow, such as *What does my flow do?* to get a plain-language summary of the automation.

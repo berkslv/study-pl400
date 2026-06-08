@@ -1,5 +1,9 @@
 # Summary
 
+Completed
+
+- 3 minutes
+
 In this module, you learned how to:
 
 - Explain the key components of a function

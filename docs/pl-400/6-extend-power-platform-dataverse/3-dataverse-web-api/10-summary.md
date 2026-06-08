@@ -1,14 +1,7 @@
 # Summary
 
-Microsoft Dataverse provides a robust API to enable interaction with its underlying data and actions.
+Completed
 
-## Key Concepts Covered
+- 5 minutes
 
-- **Web API vs. Organization Service** — The Web API provides RESTful access performing the same operations as the organization service.
-- **OData** — The underlying protocol for the Dataverse Web API, enabling standard CRUD operations via HTTP methods (GET, POST, PATCH, DELETE).
-- **OAuth 2.0 Authentication** — Authenticate using Microsoft Entra ID; use MSAL libraries to acquire access tokens.
-- **OData Queries** — Create, retrieve, update, and delete Dataverse rows using standard OData HTTP methods.
-- **FetchXML** — XML-based query language for complex Dataverse queries with richer filtering than OData.
-- **Actions** — Reusable operations (bound or unbound) invocable via Web API POST requests.
-- **User Impersonation** — Run logic in the context of another user using the `CallerObjectId` header.
-- **Change Tracking** — Track table data changes using delta links for efficient data synchronization across systems.
+Microsoft Dataverse provides a robust API to enable interaction with its underlying data and actions. This module reviewed several ways to query and manipulate Dataverse data and explained how to authenticate to a Web API endpoint using OAuth. Additionally, this module covered several other concepts, such as user impersonation and how to track data changes with DataverseÔÇÖs change-tracking feature.

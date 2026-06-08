@@ -1,5 +1,7 @@
 # Use the Patch function to create and edit records
 
+Completed
+
 - 8 minutes
 
 The **Patch** function is used to create and edit records in a data source when using a Form control doesn't meet your needs. Patch is used most often when you need to act on the data without user interaction in a repetitive manner. You also use it if your app design doesn't allow for the use of forms.
@@ -47,54 +49,55 @@ The primary logic of most Patch functions is updating the proper columns with th
 
 There are four sources to pass values in your formula to Patch your data source:
 
-### Hardcoded value
+- You can hardcode a value. An example is if you want to patch the status of the record with "Pending," your Patch formula would look like:
 
-```powerappsfl
-Patch(CustomerOrders, Default(CustomerOrders), {Status: "Pending"})
-```
+    ```powerappsfl
+    Patch(CustomerOrders, Default(CustomerOrders), {Status: "Pending"})
+    ```
 
-This formula creates a new record and sets the Status column to the string value of "Pending."
+    This formula creates a new record and sets the Status column to the string value of "Pending."
+- You can reference a variable. For example, you can store the string "Under Review" in a variable named **varStatus** with the following formula.
 
-### Variable reference
+    ```powerappsfl
+    Set(varStatus, "Under Review")
+    ```
 
-```powerappsfl
-Set(varStatus, "Under Review")
-```
+    Then your Patch formula would be:
 
-```powerappsfl
-Patch(CustomerOrders, Default(CustomerOrders), {Status: varStatus})
-```
+    ```powerappsfl
+    Patch(CustomerOrders, Default(CustomerOrders), {Status: varStatus})
+    ```
 
-This formula creates a new record and sets the Status column to the string value of "Under Review."
+    This formula creates a new record and sets the Status column to the string value of "Under Review."
+- You can reference the value from the property of a control. An example would be setting the value from a drop-down menu named Dropdown1 that contained the regions. Your Patch formula would look like:
 
-### Control property reference
+    ```powerappsfl
+    Patch(CustomerOrders, Default(CustomerOrders), {Status: Dropdown1.Selected.Value})
+    ```
 
-```powerappsfl
-Patch(CustomerOrders, Default(CustomerOrders), {Status: Dropdown1.Selected.Value})
-```
+    This formula creates a new record and sets the Status column to the value of the selected item in the drop-down menu.
+- You can use the output of a formula. An example would be setting the value of the **Owner** column using the FullName from the **User()** function. Your Patch formula would look like:
 
-This formula creates a new record and sets the Status column to the value of the selected item in the drop-down menu.
+    ```powerappsfl
+    Patch(CustomerOrders, Default(CustomerOrders), {Owner: User().FullName})
+    ```
 
-### Formula output
-
-```powerappsfl
-Patch(CustomerOrders, Default(CustomerOrders), {Owner: User().FullName})
-```
-
-This formula creates a new record and sets the **Owner** column to the current user's FullName from Microsoft Entra ID.
+    This formula creates a new record and sets the **Owner** column to the current user's FullName from Microsoft Entra ID.
 
 ## Patch example
 
-In this example, you're building a solution for signing users into a class as they arrive. This type of Power Apps solution is common, and the Patch function helps you quickly achieve results.
+Let's take a look at another example, in this example you're trying to build a solution for signing users into class as they arrive. This type of Power Apps solution is common, and the Patch function helps you quickly achieve results.
+
+![Screenshot of a Power Apps solution patch example.](media/another-patch-example.png)
 
 ### Solution breakdown
 
-A simple Canvas app connected to a data source (**TrainingClassSignIn**) has the following columns: **Training Class**, **FirstName**, **LastName**, **EmailAddress**, **SignInStatus**. The **OnSelect** property of the **Sign In** button uses:
+Here we have a simple Canvas app connected to our data source (TrainingClassSignIn). The data source has the following columns, **Training Class**, **FirstName**, **LastName**, **EmailAddress**, **SignInStatus**. This is the information we want to capture when a user selects the **Sign In** button. In the formula bar, you see the following code:
 
 ```powerappsfl
 Patch(TrainingClassSignIn,Defaults(TrainingClassSignIn),{TrainingClass:TrainingClassDD.Selected.Value, FirstName:FirstNameInput.Text, LastName:LastNameInput.Text, EmailAddress:EmailAddressInput.Text, SignInStatus:"Attended"})
 ```
 
-Whenever someone selects the **Sign In** button, Power Apps writes a new record to the TrainingClassSignIn data source, populating fields from the controls on screen and setting **SignInStatus** to "Attended."
+To elaborate, whenever someone selects the **Sign In** button, Power Apps writes a new record to the TrainingClassSignIn data source. As to what data is written back for the user signing in, you can see it's getting this information from the different controls we added (color coded in the formula). You might also notice that the code sets the **SignInStatus** each time to "Attended" for each new record submitted.
 
-Patch has even more capabilities including the ability to update multiple records and merge records. For more information, see [Patch function in Power Apps](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/functions/function-patch/).
+As you can see, Patch is flexible and powerful. Patch has even more capabilities including the ability to update multiple records and merge records. For more information about these scenarios, see [Patch function in Power Apps](/en-us/power-apps/maker/canvas-apps/functions/function-patch/?azure-portal=true).

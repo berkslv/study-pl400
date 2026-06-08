@@ -1,17 +1,25 @@
 # Identify and resolve common problems
 
+Completed
+
+- 9 minutes
+
 There are two common ways to use Monitor during the app development process:
 
 - **Reactive**: Use Monitor when you're aware of a problem and need to identify the root cause. For example, if a user reports an error, you can use Monitor to observe events related to the reported issue.
 - **Proactive**: Use Monitor before releasing your app to identify potential issues. Run the app while capturing events in Monitor and review the event log for long response times, anomalies, or errors. Identifying issues early helps reduce problems in production and supports higher app quality.
 
-## Start with a clean event log
+### Start with a clean event log
 
 Before testing your app, start with an empty event log. In Monitor, select **Clear data** to remove previous events. This ensures that the captured data reflects only the new actions you perform during testing.
 
+![Screenshot of the Monitor dashboard with Clear data highlighted.](media/clear-data.png)
+
 ## Use meaningful control names
 
-Control names in the event log correspond to the names in your app. Descriptive control names make it easier to analyze event data. Using default names versus more descriptive alternatives highlights the benefits of meaningful naming.
+Control names in the event log correspond to the names in your app. Descriptive control names make it easier to analyze event data. The following image compares default names with more descriptive alternatives, highlighting the benefits of meaningful naming.
+
+![Screenshot of Monitor dashboard showing system-generated and user-defined control names.](media/control-names.png)
 
 ## Filter event data to find related events
 
@@ -21,9 +29,13 @@ When troubleshooting, it's common to identify patterns across related events. Mo
 
 The global filter searches all columns in the event log. It's useful for broad searches, such as control names or connector actions. You can find this filter in the upper-right corner of the Monitor dashboard.
 
+![Screenshot of the Monitor global filter.](media/filter-tool.png)
+
 ### Column filters
 
 Use column filters to target specific columns. Select the dropdown next to the column name and choose **Filter by**. You can apply filters to multiple columns simultaneously. When multiple filters are used, all conditions must be met for an event to display.
+
+![Screenshot of column filter by option.](media/filter-column.png)
 
 Filters are useful when working with large sets of captured events to isolate specific issues.
 
@@ -35,7 +47,9 @@ To identify errors:
 
 - Look for entries in the **Result** column labeled **Error**.
 - Watch for a red circle at the start of error rows.
-- Check the **Status** column for HTTP status codes.
+- Check the **Status** column for HTTP status codes. For more information, see [HttpStatusCode Enum](/en-us/dotnet/api/system.net.httpstatuscode/?azure-portal=true).
+
+![Screenshot of event log showing error indicators.](media/event-log.png)
 
 Double-click a row to open a pane with tabs for **Formula**, **Request**, and **Response**. These tabs provide insights into the error source.
 
@@ -45,7 +59,11 @@ Double-click a row to open a pane with tabs for **Formula**, **Request**, and **
 
 Common issues include missing or incorrect data in requests. Compare request details to connector documentation to identify discrepancies.
 
+![Screenshot of the request tab.](media/request-screen.png)
+
 Reviewing the **Response** tab can help you identify business rule violations or other errors returned by the connector.
+
+![Screenshot of the response message.](media/response-message.png)
 
 If the response is unclear, provide these details to the connector developer or support.
 
@@ -53,7 +71,11 @@ If the response is unclear, provide these details to the connector developer or 
 
 Use the **Duration** column to find slow actions. Filter the column to display entries that exceed a set threshold, such as one second. Duration values are in milliseconds (ms).
 
+![Screenshot of the duration column filter.](media/filter-duration.png)
+
 To capture startup logic performance, ensure Monitor is running and that **Run OnStart** logic is selected.
+
+![Screenshot of OnStart logic toggle.](media/run-onstart.png)
 
 To improve performance:
 
@@ -65,7 +87,7 @@ Some connectors support options to limit returned data. Adjust requests accordin
 
 ## Identify and resolve delegation problems
 
-Delegation issues occur when a data source can't process a query remotely. Instead, the app retrieves a limited data set (default 500 records) and filters locally. This can result in incomplete or inaccurate data.
+[Delegation](/en-us/power-apps/maker/canvas-apps/delegation-overview/?azure-portal=true) issues occur when a data source can't process a query remotely. Instead, the app retrieves a limited data set (default 500 records) and filters locally. This can result in incomplete or inaccurate data.
 
 Use **App checker** in Power Apps Studio to identify delegation issues. Monitor can provide additional context when needed.
 

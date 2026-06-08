@@ -1,21 +1,34 @@
-# Check Your Knowledge
+# Check your knowledge
 
-## Questions
+Completed
 
-**1. What is the underlying protocol of Microsoft Dataverse's Web API?**
+- 6 minutes
 
-- SOAP
-- **OData** ✓
-- XML
+## Answer the following questions to see what you've learned.
 
-**2. What is Dataverse's XML-based query language called?**
+1.
+What is the underlying protocol of Microsoft Dataverse's Web API?
 
-- **FetchXML** ✓
-- XAML
-- QueryExpression
+SOAP
 
-**3. What name is used to refer to changeset data when tracking against a table?**
+OData
 
-- Variance
-- Deviation
-- **Delta** ✓
+XML
+
+2.
+What is Dataverse's XML-based query language called?
+
+FetchXML
+
+XAML
+
+QueryExpression
+
+3.
+What name is used to refer to changeset data when you're tracking against a table?
+
+Variance
+
+Deviation
+
+Delta

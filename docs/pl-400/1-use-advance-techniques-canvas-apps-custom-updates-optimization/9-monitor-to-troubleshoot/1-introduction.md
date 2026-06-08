@@ -1,5 +1,9 @@
 # Introduction
 
+Completed
+
+- 3 minutes
+
 Monitor is a tool that you can launch from **Microsoft Power Apps Studio** to help you troubleshoot problems and improve the quality of your apps.
 
 The key issues that you can identify by using Monitor include:
@@ -12,7 +16,11 @@ The key issues that you can identify by using Monitor include:
 
 When Monitor is activated, it captures a stream of events from your running app and displays them in real time. These events include user interactions with controls and the use of data sources.
 
-The captured data includes essential context information that helps you analyze issues. While some of this information is also available through your browser's developer tools, Monitor adds app-specific context such as control names and formulas.
+[![Screenshot of the Monitor tool dashboard screen.](media/monitor-screen.png)](media/monitor-screen.png#lightbox)
+
+The captured data includes essential context information that helps you analyze issues. While some of this information is also available through your browserÔÇÖs developer tools, Monitor adds app-specific context such as control names and formulas.
+
+[![Screenshot of patchRow selected and details that include context information.](media/details-screen.png)](media/details-screen.png#lightbox)
 
 You can use these details to address identified problems and retest directly within **Power Apps Studio** or **Monitor**.
 

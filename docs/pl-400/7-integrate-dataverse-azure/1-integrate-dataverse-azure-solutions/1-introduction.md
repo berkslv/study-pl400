@@ -1,5 +1,9 @@
 # Microsoft Dataverse Azure Solutions overview
 
+Completed
+
+- 10 minutes
+
 Because Microsoft Dataverse is part of the robust Microsoft Power Platform, it provides numerous capabilities to facilitate integration with Microsoft Azure solutions. This lesson covers some of the standard integration practices regarding Azure solutions and how they pertain to Dataverse.
 
 ## Comparing Azure's integration solutions
@@ -36,12 +40,12 @@ If you're struggling to figure out which Azure integration solution best suits y
 
 | IF YOU WANT TO... | USE THIS |
 | --- | --- |
-| Create workflows and orchestrate business processes to connect hundreds of services in the cloud and on-premises. | Logic Apps |
-| Connect on-premises and cloud-based applications and services to implement messaging workflows. | Service Bus |
-| Publish your APIs for internal and external developers to use when connecting to backend systems that are hosted anywhere. | API Management |
-| Connect supported Azure and third-party services by using a fully managed event-routing service with a publish-subscribe model that simplifies event-based app development. | Event Grid |
-| Continuously ingest data in real time from up to hundreds of thousands of sources and stream a million events per second. | Event Hubs |
+| Create workflows and orchestrate business processes to connect hundreds of services in the cloud and on-premises. | [Logic Apps](https://azure.microsoft.com/services/logic-apps/?azure-portal=true) |
+| Connect on-premises and cloud-based applications and services to implement messaging workflows. | [Service Bus](https://azure.microsoft.com/services/service-bus/?azure-portal=true) |
+| Publish your APIs for internal and external developers to use when connecting to backend systems that are hosted anywhere. | [API Management](https://azure.microsoft.com/services/api-management/?azure-portal=true) |
+| Connect supported Azure and third-party services by using a fully managed event-routing service with a publish-subscribe model that simplifies event-based app development. | [Event Grid](https://azure.microsoft.com/services/event-grid/?azure-portal=true) |
+| Continuously ingest data in real time from up to hundreds of thousands of sources and stream a million events per second. | [Event Hubs](https://azure.microsoft.com/services/event-hubs/?azure-portal=true) |
 
-For in-depth guidance on Azure's broader Integration Services framework, refer to the Azure Integration Services whitepaper.
+For in-depth guidance on Azure's broader Integration Services framework, refer to the Azure Integration Services whitepaper, which is found [here](https://azure.microsoft.com/product-categories/integration/?azure-portal=true).
 
-Another article to reference is: [Choose between Azure messaging services - Event Grid, Event Hubs, and Service Bus](https://learn.microsoft.com/en-us/azure/event-grid/compare-messaging-services)
+Another article to reference is one found on the Azure website: [Choose between Azure messaging services - Event Grid, Event Hubs, and Service Bus](/en-us/azure/event-grid/compare-messaging-services/?azure-portal=true).

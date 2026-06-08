@@ -1,10 +1,12 @@
 # Introducing Power Automate
 
+Completed
+
 - 10 minutes
 
-Welcome to Power Automate! In this module, you'll learn how to build flows.
+Welcome to Power Automate! In this module, you learn how to build flows.
 
-If you're a beginner with Power Automate, this module will get you going. If you already have some experience, this module will tie concepts together and fill in the gaps.
+If you're a beginner with Power Automate, this module gets you going. If you already have some experience, this module ties concepts together and fill in the gaps.
 
 ## Learning objectives
 
@@ -30,21 +32,39 @@ For example, you can automate these tasks:
 
 - Instantly respond to high-priority notifications or emails.
 - Capture, track, and follow up with new sales leads.
-- Copy all email attachments to your OneDrive for Business account.
+- Copy all email attachments to your Microsoft OneDrive account.
 - Collect data about your business and share that information with your team.
 - Automate approval workflows.
 
 A common use of Power Automate is to receive notifications. For example, you can instantly receive an email or a push notification on your phone whenever a sales lead is added to Dynamics 365 or Salesforce.
 
+![Screenshot of a notification mail or a push notification.](media/sales-lead.png)
+
 You can also use Power Automate to copy files. For example, you can ensure that any file that's added to Dropbox is automatically copied to SharePoint, where your team can find it.
 
-You can monitor what people are saying about your business by creating a flow that runs whenever someone sends a tweet with a certain hashtag. The flow can add details about each tweet to a Facebook post, a SQL Server database, a Microsoft Lists list, or even a Microsoft Excel file that's hosted on OneDrive for Business — whichever service works for you.
+![Screenshot of a list of files in Dropbox.](media/dropbox-files.png)
+
+![Screenshot of a list of the same files in SharePoint.](media/sharepoint-files.png)
+
+You can monitor what people are saying about your business by creating a flow that runs whenever someone sends a tweet with a certain hashtag. The flow can add details about each tweet to a Facebook post, a SQL Server database, a Microsoft Lists list, or even a Microsoft Excel file that's hosted on Microsoft OneDriveÔÇô-whichever service works for you.
 
 You can create actions to connect the data you collect to Microsoft Power BI, spot trends in that data, and ask questions about it.
 
+The following example shows a flow that saves tweets with the hashtag #PowerAutomate to an Excel file.
+
+![Screenshot of a Microsoft Power Automate post with the hashtag #PowerAutomate.](media/tweets-to-excel.png)
+
+![Screenshot of the same tweet in an Excel spreadsheet.](media/excel-tweets.png)
+
 Also, you can automate approval loops for things like vacation requests on a list.
 
-For more ideas, browse the list of templates. Templates help you build flows by making a few configuration changes. For example, you can use templates to easily build flows to send yourself weather forecasts, reminders at regular intervals, or phone notifications whenever your manager sends you mail.
+![Screenshot of a list of vacation requests in SharePoint.](media/vacation-requests.png)
+
+For more ideas, browse our list of templates. Templates help you build flows by making a few configuration changes. For example, you can use templates to easily build flows to send yourself weather forecasts, reminders at regular intervals, or phone notifications whenever your manager sends you mail.
+
+![Screenshot of a list of Microsoft templates.](media/templates-you-might-use.svg)
+
+Have an idea for a flow that you don't see in the list? Create your own from scratch and, if you want, share it with the community!
 
 ## Where can I create and administer a flow?
 
@@ -59,29 +79,33 @@ Here are some of the tasks you can perform with the mobile app:
 
 ## A brief tour of Power Automate
 
-When you sign in to Power Automate, you'll find these options:
+Let's jump into Power Automate, and we show you around. We have tons of information for you to learn about how to use Power Automate.
 
-- **Create** — where you start a new flow.
-- **Templates** — where you can look at some of the most popular templates.
-- **Learn** — where you can find information that will help you quickly ramp up on Power Automate.
-- **My flows** — where your flows reside.
-- **Approvals** — where you can manage approvals and business process flows.
-- **Solutions** — where you can manage your solutions (containers that hold a number of components including flows).
-- **Process mining** — where you can create processes to help your organization better understand places to streamline workflows.
+![Screenshot of the start of the Power Automate tour.](media/start-of-tour.svg)
 
-The **Help (?)** menu (question mark icon, top right) provides:
+When you sign in to Power Automate, you find these options:
 
-- **Documentation** — advanced topics for deep dives into features and functions.
-- **Learn** — learning paths from beginner to advanced scenarios.
-- **Support** — a landing place to find help.
-- **Roadmap** — a glimpse into upcoming product updates.
-- **Community** — connect with other Power Automate users.
-- **Give Feedback** — send comments and questions to developers and experienced users.
-- **Blog** — stay up to date on the most recent developments and releases.
-- **Desktop flows** — introduction to Power Automate for desktop.
-- **Pricing** — help choose the right plan for you or your business.
-- **Power Automate for desktop** — download and install Power Automate for desktop.
-- **Data Gateway** — overview of the on-premises data gateway.
+- **Home**, which takes you to the Power Automate home page. The home page also features a Copilot prompt box where you can describe a flow in natural language and Copilot generates it for you (when AI is enabled for your organization). You'll use Copilot to create a flow in the next unit.
+- **Create**, where you start a new flow.
+- **Templates**, where you can take a look at some of the most popular templates. These should give you some great ideas for flows you want to try.
+- **Learn**, where you can find information that helps you quickly ramp up on Power Automate.
+- **My flows**, where your flows reside.
+- **Approvals**, where you can manage approvals and business process flows.
+- **Solutions**, where you can manage your solutions (containers that hold many components including flows).
+- **Process mining**, where you can create processes to help your organization better understand places to streamline workflows.
+- **AI models**, where you can build and manage AI Builder models.
+- **Desktop Flow Activity**, where you can monitor desktop flow runs.
+- **More**, which lets you pin or unpin additional items (such as Cloud flow activity, Tables, and Connections) to your left navigation.
+- **Power Platform** (at the bottom of the navigation), which links to other Power Platform products.
+
+For now, let's focus on the **Help (?)** menu that appears by selecting the question mark icon next to your user icon/image at the top right of the command bar. If you select it, you see a panel on the right side of your screen with links to:
+
+- **Documentation**, where you can do a deep dive into features and functions.
+- **Power Automate training on Microsoft Learn**, with learning paths from beginner to advanced scenarios.
+- **Power Automate Community**, where you can connect with other users and get answers.
+- **Blog**, which keeps you up to date on the most recent developments and releases in Power Automate.
+
+![Screenshot of the Help panel in Power Automate.](media/help-menu-panel.png)
 
 ## What's next?
 

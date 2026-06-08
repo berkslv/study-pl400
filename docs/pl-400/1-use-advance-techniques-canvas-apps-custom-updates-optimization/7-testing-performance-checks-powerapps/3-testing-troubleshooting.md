@@ -1,5 +1,7 @@
 # Testing and troubleshooting your app
 
+Completed
+
 - 8 minutes
 
 Now that you learned about performance bottlenecks and some of the ways to mitigate them, this unit discusses testing techniques. These techniques are a combination of guidance, techniques, and discovery that apply both to performance testing and general debugging.
@@ -29,18 +31,16 @@ Collect(colWorkoutTracker, Filter('Workout tracker', Status = "Active"))
     ```
 
     This formula starts by resetting the timer. Then it updates a context variable that we use to start/stop the timer to "true." Then it builds the collection and then sets the context variable back to "false."
-
 2. You need to update a property on the **Timer** control next; set the **Start** property to the following: `StartTimer`.
-
 3. Now insert a **Text label** control to display the time.
-
 4. For the **Text** property of the **Label** control, set the formula to the following: `Timer1.Value`
-
 5. Now preview the app and select the **Button**.
 
 With your app in preview mode, selecting your button displays how long the collection took to create in milliseconds.
 
-> **Note:** The timer control will not start counting unless the app is in **Preview mode**.
+Note
+
+The timer control will not start counting unless the app is in **Preview mode**.
 
 This technique works when you want to understand exactly how long a specific query is taking. You could log this data to a different collection and then average the numbers to determine how long it takes. You can also apply this concept when submitting data. Remember to test not only from your local computer but from all of the scenarios for your user's environments.
 
@@ -70,8 +70,10 @@ Once you select **Open Monitor**, a monitor session opens up in a separate brows
 
 Monitor now tracks and logs every app action, including network performance. You can use this to see calls to the data source, how long they're taking, and what information is coming/going.
 
-One example of a way you can use this is to determine if a performance lag, as measured by the Timer control from the previous example, is within your app, the network, or the data source. You place the app in Preview mode and begin using it as a user would. The Monitor results provide time stamps, category, operation, result, result info, status, duration (in milliseconds), data source, and the selected control (from the app).
+One example of a way you can use this is to determine if a performance lag, as measured by the Timer control from the previous example, is within your app, the network, or the data source. You place the app in Preview mode and begin using it as a user would. In the example below, we used our example with the button and the timer control to see how long it takes to get the data from our source and build the collection. Notice the information that comes back provides time stamps, category, operation, result, result info, status, duration (in milliseconds), data source, and the selected control (from the app).
+
+![Screenshot of the Monitor results from selecting a button in an app.](media/monitor-results.png)
 
 In this instance, most of the time was spent waiting on the data source to filter the data and respond. This tells you that you can't make the call faster by changing the app. Instead, you would need to focus on refining the query or speeding up the data source.
 
-Monitor allows some nice functionality that we don't completely cover in this module. All of the techniques we covered can help you test and troubleshoot your app.
+Monitor allows some nice functionality that we don't completely cover in this module. Look for a link in the summary unit if you want to learn more about it. All of the techniques we covered can help you test and troubleshoot your app.

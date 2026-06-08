@@ -1,14 +1,18 @@
 # Client scripting best practices
 
+Completed
+
 - 9 minutes
 
 Although developing client scripts may seem straightforward for seasoned JavaScript developers, it is essential to follow best practices when implementing them. Developers often overlook that users may access the data through other means. For example, they can use data import or export, maker studio, canvas apps, third-party desktop apps, shell scripting, etc. You should use client scripting to solve specific client-side UI issues and enhance user experience in a model-driven app. It is neither a security measure nor a universal solution. Often, a client-side approach must be combined with a server-side solution, such as a Dataverse plug-in, to ensure all access points fulfill the business requirements.
 
 ## Use solution checker
 
-Solution checker can perform static analysis checks on your solutions against a set of best practice rules and quickly identify problematic patterns. This check includes the JavaScript used for client scripting. The checker can identify performance, stability, and reliability issues as they become introduced, which can negatively affect the user experience. The checker can also spot the use of deprecated methods. When run regularly, you can proactively identify and remediate the problems before their release to the users. You can run the solution checker on demand from the maker portal or as part of an automated build process. This automation allows it to be run regularly and become a part of your ongoing application lifecycle management process.
+Solution checker can perform static analysis checks on your solutions against a set of best practice rules and quickly identify these problematic patterns. This check includes the JavaScript used for client scripting. The checker can identify performance, stability, and reliability issues as they become introduced, which can negatively affect the user experience. The checker can also spot the use of deprecated methods. When run regularly, you can proactively identify and remediate the problems before their release to the users. You can run the solution checker on demand from the maker portal or as part of an automated build process. This automation allows it to be run regularly and become a part of your ongoing application lifecycle management process.
 
-For more information about using solution checker, see [Use solution checker to validate your apps in Power Apps](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/use-powerapps-checker/).
+[![Screenshot showing running solution checker on demand from the maker portal.](media/solution-checker.png)](media/solution-checker.png#lightbox)
+
+For more information about using solution checker, see [Use solution checker to validate your apps in Power Apps](/en-us/power-apps/maker/data-platform/use-powerapps-checker/?azure-portal=true) in product documentation.
 
 ## Business rules vs. client script
 
@@ -20,7 +24,7 @@ Business rules are an available feature in model-driven applications that enable
 - Show or hide form column controls
 - Enable or disable form column controls
 - Validate data and show error messages
-- Create business recommendations based on business intelligence
+- Create business recommendations based on business intelligence.
 
 One of the distinct features of business rules is that table-scoped rules can automatically apply the logic on the backend where applicable. This scoping ensures app consistency regardless of whether an action runs via the user interface, data import, or an API method call. Client script alone wouldn't be a full equivalent in these scenarios.
 
@@ -56,39 +60,40 @@ The functions you write are most likely on a form with many other libraries. If 
 
 - **Unique function prefix** - Define each of your functions by using the standard syntax with a consistent name that includes a unique naming convention, as shown in the following example.
 
-```javascript
-function MyUniqueName_performMyAction()
-{
-  // Code to perform your action.
-}
-```
-
+    ```javascript
+      function MyUniqueName_performMyAction()
+      {
+      // Code to perform your action.
+      }
+    ```
 - **Libraries with namespaces** - Associate each of your functions with a script object to create a namespace to use when you call your functions, as shown in the following example.
 
-```javascript
-// If the MyUniqueName namespace object isn't defined, create it.
-if (typeof (MyUniqueName) == "undefined")
-   { MyUniqueName = {}; }
-   // Create Namespace container for functions in this library
-   MyUniqueName.MyFunctions = {
-     performMyAction: function(){
+    ```javascript
+      //If the MyUniqueName namespace object isnÔÇÖt defined, create it.
+      if (typeof (MyUniqueName) == "undefined")
+         { MyUniqueName = {}; }
+         // Create Namespace container for functions in this library;
+         MyUniqueName.MyFunctions = {
+       performMyAction: function(){
        // Code to perform your action.
-       // Call another function in your library
+       //Call another function in your library
        this.anotherAction();
-     },
-     anotherAction: function(){
+         },
+         anotherAction: function(){
        // Code in another function
-     }
-   };
-```
+        }
+      };
+    ```
 
 When you use your function, specify the full name, as shown in the following example.
 
 ```javascript
-MyUniqueName.MyFunctions.performMyAction();
+    MyUniqueName.MyFunctions.performMyAction();
 ```
 
-> **Tip:** If you call a function within another function in the same namespace, you can use the `this` keyword as a shortcut to the object that contains both functions. However, if you use your function as an event handler, the `this` keyword will refer to the object on which the event is occurring.
+Tip
+
+If you call a function within another function in the same namespace, you can use the **this** keyword as a shortcut to the object that contains both functions. However, if you use your function as an event handler, the **this** keyword will refer to the object on which the event is occurring.
 
 ### Avoid unsupported methods
 
@@ -100,7 +105,7 @@ The Client API is being continuously developed and improved. It's important to r
 
 ### Avoid using jQuery in forms and ribbon commands
 
-jQuery and other direct HTML DOM manipulation libraries aren't supported within form scripts or command bar commands. You should restrict your scripts to only using methods in the Client API object model. For more information, see [Understand the Client API object model](https://learn.microsoft.com/en-us/power-apps/developer/model-driven-apps/clientapi/understand-clientapi-object-model/).
+jQuery and other direct HTML DOM manipulation libraries aren't supported within form scripts or command bar commands. You should restrict your scripts to only using methods in the Client API object model. For more information, see [Understand the Client API object model](/en-us/power-apps/developer/model-driven-apps/clientapi/understand-clientapi-object-model/?azure-portal=true).
 
 ### Write non-blocking code
 
@@ -110,4 +115,4 @@ Try avoiding methods that block UI, like confirmation dialogs, blocking progress
 
 ### Write code for multiple browsers
 
-Ensure that any scripts you implement you test to work against all browsers and device form factors your users use with your model-driven apps. For more information, see [Supported web browsers and mobile devices](https://learn.microsoft.com/en-us/power-platform/admin/supported-web-browsers-and-mobile-devices/).
+Ensure that any scripts you implement you test to work against all browsers and device form factors your users use with your model-driven apps. For more information, see [Supported web browsers and mobile devices](/en-us/power-platform/admin/supported-web-browsers-and-mobile-devices/?azure-portal=true).
