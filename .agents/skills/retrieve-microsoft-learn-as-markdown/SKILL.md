@@ -14,4 +14,4 @@ Follow these steps:
 3. Call `microsoft_docs_fetch` on each unit URL in parallel to get clean markdown content.
 4. Derive the output folder name from the module slug (last path segment of the module URL).
 5. Save each unit as `<folder>/<order>-<unit-slug>.md`. Create the folder if it doesn't exist.
-6. Format each file with proper markdown: `#` for the page title, `##`/`###` for sections, fenced code blocks for code/formulas, and bullet lists for list items.
+6. Format each file with proper markdown: `#` for the page title, `##`/`###` for sections, fenced code blocks for code/formulas, and bullet lists for list items. DO NOT CHANGE THE CONTENT, USE CONTENT AS IS, JUST FORMAT IT AS MARKDOWN.
